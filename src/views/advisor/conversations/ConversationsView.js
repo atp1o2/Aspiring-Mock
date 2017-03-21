@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class ComponentOneView extends Component {
+class ConversationView extends Component {
   render () {
     return (
       <div className="container">
-        view1
+        Profile
       </div>
     );
   }
 }
 
-export default ComponentOneView;
+export default ConversationView;

@@ -7,8 +7,8 @@ class MastheadView extends Component {
       <div className="masthead">
         <div className="container">
           <h1>Masthead</h1>
-          <Link to="view1">View1</Link>
-          <Link to="view2">View2</Link>
+          <Link to="Student/Advisors">Advisors</Link>
+          <Link to="Student/Profile">Profile</Link>
         </div>
       </div>
     );
