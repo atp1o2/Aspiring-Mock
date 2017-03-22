@@ -25,7 +25,7 @@ import TermsStudent from './views/static/TermsStudent';
 
 var routes = (
   <Route>
-    <IndexRoute path='/' component={AvailableAdvisors} />
+    <IndexRoute component={AvailableAdvisors} />
 
     <Route path='DMCA' component={Dmca} />
     <Route path='FAQ' component={Faq} />
