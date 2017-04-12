@@ -1,18 +1,2 @@
 @import 'index';
-@import 'variables';
-@import '~bootstrap/scss/bootstrap.scss';
-@import 'masthead';
-@import 'home';
-
-* {
-  /*border: 1px red solid;*/
-}
-
-
-.yes-green {
-  background-color: #2ecc71;
-}
-
-.no-red {
-  background-color: #E53935;
-}
+@import '~normalize.css/normalize.css';
