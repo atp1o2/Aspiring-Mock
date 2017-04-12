@@ -48,14 +48,16 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
+    "hedron": "^0.6.0",
     "jsonfile": "^2.4.0",
     "node-sass": "^4.3.0",
+    "normalize.css": "^6.0.0",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "reflux": "^6.0.0",
+    "styled-components": "^1.4.4",
     "xlsx": "^0.8.2"
   },
   "scripts": {
