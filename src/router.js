@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+// Dev
+import Components from './views/Components';
+
 // Advisor
 import Conversations from './views/advisor/conversations/Conversations';
 import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
@@ -25,6 +28,7 @@ import TermsStudent from './views/static/TermsStudent';
 
 var routes = (
   <Route>
+    <Route path="Components" component={Components} />
     <IndexRoute component={AvailableAdvisors} />
 
     <Route path='DMCA' component={Dmca} />

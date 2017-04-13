@@ -1,19 +1,9 @@
 const Brand = {
   yellow: "#F5C600",
+  darkYellow: "#e6b905",
   grey: "#697489",
   white: "#FFFFFF",
-  grey-border: "1px solid #ececec"
+  greyBorder: "1px solid #ececec"
 };
-
+2
 export default Brand ;
-
-/*
-********** How to use in components **********
-
-import Brand from '../../../styles/variables';
-
-const Yellow = styled.button`
-  background-color: ${Brand.yellow};
-  border-color: ${Brand.yellow};
-`;
-*/
