@@ -3,11 +3,28 @@
   src: url(./fonts/Raleway/Raleway-Regular.ttf);
 }
 
+@font-face {
+  font-family: RalewayBold;
+  src: url(./fonts/Raleway/Raleway-Bold.ttf);
+}
+
 body {
   font-family: Raleway, 'Helvetica';
+  font-size: 16px;
 }
 
 a {
-  color: #000000;
   text-decoration: none;
+}
+
+* {
+  /*border: 1px solid red;*/
+}
+
+hr {
+  border-top: 1px solid #ececec;
+
+  &.yellow {
+    border-top: 1px solid #F5C600;
+  };
 }
