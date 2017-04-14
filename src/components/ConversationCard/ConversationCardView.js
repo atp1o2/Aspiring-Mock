@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Column } from 'hedron';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
@@ -30,22 +30,22 @@ class ConversationCardView extends Component {
     return (
       <ConversationCard>
         <Row>
-          <Column sm={12} md={4}>
+          <Col sm={12} md={4}>
             <img src={avatarImg} alt="Advisor Profile" />
-          </Column>
-          <Column sm={12} md={4}>
+          </Col>
+          <Col sm={12} md={4}>
             <h3>{this.props.data.name}</h3>
             <p>{this.props.data.title}</p>
             <p>{this.props.data.company}</p>
             <p>#tags</p>
-          </Column>
-          <Column sm={12} md={4}>
+          </Col>
+          <Col sm={12} md={4}>
             <p className="bold">Appointment:</p>
             <p>{this.props.data.availableDate}</p>
             <p>{this.props.data.availableTime}</p>
             <Button small>Contact</Button>
             <Button small>Cancel</Button>
-          </Column>
+          </Col>
         </Row>
       </ConversationCard>
     );
