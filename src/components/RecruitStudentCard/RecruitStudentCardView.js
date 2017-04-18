@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Column } from 'hedron';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
@@ -28,8 +28,10 @@ const RecruitStudentCard = styled.div`
   tr > td {
     padding-bottom: 0.6rem;
   }
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 991px) {
     text-align: center;
+    max-width: 40rem;
+    padding: 2rem 4rem;
     table {
       margin: 0 auto;
     }
@@ -45,10 +47,10 @@ class RecruitStudentCardView extends Component {
     return (
       <RecruitStudentCard>
         <Row>
-          <Column sm={12} md={3}>
+          <Col sm={12} md={3}>
             <img src={avatarImg} alt="Profile" />
-          </Column>
-          <Column sm={12} md={4} className="border-right">
+          </Col>
+          <Col sm={12} md={4} className="border-right">
             <h1>{this.props.data.name}</h1>
             <table>
               <tbody>
@@ -70,15 +72,15 @@ class RecruitStudentCardView extends Component {
                 </tr>
               </tbody>
             </table>
-          </Column>
-          <Column sm={12} md={5}>
+          </Col>
+          <Col sm={12} md={5}>
             <p className="bold">Summary</p>
             <p>{this.props.data.summary}<a href="#">... Read More</a></p>
             <div className="center">
               <Button small>Hide</Button>
               <Button small>Contact</Button>
             </div>
-          </Column>
+          </Col>
         </Row>
       </RecruitStudentCard>
     );

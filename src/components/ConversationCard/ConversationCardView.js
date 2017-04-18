@@ -8,7 +8,7 @@ import DefaultProfile from '../../img/default_profile.png';
 const ConversationCard = styled.div`
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  width: auto;
+  width: auto
   height: auto;
   p {
     color: ${Brand.grey};
@@ -19,8 +19,10 @@ const ConversationCard = styled.div`
     box-shadow: 0 9px 12px 0 ${Brand.grey};
     margin-left: 1rem;
   }
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 991px) {
     text-align: center;
+    max-width: 25rem;
+    padding: 2rem;
   }
 `;
 

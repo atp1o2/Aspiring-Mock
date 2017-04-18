@@ -7,15 +7,20 @@ const ProfileCard = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  width: 18rem;
-  height: 13rem;
+  width: 25rem;
+  height: 20rem;
+  margin-top: 3rem;
+  .details {
+    line-height: 1;
+    margin-top: 2.5rem;
+  }
   p {
     color: ${Brand.grey};
   }
   img {
-    margin-top: -2rem;
-    height: 9rem;
-    width: 9rem;
+    margin-top: -3rem;
+    height: 12rem;
+    width: 12rem;
     box-shadow: 0 9px 12px 0 ${Brand.grey};
   }
 `;
@@ -26,8 +31,11 @@ class ProfileCardView extends Component {
     return (
       <ProfileCard>
         <img src={avatarImg} alt="Profile Card" />
-        <h4>{this.props.name}</h4>
-        <p>{this.props.title}</p>
+        <div className="details">
+          <h4>{this.props.name}</h4>
+          <p>{this.props.title}</p>
+          <p>{this.props.company}</p>
+        </div>
       </ProfileCard>
     );
   };
