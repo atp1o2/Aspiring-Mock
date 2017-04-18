@@ -5,6 +5,7 @@ import ProfileCardView from './ProfileCardView';
 let data = {
   name: "Daenerys Targaryen",
   title: "Mother of Dragons",
+  company: "Dothraki Inc.",
   avatar: ""
 }
 
@@ -13,6 +14,7 @@ class ProfileCard extends Component {
     return <ProfileCardView
       name={data.name}
       title={data.title}
+      company={data.company}
       avatar={data.avatar}
     />
   };

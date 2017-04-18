@@ -10,7 +10,7 @@ const Button = styled.button`
   -moz-border-radius: 2px;
   width: ${props => props.full ? '100%' : 'auto'};
   padding: ${props => props.small ? '0.5rem 1.5rem' : '1rem'};
-  margin: 0 0.5rem;
+  margin: 0.5rem 0.5rem;
 
   &:hover {
     background-color: ${Brand.darkYellow};

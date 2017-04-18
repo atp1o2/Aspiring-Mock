@@ -8,11 +8,11 @@ const Card = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  width: 15rem;
-  height: 13rem;
-  padding: 0 0.5rem;
+  width: 20rem;
+  height: 20rem;
+  padding: 2rem 1rem;
 
-  h3 {
+  h4 {
     line-height: 2;
   }
 `;
@@ -32,7 +32,7 @@ class RequestCardView extends Component {
     } else {
       details = (
         <div>
-          <h3>Let this advisor know you would like to chat.</h3>
+          <h4>Let this advisor know you would like to chat.</h4>
           <Button small>Request</Button>
         </div>
       )

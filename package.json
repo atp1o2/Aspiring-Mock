@@ -48,7 +48,6 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
-    "hedron": "^0.6.0",
     "jsonfile": "^2.4.0",
     "node-sass": "^4.3.0",
     "normalize.css": "^6.0.0",
