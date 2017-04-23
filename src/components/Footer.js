@@ -8,7 +8,6 @@ import FacebookIcon from '../img/icons/facebook.svg';
 import TwitterIcon from '../img/icons/twitter-alt.svg';
 
 const FooterStyle = styled.footer`
-  position: absolute;
   bottom: 0;
   height: 10rem;
   width: 100%;
@@ -26,9 +25,6 @@ const FooterStyle = styled.footer`
     max-width: 5rem;
     max-height: 5rem;
     margin-bottom: 2rem;
-  }
-  @media only screen and (max-width: 767px) {
-    position: relative;
   }
 `;
 
