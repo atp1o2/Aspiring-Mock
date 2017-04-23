@@ -60,7 +60,6 @@ class Components extends Component {
               <ProfileCard advisorId={1} />
             </Col>
           </Row>
-
           <Row>
             <Col lg={12}>
               <h2>Request/Join Conversation Cards</h2>
@@ -69,7 +68,6 @@ class Components extends Component {
               <RequestCard advisorId={1} />
             </Col>
           </Row>
-
           <Row>
             <Col lg={12}>
               <h2>Student - Upcoming ConversationCard</h2>

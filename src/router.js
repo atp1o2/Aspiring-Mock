@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 // Dev
 import Components from './views/Components';
+import Forms from './views/Forms';
 
 // Advisor
 import Conversations from './views/advisor/conversations/Conversations';
@@ -29,6 +30,8 @@ import TermsStudent from './views/static/TermsStudent';
 var routes = (
   <Route>
     <Route path="Components" component={Components} />
+    <Route path="Forms" component={Forms} />
+
     <IndexRoute component={AvailableAdvisors} />
 
     <Route path='DMCA' component={Dmca} />
