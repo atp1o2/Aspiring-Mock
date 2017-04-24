@@ -5,6 +5,10 @@ import { Route, IndexRoute } from 'react-router';
 import Components from './views/Components';
 import Forms from './views/Forms';
 
+// Recruiter
+import RecruiterAccount from './views/recruiter/RecruiterAccount/RecruiterAccount';
+import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
+
 // Advisor
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
 import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
@@ -42,6 +46,11 @@ var routes = (
     <Route path='Terms-of-Use-Student' component={TermsStudent} />
     <Route path='Private-Policy' component={PrivatePolicy} />
     <Route path='Private-Policy-Student' component={PrivatePolicyStudent} />
+
+    <Route path='Recruiter/:id'>
+      <Route path='Recruit' component={RecruitStudents} />
+      <Route path='Account' component={RecruiterAccount} />
+    </Route>
 
     <Route path='Advisor/:id'>
       <Route path='Conversations' component={AdvisorConversations} />
