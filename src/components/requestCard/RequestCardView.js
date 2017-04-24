@@ -8,9 +8,11 @@ const Card = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  width: 20rem;
+  width: auto;
   height: 20rem;
   padding: 2rem 1rem;
+  margin-top: 3rem;
+  margin-left: 1rem;
 
   h4 {
     line-height: 2;
@@ -20,20 +22,20 @@ const Card = styled.div`
 class RequestCardView extends Component {
   render () {
     let details;
-    if (this.props.data) {
+    if (!this.props.data) {
+      details = (
+        <div>
+          <h4>Let this advisor know you would like to chat.</h4>
+          <Button small>Request</Button>
+        </div>
+      )
+    } else {
       details = (
         <div>
           <p>{this.props.data.availableDate}</p>
           <h2>{this.props.data.availableSpots}</h2>
           <p>Spots Available</p>
           <Button small>{this.props.data.availableTime}</Button>
-        </div>
-      )
-    } else {
-      details = (
-        <div>
-          <h4>Let this advisor know you would like to chat.</h4>
-          <Button small>Request</Button>
         </div>
       )
     };
