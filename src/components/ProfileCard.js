@@ -32,9 +32,9 @@ class ProfileCard extends Component {
       <ProfileCardStyle>
         <img src={avatarImg} alt="Profile Card" />
         <div className="details">
-          <h4>{this.props.user.name}</h4>
-          <p>{this.props.user.title}</p>
-          <p>{this.props.user.company}</p>
+          <h4>{this.props.data.name}</h4>
+          <p>{this.props.data.title}</p>
+          <p>{this.props.data.company}</p>
         </div>
       </ProfileCardStyle>
     );
