@@ -1,76 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { Grid, Row, Col, Clearfix } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import ProfileCard from '../../../components/ProfileCard';
 import RequestCard from '../../../components/RequestCard/RequestCard';
 
-let advisorData = [
-  {
-    name: "Daenerys Targaryen",
-    title: "Mother of Dragons",
-    company: "Dothraki Inc.",
-    avatar: "",
-    conversations: [
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 7,
-      },
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 7,
-      },
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 7,
-      },
-    ]
-  },
-  {
-    name: "Jon Snow",
-    title: "Watch Commander",
-    company: "The Watch",
-    avatar: "",
-    conversations: [
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 4,
-      },
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 4,
-      }
-    ]
-  },
-  {
-    name: "Ned Stark",
-    title: "Warden of the North",
-    company: "House Stark",
-    avatar: "",
-    conversations: [
-      {
-        availableDate: "4/30/2017",
-        availableTime: "01:00PM PST",
-        availableSpots: 6,
-      }
-    ]
-  },
-  {
-    name: "Baslish Litter Finger",
-    title: "Sneaky Instigator",
-    company: "The Sparrow",
-    avatar: "",
-    conversations: []
-  }
-];
-
 const AdvisorsStyle = styled.div`
-  .row {
+  .advisor-row {
     margin: 3rem 0;
   }
 `;
@@ -78,12 +14,12 @@ const AdvisorsStyle = styled.div`
 class AvailableAdvisorsView extends Component {
   render () {
     let advisorsList = [];
-    advisorData.map((advisor) =>
+    this.props.data.map((advisor) =>
       advisorsList.push(
         <div>
-          <Row>
+          <Row className="advisor-row">
             <Col xs={12} sm={6} smOffset={3} md={3} mdOffset={0}>
-              <ProfileCard user={advisor} />
+              <ProfileCard data={advisor} />
             </Col>
             { (advisor.conversations.length === 0) ? (
               <Col xs={10} xsOffset={1} sm={4} smOffset={0} md={3}>
@@ -103,13 +39,15 @@ class AvailableAdvisorsView extends Component {
     )
     return (
       <AdvisorsStyle>
-        <Grid>
-          <Row className="text-center">
+        <Grid className="text-center">
+          <Row>
             <h1>Advisors</h1>
+            <hr />
+          </Row>
+          <Row>
             <Link to="#">All </Link>
             <Link to="#">Business </Link>
             <Link to="#">Engineering</Link>
-            <hr />
           </Row>
           {advisorsList}
         </Grid>

@@ -15,7 +15,7 @@ import StudentView from './views/advisor/studentView/StudentView';
 // Student
 import AvailableAdvisors from './views/student/availableAdvisors/AvailableAdvisors';
 import StudentProfile from './views/student/profile/StudentProfile';
-import EditStudentProfile from './views/student/editProfile/EditStudentProfile';
+import Conversation from './views/student/Conversation/Conversation';
 
 // Static
 import Dmca from './views/static/Dmca';
@@ -47,14 +47,14 @@ var routes = (
       <Route path='Conversations' component={Conversations} />
       <Route path='Profile' component={AdvisorProfile} />
       <Route path='StudentView' component={StudentView} />
-      <Route path='EditProfile' component={EditAdvisorProfile} />
+      <Route path='Conversations' component={EditAdvisorProfile} />
       <Route path='Settings' component={AdvisorSettings} />
     </Route>
 
     <Route path='Student/:id'>
       <Route path='Advisors' component={AvailableAdvisors} />
+      <Route path='Conversations' component={Conversation} />
       <Route path='Profile' component={StudentProfile} />
-      <Route path='EditProfile' component={EditStudentProfile} />
     </Route>
   </Route>
 );

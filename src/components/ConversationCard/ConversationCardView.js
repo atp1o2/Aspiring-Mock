@@ -10,19 +10,19 @@ const ConversationCard = styled.div`
   border-bottom: 1px solid silver;
   width: auto
   height: auto;
+  padding: 2rem;
+  margin: 2rem 0;
   p {
     color: ${Brand.grey};
   }
   img {
-    height: 10rem;
-    width: 10rem;
+    height: 14rem;
+    width: 14rem;
     box-shadow: 0 9px 12px 0 ${Brand.grey};
     margin-left: 1rem;
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
-    max-width: 25rem;
-    padding: 2rem;
   }
 `;
 

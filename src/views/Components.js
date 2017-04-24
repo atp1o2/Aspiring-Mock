@@ -7,6 +7,9 @@ import ProfileCard from '../components/ProfileCard';
 import ConversationCard from '../components/ConversationCard/ConversationCard';
 import AdvisorConversationCard from '../components/AdvisorConversationCard/AdvisorConversationCard';
 import RecruitStudentCard from '../components/RecruitStudentCard/RecruitStudentCard';
+import FakeData from '../server/fake_data';
+
+let data = FakeData;
 
 class Components extends Component {
   talk () {
@@ -57,7 +60,7 @@ class Components extends Component {
               <h2>Profile Card</h2>
             </Col>
             <Col lg={4}>
-              <ProfileCard advisorId={1} />
+              <ProfileCard user={FakeData[0]} />
             </Col>
           </Row>
           <Row>
