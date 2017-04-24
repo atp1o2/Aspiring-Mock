@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MastheadView from './MastheadView';
 
 let data = {
-  type: "advisor"
+  type: "recruiter"
 }
 
 class Masthead extends Component {

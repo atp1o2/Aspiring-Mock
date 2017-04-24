@@ -10,12 +10,18 @@ const RecruitStudentCard = styled.div`
   border-bottom: 1px solid silver;
   width: auto;
   height: auto;
+  margin: 2rem 0;
+  padding: 2rem;
   p, td {
     color: ${Brand.grey};
   }
+  table {
+    margin: 0 auto;
+  }
   img {
-    height: 12rem;
-    width: 12rem;
+    height: 16rem;
+    width: 16rem;
+    margin: 1rem;
     box-shadow: 0 9px 12px 0 ${Brand.grey};
   }
   .border-right {
@@ -30,13 +36,16 @@ const RecruitStudentCard = styled.div`
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
-    max-width: 40rem;
+
     padding: 2rem 4rem;
     table {
-      margin: 0 auto;
+      margin-bottom: 2rem;
     }
     .border-right {
       border: none;
+    }
+    .summary {
+      padding: 0 5rem;
     }
   }
 `;
@@ -47,10 +56,10 @@ class RecruitStudentCardView extends Component {
     return (
       <RecruitStudentCard>
         <Row>
-          <Col sm={12} md={3}>
+          <Col sm={12} md={2}>
             <img src={avatarImg} alt="Profile" />
           </Col>
-          <Col sm={12} md={4} className="border-right">
+          <Col sm={12} md={5} className="border-right">
             <h1>{this.props.data.name}</h1>
             <table>
               <tbody>
@@ -73,7 +82,7 @@ class RecruitStudentCardView extends Component {
               </tbody>
             </table>
           </Col>
-          <Col sm={12} md={5}>
+          <Col sm={12} md={5} className="summary">
             <p className="bold">Summary</p>
             <p>{this.props.data.summary}<a href="#">... Read More</a></p>
             <div className="center">
