@@ -52,7 +52,6 @@ class MastheadView extends Component {
     } else if (this.props.user.type === "advisor") {
       linkList = (
         <Nav eventKey={0} pullRight>
-          <NavItem href="https://explore.careerscope.com/" target="_blank">Explore</NavItem>
           <LinkContainer to="Advisor/1/Conversations">
             <NavItem eventKey={1}>Conversations</NavItem>
           </LinkContainer>

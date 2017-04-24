@@ -6,7 +6,7 @@ import Components from './views/Components';
 import Forms from './views/Forms';
 
 // Advisor
-import Conversations from './views/advisor/conversations/Conversations';
+import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
 import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
 import EditAdvisorProfile from './views/advisor/editProfile/EditAdvisorProfile';
 import AdvisorSettings from './views/advisor/settings/AdvisorSettings';
@@ -44,11 +44,11 @@ var routes = (
     <Route path='Private-Policy-Student' component={PrivatePolicyStudent} />
 
     <Route path='Advisor/:id'>
-      <Route path='Conversations' component={Conversations} />
+      <Route path='Conversations' component={AdvisorConversations} />
       <Route path='Profile' component={AdvisorProfile} />
       <Route path='StudentView' component={StudentView} />
       <Route path='Conversations' component={EditAdvisorProfile} />
-      <Route path='Settings' component={AdvisorSettings} />
+      <Route path='Account' component={AdvisorSettings} />
     </Route>
 
     <Route path='Student/:id'>

@@ -9,13 +9,13 @@ const AdvisorConversationCard = styled.div`
   border-bottom: 1px solid silver;
   width: auto;
   height: auto;
+  margin: 2rem 0;
+  padding: 2rem;
+  text-align: center;
   p h3 {
     color: ${Brand.grey};
   }
   @media only screen and (max-width: 991px) {
-    text-align: center;
-    max-width: 25rem;
-    padding: 2rem;
   }
 `;
 
