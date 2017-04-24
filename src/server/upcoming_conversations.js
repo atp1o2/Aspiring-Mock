@@ -5,7 +5,8 @@ let data = [
     company: "The Wall",
     availableDate: "4/30/2017",
     availableTime: "12:00PM PST",
-    availableSpots: "7"
+    attendees: 4,
+    availableSpots: 7
   },
   {
     name: "Jon Snow",
@@ -13,7 +14,8 @@ let data = [
     company: "The Wall",
     availableDate: "4/30/2017",
     availableTime: "12:00PM PST",
-    availableSpots: "7"
+    attendees: 4,
+    availableSpots: 7
   },
   {
     name: "Jon Snow",
@@ -21,7 +23,8 @@ let data = [
     company: "The Wall",
     availableDate: "4/30/2017",
     availableTime: "12:00PM PST",
-    availableSpots: "7"
+    attendees: 4,
+    availableSpots: 7
   },
   {
     name: "Jon Snow",
@@ -29,7 +32,8 @@ let data = [
     company: "The Wall",
     availableDate: "4/30/2017",
     availableTime: "12:00PM PST",
-    availableSpots: "7"
+    attendees: 4,
+    availableSpots: 7
   }
 ]
 

@@ -60,7 +60,7 @@ class Components extends Component {
               <h2>Profile Card</h2>
             </Col>
             <Col lg={4}>
-              <ProfileCard user={FakeData[0]} />
+              <ProfileCard data={FakeData[0]} />
             </Col>
           </Row>
           <Row>
@@ -68,7 +68,7 @@ class Components extends Component {
               <h2>Request/Join Conversation Cards</h2>
             </Col>
             <Col lg={4}>
-              <RequestCard advisorId={1} />
+              <RequestCard />
             </Col>
           </Row>
           <Row>
@@ -76,7 +76,7 @@ class Components extends Component {
               <h2>Student - Upcoming ConversationCard</h2>
             </Col>
             <Col lg={12}>
-              <ConversationCard advisorId={1} />
+              <ConversationCard data={FakeData[0]} />
             </Col>
           </Row>
           <Row>
@@ -84,7 +84,7 @@ class Components extends Component {
               <h2>Advisor Upcoming/Past - AdvisorConversationCard</h2>
             </Col>
             <Col lg={12}>
-              <AdvisorConversationCard advisorId={1} />
+              <AdvisorConversationCard data={FakeData[0]} />
             </Col>
           </Row>
           <Row>
