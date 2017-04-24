@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Brand from '../../styles/variables';
-import DefaultProfile from '../../img/default_profile.png';
+import Brand from '../styles/variables';
+import DefaultProfile from '../img/default_profile.png';
 
-const ProfileCard = styled.div`
+const ProfileCardStyle = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  width: 25rem;
+  width: auto;
   height: 20rem;
   margin-top: 3rem;
   .details {
@@ -25,20 +25,20 @@ const ProfileCard = styled.div`
   }
 `;
 
-class ProfileCardView extends Component {
+class ProfileCard extends Component {
   render () {
     let avatarImg = this.props.avatar ? this.props.avatar : DefaultProfile;
     return (
-      <ProfileCard>
+      <ProfileCardStyle>
         <img src={avatarImg} alt="Profile Card" />
         <div className="details">
-          <h4>{this.props.name}</h4>
-          <p>{this.props.title}</p>
-          <p>{this.props.company}</p>
+          <h4>{this.props.user.name}</h4>
+          <p>{this.props.user.title}</p>
+          <p>{this.props.user.company}</p>
         </div>
-      </ProfileCard>
+      </ProfileCardStyle>
     );
   };
 }
 
-export default ProfileCardView;
+export default ProfileCard;
