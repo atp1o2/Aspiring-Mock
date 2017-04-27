@@ -36,7 +36,7 @@ class RequestCardView extends Component {
       convoList = [];
       this.props.conversations.map((conversation) =>
         convoList.push(
-          <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base">
+          <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base" key={conversation.id}>
             <div key={conversation.id}>
               <p>{conversation.date}</p>
               {

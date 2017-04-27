@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Form, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import Button from '../Button.js';
+import { Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class CitizenshipFormView extends Component {
   constructor (props) {

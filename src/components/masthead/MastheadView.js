@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
-import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
-import Brand from '../../styles/variables';
 import BrandLogo from '../../img/CareerScope-Logo.png';
 
 const Masthead = styled.nav`
@@ -34,7 +32,7 @@ class MastheadView extends Component {
     if (this.props.user.type === "student") {
       linkList = (
         <Nav pullRight>
-          <a href="https://explore.careerscope.com/" target="_blank">Explore</a>
+          <Link to="https://explore.careerscope.com/">Explore</Link>
           <Link to="How-it-Works">
             How it Works
           </Link>
@@ -71,7 +69,7 @@ class MastheadView extends Component {
       )
     } else if (this.props.user.type === "recruiter") {
       linkList = (
-        <Nav pullRight onSelect={this.onSelect}>
+        <Nav pullRight>
           <Link to="Recruiter/1/Recruit">
             Recruit
           </Link>

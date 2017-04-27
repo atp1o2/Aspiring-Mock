@@ -9,8 +9,6 @@ import AdvisorConversationCard from '../components/AdvisorConversationCard/Advis
 import RecruitStudentCard from '../components/RecruitStudentCard/RecruitStudentCard';
 import FakeData from '../server/fake_data';
 
-let data = FakeData;
-
 class Components extends Component {
   talk () {
     alert("You pressed a button!")

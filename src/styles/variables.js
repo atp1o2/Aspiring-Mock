@@ -5,5 +5,5 @@ const Brand = {
   white: "#FFFFFF",
   greyBorder: "1px solid #ececec"
 };
-2
+
 export default Brand ;

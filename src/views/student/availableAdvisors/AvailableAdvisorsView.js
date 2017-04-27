@@ -22,7 +22,7 @@ class AvailableAdvisorsView extends Component {
     let size = 10;
     this.props.data.slice(0, size).map((advisor) =>
       advisorsList.push(
-        <div>
+        <div key={advisor.id}>
           <Row className="advisor-row">
             <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0}>
               <ProfileCard data={advisor} />
