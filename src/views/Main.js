@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Masthead from '../components/Masthead/Masthead';
+import Masthead from '../components/masthead/Masthead';
 import Footer from '../components/Footer';
 
 class Main extends Component {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { Grid, Row, Col, Navbar, Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import Brand from '../styles/variables';
 import FacebookIcon from '../img/icons/facebook.svg';
 import TwitterIcon from '../img/icons/twitter-alt.svg';
@@ -35,27 +34,27 @@ class Footer extends Component {
       <Grid>
         <Row>
           <Col xs={12} sm={4}>
-              <Nav eventKey={0}>
-                <NavItem href="https://explore.careerscope.com/" target="_blank">Explore</NavItem>
-                <LinkContainer to="Mission">
-                  <NavItem eventKey={1}>Mission</NavItem>
-                </LinkContainer>
-                <LinkContainer to="FAQ">
-                  <NavItem eventKey={2}>FAQ</NavItem>
-                </LinkContainer>
+              <Nav>
+                <a href="https://explore.careerscope.com/" target="_blank">Explore</a>
+                <Link to="Mission">
+                  Mission
+                </Link>
+                <Link to="FAQ">
+                  FAQ
+                </Link>
               </Nav>
           </Col>
           <Col xs={12} sm={4} smPush={4}>
             <Nav>
-              <LinkContainer to="DMCA">
-                <NavItem eventKey={3}>DMCA</NavItem>
-              </LinkContainer>
-              <LinkContainer to="Terms-Of-Use">
-                <NavItem eventKey={5}>Terms</NavItem>
-              </LinkContainer>
-              <LinkContainer to="Private-Policy">
-                <NavItem eventKey={5}>Privacy</NavItem>
-              </LinkContainer>
+              <Link to="DMCA">
+                DMCA
+              </Link>
+              <Link to="Terms-Of-Use">
+                Terms
+              </Link>
+              <Link to="Private-Policy">
+                Privacy
+              </Link>
             </Nav>
           </Col>
           <Col xs={12} sm={4} smPull={4}>
