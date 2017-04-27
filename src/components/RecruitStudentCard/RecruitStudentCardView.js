@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';

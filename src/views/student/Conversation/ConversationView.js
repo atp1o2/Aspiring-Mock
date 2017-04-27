@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row } from 'react-bootstrap';
 import ConversationCard from '../../../components/ConversationCard/ConversationCard';
 
 class ConversationView extends Component {

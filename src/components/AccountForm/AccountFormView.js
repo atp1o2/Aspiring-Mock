@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Form, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import Button from '../Button.js';
 
 class AccountFormView extends Component {
@@ -44,7 +43,8 @@ class AccountFormView extends Component {
 
   render () {
     // lift this into a helper function
-    const {first_name, last_name, email, password, password_confirm} = this.state;
+    // const {first_name, email, password, password_confirm} = this.state;
+    const {first_name, email} = this.state;
     const isEnabled = email.length > 0 && first_name.length > 0;
 
     return (

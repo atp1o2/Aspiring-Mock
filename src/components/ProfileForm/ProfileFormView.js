@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Form, FormGroup, FormControl, ControlLabel, HelpBlock } from 'react-bootstrap';
-import Button from '../Button.js';
+import { Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class ProfileFormView extends Component {
   constructor (props) {
@@ -42,8 +40,8 @@ class ProfileFormView extends Component {
 
   render () {
     // lift this into a helper function
-    const {status, summary, links} = this.state;
-    const isEnabled = status.length > 0 && summary.length > 0;
+    // const {status, summary, links} = this.state;
+    // const isEnabled = status.length > 0 && summary.length > 0;
 
     return (
       <Form>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
-import { Grid, Row, Col, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Grid, Row, Col, Nav } from 'react-bootstrap';
 import Brand from '../styles/variables';
 import FacebookIcon from '../img/icons/facebook.svg';
 import TwitterIcon from '../img/icons/twitter-alt.svg';

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import AvailableAdvisorsView from './AvailableAdvisorsView';
-import FakeData from '../../../server/fake_data';
 import { getAllAdvisors } from '../../../server/railscope';
-
-
-// let advisorData = FakeData;
 
 class AvailableAdvisors extends Component {
   loadAllAdvisors () {

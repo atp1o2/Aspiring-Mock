@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import StudentProfileView from './StudentProfileView';
-import FakeData from '../../../server/upcoming_conversations';
-
-import { getAllStudents, getStudent } from '../../../server/railscope';
-
-let data = FakeData
+import { getStudent } from '../../../server/railscope';
 
 class StudentProfile extends Component {
 
@@ -30,7 +26,7 @@ class StudentProfile extends Component {
 
   render () {
     return (
-      <StudentProfileView data={data} />
+      <StudentProfileView data={this.state.student} />
     );
   }
 }

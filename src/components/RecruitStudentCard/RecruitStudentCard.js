@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import RecruitStudentCardView from './RecruitStudentCardView';
-// Needs advisor ID to pull correct data from store
-
-// redux function that pulls data from store with ID as argument
-// Checks if advisor has made appointments, else return false
 
 let data = {
   name: "Eddard Stark",
@@ -16,9 +12,6 @@ let data = {
 
 class RecruitStudentCard extends Component {
   render () {
-    let advisorId = this.props.advisorId;
-    // reduxFunction (advisorId) {return data object}
-
     return (
       <RecruitStudentCardView data={data} />
     )

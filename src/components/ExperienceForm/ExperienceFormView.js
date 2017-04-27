@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Col, Form, FormGroup, FormControl, ControlLabel, HelpBlock, InputGroup, Checkbox } from 'react-bootstrap';
-import Button from '../Button.js';
+import { Form, FormGroup, FormControl, ControlLabel, Checkbox } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 
 class ExperienceFormView extends Component {
