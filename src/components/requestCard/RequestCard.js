@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
 import RequestCardView from './RequestCardView';
-
-// Needs advisor ID to pull correct data from store
+import { getConversations } from '../../server/railscope';
 
 class RequestCard extends Component {
-  render () {
-    // let advisorId = this.props.advisorId;
+  loadConversations (id) {
+    var self = this;
+    getConversations(id, (conversations) => {
+      self.setState({
+        conversations: conversations
+      })
+    })
+  }
 
+  constructor (props) {
+    super(props);
+    this.state = {
+      conversations: []
+    }
+  }
+
+  componentDidMount () {
+    this.loadConversations(this.props.advisor.id);
+  }
+
+  render () {
     return (
-      <RequestCardView data={this.props.data} />
+      <RequestCardView conversations={this.state.conversations} />
     )
   };
 }
