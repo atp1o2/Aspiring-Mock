@@ -9,7 +9,38 @@ var getUser = (id, callback) => {
     callback(user);
 
   }, (response) => {
-    throw new Error('Invalid Response');
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getStudent = (id, callback) => {
+  api.one('students', id).get().then((response) => {
+    const studentEntity = response.body();
+    const student = studentEntity.data();
+    callback(student);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getAdvisor = (id, callback) => {
+  api.one('advisors', id).get().then((response) => {
+    const advisorEntity = response.body();
+    const advisor = advisorEntity.data();
+    callback(advisor);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getFullAdvisor = (id, callback) => {
+  let endpoint = 'advisors/' + id + '/full';
+  api.all(endpoint).getAll().then((response) => {
+    const advisorEntity = response.body();
+    const advisor = advisorEntity.data();
+    callback(advisor);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
   });
 }
 
@@ -21,7 +52,7 @@ var getAllStudents = (callback) => {
       callback(student);
     })
   }, (response => {
-    throw new Error('Invalid Response');
+    throw new Error('LOL 404 GL');
   }));
 }
 
@@ -35,45 +66,33 @@ var getAllAdvisors = (callback) => {
     })
     callback(advisorList);
   }, (response => {
-    throw new Error('Invalid Response');
+    throw new Error('LOL 404 GL');
   }));
 }
 
-var getStudent = (id, callback) => {
-  api.one('students', id).get().then((response) => {
-    const studentEntity = response.body();
-    const student = studentEntity.data();
-    callback(student);
-
-  }, (response) => {
-    throw new Error('Invalid Response');
-  });
-}
-
-
-var getAdvisor = (id, callback) => {
-  api.one('advisors', id).get().then((response) => {
-    const advisorEntity = response.body();
-    const advisor = advisorEntity.data();
-    callback(advisor);
-
-  }, (response) => {
-    throw new Error('Invalid Response');
-  });
-}
 
 var getCompany = (id, callback) => {
   api.one('companies', id).get().then((response) => {
     const companyEntity = response.body();
     const company = companyEntity.data();
     callback(company);
-
   }, (response) => {
-    throw new Error('Invalid Response');
+    throw new Error('LOL 404 GL');
   });
 }
 
-var getConversations = (id, callback) => {
+var getConversation = (id, callback) => {
+  api.one('conversations', id).get().then((response) => {
+    const conversationEntity = response.body();
+    const conversation = conversationEntity.data();
+    callback(conversation);
+
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getAdvisorConversations = (id, callback) => {
   const endpoint = 'advisors/' + id + '/conversations';
   api.all(endpoint, id).getAll().then((response) => {
     const conversationsEntities = response.body();
@@ -84,7 +103,22 @@ var getConversations = (id, callback) => {
     })
     callback(conversationList);
   }, (response) => {
-    throw new Error('Invalid Response');
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getStudentConversationsAttendances = (id, callback) => {
+  let endpoint = 'students/' + id + '/conversation_attendances';
+  api.all(endpoint).getAll().then((response) => {
+    const conversationsEntities = response.body();
+    let conversationList = [];
+    conversationsEntities.forEach((conversationsEntity) => {
+      const conversation = conversationsEntity.data();
+      conversationList.push(conversation)
+    })
+    callback(conversationList);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
   });
 }
 
@@ -95,5 +129,8 @@ export {
   getAdvisor,
   getAllAdvisors,
   getCompany,
-  getConversations
+  getConversation,
+  getAdvisorConversations,
+  getStudentConversationsAttendances,
+  getFullAdvisor
 };

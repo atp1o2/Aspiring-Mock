@@ -21,7 +21,7 @@ class StudentProfile extends Component {
   }
 
   componentDidMount () {
-    this.loadStudent(1)
+    this.loadStudent(this.props.params.id)
   }
 
   render () {
