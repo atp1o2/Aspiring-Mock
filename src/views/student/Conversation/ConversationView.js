@@ -17,9 +17,17 @@ class ConversationView extends Component {
       <Grid>
         <Row className="text-center">
           <h1>Your Upcoming Conversations</h1>
-          <hr />
+          <hr className="yellow" />
         </Row>
-        {upcomingConversationList}
+        <div>
+          {
+            upcomingConversationList.length === 0 ?  (
+              <h4 className="text-center">No Conversations Booked</h4>
+              ) : (
+                upcomingConversationList
+              )
+          }
+        </div>
       </Grid>
     );
   }

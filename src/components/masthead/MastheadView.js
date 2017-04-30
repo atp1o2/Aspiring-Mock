@@ -36,13 +36,13 @@ class MastheadView extends Component {
           <Link to="How-it-Works">
             How it Works
           </Link>
-          <Link to="Student/1/Advisors">
+          <Link to="Students/5/Advisors">
             Advisors
           </Link>
-          <Link to="Student/1/Conversations">
+          <Link to="Students/5/Conversations">
             Conversations
           </Link>
-          <Link to="Student/1/Profile">
+          <Link to="Students/5/Profile">
             Profile
           </Link>
           <Link to="Logout">
@@ -53,13 +53,13 @@ class MastheadView extends Component {
     } else if (this.props.user.type === "advisor") {
       linkList = (
         <Nav pullRight>
-          <Link to="Advisor/1/Conversations">
+          <Link to="Advisors/1/Conversations">
             Conversations
           </Link>
-          <Link to="Advisor/1/Profile">
+          <Link to="Advisors/1/Profile">
             Profile
           </Link>
-          <Link to="Advisor/1/Account">
+          <Link to="Advisors/1/Account">
             Account
           </Link>
           <Link to="Logout">
@@ -70,10 +70,10 @@ class MastheadView extends Component {
     } else if (this.props.user.type === "recruiter") {
       linkList = (
         <Nav pullRight>
-          <Link to="Recruiter/1/Recruit">
+          <Link to="Recruiters/1/Recruit">
             Recruit
           </Link>
-          <Link to="Recruiter/1/Account">
+          <Link to="Recruiters/1/Account">
             Account
           </Link>
           <Link to="Logout">

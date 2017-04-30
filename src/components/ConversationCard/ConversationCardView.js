@@ -4,6 +4,7 @@ import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
+import { getFullAdvisor } from '../../server/railscope';
 
 const ConversationCard = styled.div`
   border: ${Brand.greyBorder};
@@ -27,8 +28,34 @@ const ConversationCard = styled.div`
 `;
 
 class ConversationCardView extends Component {
+  loadAdvisor (id) {
+    var self = this;
+    getFullAdvisor(id, (advisor) => {
+      self.setState({
+        advisor: advisor,
+        loading: false
+      })
+    })
+  }
+
+  // Cheated
+  // This should be in ConversationCard.js container
+  // HELP: setup a promise(?) to return Advisor after Conversation loads
+  constructor (props) {
+    super(props);
+    this.state = {
+      advisor: '',
+      loading: true
+    }
+  }
+
+  componentWillMount () {
+    this.loadAdvisor(this.props.conversation.advisor_id);
+  }
+
   render () {
     let avatarImg = this.props.avatar ? this.props.avatar : DefaultProfile;
+    let title = this.state.advisor.job_title ? this.state.advisor.job_title : "Advisor";
     return (
       <ConversationCard>
         <Row>
@@ -36,15 +63,15 @@ class ConversationCardView extends Component {
             <img src={avatarImg} alt="Advisor Profile" />
           </Col>
           <Col sm={12} md={4}>
-            <h3>{this.props.data.name}</h3>
-            <p>{this.props.data.title}</p>
-            <p>{this.props.data.company}</p>
+            <h3>{this.state.advisor.first_name} {this.state.advisor.last_name}</h3>
+            <p>{title}</p>
+            <p>{this.state.advisor.first_name}</p>
             <p>#tags</p>
           </Col>
           <Col sm={12} md={4}>
             <p className="bold">Appointment:</p>
-            <p>{this.props.data.availableDate}</p>
-            <p>{this.props.data.availableTime}</p>
+            <p>{this.props.conversation.date}</p>
+            <p>{this.props.conversation.date}</p>
             <Button small>Contact</Button>
             <Button small>Cancel</Button>
           </Col>

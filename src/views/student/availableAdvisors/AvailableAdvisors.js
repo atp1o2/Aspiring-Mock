@@ -19,8 +19,8 @@ class AvailableAdvisors extends Component {
     }
   }
 
-  componentDidMount () {
-    this.loadAllAdvisors()
+  componentWillMount () {
+    this.loadAllAdvisors();
   }
 
   render () {
