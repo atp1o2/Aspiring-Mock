@@ -24,13 +24,13 @@ class AdvisorConversationCardView extends Component {
         <Row>
           <Col xs={12} sm={4}>
             <p className="bold">Appointment:</p>
-            <p>{this.props.data.availableDate}</p>
-            <p>Friday</p>
-            <p>{this.props.data.availableTime}</p>
+            <p>Date: {this.props.conversation.date}</p>
+            <p>Day: {this.props.conversation.date}</p>
+            <p>Time: {this.props.conversation.date}</p>
           </Col>
           <Col className="center" xs={12} sm={4}>
             <p className="bold">Attendees</p>
-            <h3><a href="#list of students">{this.props.data.attendees} / {this.props.data.availableSpots}</a></h3>
+            <h3><a href="#list of students">{this.props.conversation.conversation_attendances.length} / {this.props.conversation.capacity}</a></h3>
           </Col>
           <Col className="center mt-1" xs={12} sm={4}>
             <Button small>Edit Time</Button>
