@@ -27,7 +27,7 @@ const Masthead = styled.nav`
 
 class MastheadView extends Component {
   render () {
-    // this.props.user.type = "recruiter";
+    this.props.user.type = "advisor";
     let linkList;
     if (this.props.user.type === "student") {
       linkList = (
@@ -53,13 +53,13 @@ class MastheadView extends Component {
     } else if (this.props.user.type === "advisor") {
       linkList = (
         <Nav pullRight>
-          <Link to="Advisors/1/Conversations">
+          <Link to="Advisors/40/Conversations">
             Conversations
           </Link>
-          <Link to="Advisors/1/Profile">
+          <Link to="Advisors/40/Profile">
             Profile
           </Link>
-          <Link to="Advisors/1/Account">
+          <Link to="Advisors/40/Account">
             Account
           </Link>
           <Link to="Logout">

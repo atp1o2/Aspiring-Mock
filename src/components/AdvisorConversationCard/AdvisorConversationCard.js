@@ -4,7 +4,7 @@ import AdvisorConversationCardView from './AdvisorConversationCardView';
 class AdvisorConversationCard extends Component {
   render () {
     return (
-      <AdvisorConversationCardView data={this.props.data} />
+      <AdvisorConversationCardView conversation={this.props.conversation} />
     )
   };
 }

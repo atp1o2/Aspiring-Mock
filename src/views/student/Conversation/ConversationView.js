@@ -7,7 +7,7 @@ class ConversationView extends Component {
     let upcomingConversationList = [];
     this.props.data.map((conversation) =>
       upcomingConversationList.push(
-        <Row>
+        <Row key={conversation.id}>
           <ConversationCard data={conversation} />
         </Row>
       )

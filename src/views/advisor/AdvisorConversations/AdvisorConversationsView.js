@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
 import AdvisorConversationCard from '../../../components/AdvisorConversationCard/AdvisorConversationCard';
+import Button from '../../../components/Button';
 
 class AdvisorConversationView extends Component {
   render () {
     let upcomingConversationList = [];
-    this.props.data.map((convo) =>
+    this.props.conversations.map((conversation) =>
       upcomingConversationList.push(
-        <Row>
-          <AdvisorConversationCard data={convo} />
+        <Row key={conversation.id}>
+          <AdvisorConversationCard conversation={conversation} />
         </Row>
       )
     )
@@ -20,6 +21,9 @@ class AdvisorConversationView extends Component {
           <hr className="yellow"/>
         </Row>
         <Row>
+          <Button>Add Conversation Slot</Button>
+        </Row>
+        <Row>
           {upcomingConversationList}
         </Row>
 
@@ -28,7 +32,7 @@ class AdvisorConversationView extends Component {
           <hr className="yellow"/>
         </Row>
         <Row>
-          {upcomingConversationList}
+          // todo
         </Row>
       </Grid>
     );

@@ -47,10 +47,6 @@ var routes = (
     <Route path='Private-Policy' component={PrivatePolicy} />
     <Route path='Private-Policy-Student' component={PrivatePolicyStudent} />
 
-    <Route path=':users/:id'>
-      <Route path="Conversations" component={Conversation} />
-    </Route>
-
     <Route path='Recruiters/:id'>
       <Route path='Recruit' component={RecruitStudents} />
       <Route path='Account' component={RecruiterAccount} />
@@ -66,7 +62,7 @@ var routes = (
 
     <Route path='Students/:id'>
       <Route path='Advisors' component={AvailableAdvisors} />
-      // <Route path='Conversations' component={Conversation} />
+      <Route path='Conversations' component={Conversation} />
       <Route path='Profile' component={StudentProfile} />
     </Route>
   </Route>
