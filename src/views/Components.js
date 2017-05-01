@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Button from '../components/Button';
 import Pill from '../components/Pill';
 import RequestCard from '../components/RequestCard/RequestCard';
-import ProfileCard from '../components/ProfileCard';
+import ProfileCard from '../components/ProfileCard/ProfileCard';
 import ConversationCard from '../components/ConversationCard/ConversationCard';
 import AdvisorConversationCard from '../components/AdvisorConversationCard/AdvisorConversationCard';
 import RecruitStudentCard from '../components/RecruitStudentCard/RecruitStudentCard';

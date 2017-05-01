@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import RequestCardView from './RequestCardView';
-import { getAdvisorConversations } from '../../server/railscope';
+import { getConversations } from '../../server/railscope';
 
 class RequestCard extends Component {
-  loadConversations (id) {
+  loadConversations (user) {
     var self = this;
-    getAdvisorConversations(id, (conversations) => {
+    getConversations(user, (conversations) => {
       self.setState({
         conversations: conversations
       })
@@ -20,7 +20,11 @@ class RequestCard extends Component {
   }
 
   componentDidMount () {
-    this.loadConversations(this.props.advisor.id);
+    var user = {
+      id: this.props.advisor.id,
+      role: 'advisors'
+    }
+    this.loadConversations(user);
   }
 
   render () {

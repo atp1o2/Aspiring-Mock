@@ -1,18 +1,8 @@
 import React, { Component } from 'react';
 import StudentProfileView from './StudentProfileView';
-import { getStudent } from '../../../server/railscope';
+// import { getFullUser } from '../../../server/railscope';
 
 class StudentProfile extends Component {
-
-  loadStudent (id) {
-    var self = this;
-    getStudent(id, (student) => {
-      self.setState({
-        student: student
-      })
-    })
-  }
-
   constructor (props) {
     super(props);
     this.state = {
@@ -21,7 +11,7 @@ class StudentProfile extends Component {
   }
 
   componentDidMount () {
-    this.loadStudent(this.props.params.id)
+
   }
 
   render () {

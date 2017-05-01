@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router';
 import { Grid, Row, Col } from 'react-bootstrap';
-import ProfileCard from '../../../components/ProfileCard';
+import ProfileCard from '../../../components/ProfileCard/ProfileCard';
 import RequestCard from '../../../components/RequestCard/RequestCard';
 
 const AdvisorsStyle = styled.div`
@@ -25,7 +25,7 @@ class AvailableAdvisorsView extends Component {
         <div key={advisor.id}>
           <Row className="advisor-row">
             <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0}>
-              <ProfileCard data={advisor} />
+              <ProfileCard advisor={advisor} />
             </Col>
             <RequestCard advisor={advisor} />
           </Row>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import RecruitStudentsView from './RecruitStudentsView';
-import { getAllStudents, getCompany } from '../../../server/railscope';
+import { getAllUsers } from '../../../server/railscope';
 
 class RecruitStudents extends Component {
-  loadAllStudents () {
+  loadAllUsers (role) {
     var self = this;
-    getAllStudents((students) => {
+    getAllUsers(role, (students) => {
       self.setState({
         students: students,
         loading: false
@@ -22,7 +22,7 @@ class RecruitStudents extends Component {
   }
 
   componentWillMount () {
-    this.loadAllStudents();
+    this.loadAllUsers("students");
   }
 
   render () {
