@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
 import RecruitStudentCardView from './RecruitStudentCardView';
-import { getFullStudent, getMajor, getSchool } from '../../server/railscope';
+import { getFullUser, getResource } from '../../server/railscope';
 
 class RecruitStudentCard extends Component {
-  loadStudent (id, callback) {
+  loadFullUser (user, callback) {
     var self = this;
-    getFullStudent(id, (student) => {
+    getFullUser(user, (user) => {
       self.setState({
-        student: student,
-        educations: student.educations
+        student: user
       })
-      callback.apply(this, [student.educations[0].school_id, student.educations[0].major_id]);
+      var major = {
+        id: user.educations[0].major_id,
+        name: 'majors'
+      }
+      var school = {
+        id: user.educations[0].school_id,
+        name: 'schools'
+      }
+      callback.apply(this, [school, major]);
     })
   }
 
-  loadEducation (school_id, major_id) {
+  loadEducation (school, major) {
     var self = this;
-    getSchool(school_id, (school) => {
+    getResource(school, (school) => {
       self.setState({
         school: school
       })
     })
-    getMajor(major_id, (major) => {
+    getResource(major, (major) => {
       self.setState({
         major: major,
         loading: false
@@ -33,7 +40,6 @@ class RecruitStudentCard extends Component {
     super(props);
     this.state = {
       student: '',
-      educations: '',
       school: '',
       major: '',
       loading: true
@@ -41,7 +47,11 @@ class RecruitStudentCard extends Component {
   }
 
   componentWillMount () {
-    this.loadStudent(this.props.student.id, this.loadEducation);
+    var user = {
+      id: this.props.student.id,
+      role: 'students'
+    }
+    this.loadFullUser(user, this.loadEducation);
   }
 
   render () {
