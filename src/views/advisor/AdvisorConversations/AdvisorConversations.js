@@ -26,7 +26,6 @@ class AdvisorConversations extends Component {
   }
 
   render () {
-
     if (this.state.loading) {
       return (<div>loading...</div>);
     } else {

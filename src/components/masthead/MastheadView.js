@@ -27,7 +27,7 @@ const Masthead = styled.nav`
 
 class MastheadView extends Component {
   render () {
-    this.props.user.type = "advisor";
+    this.props.user.type = "recruiter";
     let linkList;
     if (this.props.user.type === "student") {
       linkList = (

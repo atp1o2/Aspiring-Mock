@@ -17,6 +17,7 @@ const RecruitStudentCard = styled.div`
   }
   table {
     margin: 0 auto;
+    text-align: left;
   }
   img {
     height: 16rem;
@@ -52,7 +53,7 @@ const RecruitStudentCard = styled.div`
 
 class RecruitStudentCardView extends Component {
   render () {
-    let avatarImg = this.props.data.avatar ? this.props.avatar : DefaultProfile;
+    let avatarImg = this.props.student.avatar ? this.props.student.avatar : DefaultProfile;
     return (
       <RecruitStudentCard>
         <Row>
@@ -60,31 +61,31 @@ class RecruitStudentCardView extends Component {
             <img src={avatarImg} alt="Profile" />
           </Col>
           <Col sm={12} md={5} className="border-right">
-            <h1>{this.props.data.name}</h1>
+            <h2>{this.props.student.first_name} {this.props.student.last_name}</h2>
             <table>
               <tbody>
                 <tr>
                   <td>Education</td>
-                  <td className="bold">{this.props.data.education}</td>
+                  <td className="bold">{this.props.school.name}</td>
                 </tr>
                 <tr>
                   <td>Major</td>
-                  <td className="bold">{this.props.data.major}</td>
+                  <td className="bold">{this.props.major.name}</td>
                 </tr>
                 <tr>
                   <td>Graduation</td>
-                  <td className="bold">{this.props.data.graduation}</td>
+                  <td className="bold">this.props.major.graduation</td>
                 </tr>
                 <tr>
                   <td>Status</td>
-                  <td className="bold">{this.props.data.status}</td>
+                  <td className="bold">this.props.student.status</td>
                 </tr>
               </tbody>
             </table>
           </Col>
           <Col sm={12} md={5} className="summary">
             <p className="bold">Summary</p>
-            <p>{this.props.data.summary}<a href="#">... Read More</a></p>
+            <p>{this.props.student.summary}<a href="#">... Read More</a></p>
             <div className="center">
               <Button small>Hide</Button>
               <Button small>Contact</Button>
