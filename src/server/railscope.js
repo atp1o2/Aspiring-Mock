@@ -44,13 +44,25 @@ var getFullAdvisor = (id, callback) => {
   });
 }
 
+var getFullStudent = (id, callback) => {
+  let endpoint = 'students/' + id + '/full';
+  api.all(endpoint).getAll().then((response) => {
+    const studentEntity = response.body();
+    const student = studentEntity.data();
+    callback(student);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
 var getAllStudents = (callback) => {
   api.all('students').getAll().then((response) => {
     const studentEntities = response.body();
+    let studentsList = [];
     studentEntities.forEach((studentEntity) => {
-      const student = studentEntity.data();
-      callback(student);
+      studentsList.push(studentEntity.data())
     })
+    callback(studentsList);
   }, (response => {
     throw new Error('LOL 404 GL');
   }));
@@ -59,10 +71,9 @@ var getAllStudents = (callback) => {
 var getAllAdvisors = (callback) => {
   api.all('advisors').getAll().then((response) => {
     const advisorEntities = response.body();
-    let advisorList = []
+    let advisorList = [];
     advisorEntities.forEach((advisorEntity) => {
-      const advisor = advisorEntity.data();
-      advisorList.push(advisor);
+      advisorList.push(advisorEntity.data());
     })
     callback(advisorList);
   }, (response => {
@@ -76,6 +87,26 @@ var getCompany = (id, callback) => {
     const companyEntity = response.body();
     const company = companyEntity.data();
     callback(company);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getMajor = (id, callback) => {
+  api.one('majors', id).get().then((response) => {
+    const majorEntity = response.body();
+    const major = majorEntity.data();
+    callback(major);
+  }, (response) => {
+    throw new Error('LOL 404 GL');
+  });
+}
+
+var getSchool = (id, callback) => {
+  api.one('schools', id).get().then((response) => {
+    const schoolEntity = response.body();
+    const school = schoolEntity.data();
+    callback(school);
   }, (response) => {
     throw new Error('LOL 404 GL');
   });
@@ -129,8 +160,11 @@ export {
   getAdvisor,
   getAllAdvisors,
   getCompany,
+  getMajor,
+  getSchool,
   getConversation,
   getAdvisorConversations,
   getStudentConversationsAttendances,
-  getFullAdvisor
+  getFullAdvisor,
+  getFullStudent
 };

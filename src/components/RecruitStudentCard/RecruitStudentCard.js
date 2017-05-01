@@ -1,20 +1,60 @@
 import React, { Component } from 'react';
 import RecruitStudentCardView from './RecruitStudentCardView';
-
-let data = {
-  name: "Eddard Stark",
-  education: "Winter is coming.",
-  major: "Lord of Winterfell",
-  graduation: "November 2014",
-  status: "Dead",
-  summary: "Lord of Winterfell and Warden of the North. The childhood friend of Robert Baratheon, Eddard was a key player in Robert's rebellion, helping to win the throne from the Targaryens. He is married to Catelyn (Tully) Stark."
-}
+import { getFullStudent, getMajor, getSchool } from '../../server/railscope';
 
 class RecruitStudentCard extends Component {
+  loadStudent (id, callback) {
+    var self = this;
+    getFullStudent(id, (student) => {
+      self.setState({
+        student: student,
+        educations: student.educations
+      })
+      callback.apply(this, [student.educations[0].school_id, student.educations[0].major_id]);
+    })
+  }
+
+  loadEducation (school_id, major_id) {
+    var self = this;
+    getSchool(school_id, (school) => {
+      self.setState({
+        school: school
+      })
+    })
+    getMajor(major_id, (major) => {
+      self.setState({
+        major: major,
+        loading: false
+      })
+    })
+  }
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      student: '',
+      educations: '',
+      school: '',
+      major: '',
+      loading: true
+    }
+  }
+
+  componentWillMount () {
+    this.loadStudent(this.props.student.id, this.loadEducation);
+  }
+
   render () {
-    return (
-      <RecruitStudentCardView data={data} />
-    )
+    if (this.state.loading) {
+      return (<div>loading...</div>);
+    } else {
+      return (
+        <RecruitStudentCardView
+          student={this.state.student}
+          school={this.state.school}
+          major={this.state.major} />
+      );
+    }
   };
 }
 
