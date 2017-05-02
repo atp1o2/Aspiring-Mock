@@ -11,10 +11,8 @@ import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
 
 // Advisor
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
-import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
-import EditAdvisorProfile from './views/advisor/editProfile/EditAdvisorProfile';
-import AdvisorSettings from './views/advisor/settings/AdvisorSettings';
-import StudentView from './views/advisor/studentView/StudentView';
+import AdvisorAccount from './views/advisor/Account/AdvisorAccount';
+import AdvisorProfile from './views/advisor/Profile/AdvisorProfile';
 
 // Student
 import AvailableAdvisors from './views/student/availableAdvisors/AvailableAdvisors';
@@ -56,9 +54,7 @@ var routes = (
     <Route path='Advisors/:id'>
       <Route path='Conversations' component={AdvisorConversations} />
       <Route path='Profile' component={AdvisorProfile} />
-      <Route path='StudentView' component={StudentView} />
-      <Route path='Conversations' component={EditAdvisorProfile} />
-      <Route path='Account' component={AdvisorSettings} />
+      <Route path='Account' component={AdvisorAccount} />
     </Route>
 
     <Route path='Students/:id'>

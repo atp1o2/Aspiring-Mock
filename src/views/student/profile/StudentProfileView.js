@@ -7,8 +7,6 @@ import EducationCard from '../../../components/EducationCard/EducationCard';
 import ExperienceCard from '../../../components/ExperienceCard/ExperienceCard';
 import Button from '../../../components/Button';
 
-
-
 const Profile = styled.div`
   min-height: auto;
   margin-top: 10rem;
