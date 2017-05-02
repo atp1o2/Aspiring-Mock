@@ -32,7 +32,7 @@ class AvailableAdvisorsView extends Component {
           <hr />
         </div>
       )
-  )
+    )
     return (
       <AdvisorsStyle>
         <Grid className="text-center">
