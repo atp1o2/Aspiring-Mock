@@ -18,7 +18,8 @@ import StudentView from './views/advisor/studentView/StudentView';
 
 // Student
 import AvailableAdvisors from './views/student/availableAdvisors/AvailableAdvisors';
-import StudentProfile from './views/student/profile/StudentProfile';
+import StudentAccount from './views/student/Account/StudentAccount';
+import StudentProfile from './views/student/Profile/StudentProfile';
 import Conversation from './views/student/Conversation/Conversation';
 
 // Static
@@ -64,6 +65,8 @@ var routes = (
       <Route path='Advisors' component={AvailableAdvisors} />
       <Route path='Conversations' component={Conversation} />
       <Route path='Profile' component={StudentProfile} />
+      <Route path='Account' component={StudentAccount} />
+
     </Route>
   </Route>
 );

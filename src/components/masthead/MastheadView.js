@@ -42,7 +42,7 @@ class MastheadView extends Component {
           <Link to="Students/5/Conversations">
             Conversations
           </Link>
-          <Link to="Students/5/Profile">
+          <Link to="Students/5/Account">
             Profile
           </Link>
           <Link to="Logout">
@@ -110,6 +110,9 @@ class MastheadView extends Component {
           </Link>
           <Link to="Students/5/Profile">
             Profile
+          </Link>
+          <Link to="Students/5/Account">
+            Account
           </Link>
         </Nav>
       )
