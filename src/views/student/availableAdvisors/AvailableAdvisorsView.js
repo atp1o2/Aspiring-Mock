@@ -18,20 +18,17 @@ const AdvisorsStyle = styled.div`
 
 class AvailableAdvisorsView extends Component {
   render () {
-    let advisorsList = [];
     let size = 10;
-    this.props.data.slice(0, size).map((advisor) =>
-      advisorsList.push(
-        <div key={advisor.id}>
-          <Row className="advisor-row">
-            <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0}>
-              <ProfileCard advisor={advisor} />
-            </Col>
-            <RequestCard advisor={advisor} />
-          </Row>
-          <hr />
-        </div>
-      )
+    const advisorsList = this.props.data.slice(0, size).map((advisor) =>
+      <div key={advisor.id}>
+        <Row className="advisor-row">
+          <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0}>
+            <ProfileCard advisor={advisor} />
+          </Col>
+          <RequestCard advisor={advisor} />
+        </Row>
+        <hr />
+      </div>
     )
     return (
       <AdvisorsStyle>

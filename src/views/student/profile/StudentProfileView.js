@@ -14,6 +14,10 @@ const Profile = styled.div`
   .row {
     margin: 3rem 0;
   }
+  .summary {
+    margin: 0 auto;
+    max-width: 70rem;
+  }
   .col-centered {
     float: none;
     margin: 0 auto;
@@ -31,21 +35,15 @@ const Profile = styled.div`
 class StudentProfileView extends Component {
   render () {
     let avatarImg = this.props.student.img_url ?  this.props.student.img_url : DefaultProfile;
-    let educationList = [];
-    let experienceList = [];
-    this.props.educations.map((education) =>
-      educationList.push(
-        <Col xs={3} key={education.id} className="col-centered">
-          <EducationCard education={education} />
-        </Col>
-      )
+    const educationList = this.props.educations.map((education) =>
+      <Col xs={3} key={education.id} className="col-centered">
+        <EducationCard education={education} />
+      </Col>
     )
-    this.props.experiences.map((experience) =>
-      experienceList.push(
-        <Col xs={3} key={experience.id} className="col-centered">
-          <ExperienceCard experience={experience} />
-        </Col>
-      )
+    const experienceList = this.props.experiences.map((experience) =>
+      <Col xs={3} key={experience.id} className="col-centered">
+        <ExperienceCard experience={experience} />
+      </Col>
     )
     return (
       <Profile>
@@ -56,8 +54,11 @@ class StudentProfileView extends Component {
             </div>
           </Row>
             <h3>{this.props.student.first_name} {this.props.student.last_name}</h3>
-            <h4>this.props.student.status</h4>
-            <p>{this.props.student.summary}</p>
+            <p>Status: {this.props.student.status ? this.props.student.status : "Exploring Careers"}</p>
+            <p>Summary:</p>
+            <div className="summary">
+              <p>{this.props.student.summary}</p>
+            </div>
             <p>Sponsorship: {this.props.student.us_citizen ? "US Citizen" : "Other"}</p>
             <Button>Contact</Button>
           <Row className="text-center">

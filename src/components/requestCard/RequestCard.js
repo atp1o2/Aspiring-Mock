@@ -28,9 +28,6 @@ class RequestCard extends Component {
   }
 
   render () {
-    console.log(this.state.conversations)
-    console.log(this.props.advisor.id)
-
     return (
       <RequestCardView conversations={this.state.conversations} />
     )

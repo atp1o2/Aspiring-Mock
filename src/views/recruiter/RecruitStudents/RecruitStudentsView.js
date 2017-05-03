@@ -4,14 +4,11 @@ import RecruitStudentCard from '../../../components/RecruitStudentCard/RecruitSt
 
 class RecruitStudentsView extends Component {
   render () {
-    let studentsList = [];
     let size = 10;
-    this.props.students.slice(0, size).map((student) =>
-      studentsList.push(
-        <Row key={student.id}>
-          <RecruitStudentCard student={student} />
-        </Row>
-      )
+    const studentsList = this.props.students.slice(0, size).map((student) =>
+      <Row key={student.id}>
+        <RecruitStudentCard student={student} />
+      </Row>
     )
 
     return (

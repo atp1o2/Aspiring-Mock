@@ -5,13 +5,10 @@ import Button from '../../../components/Button';
 
 class AdvisorConversationView extends Component {
   render () {
-    let upcomingConversationList = [];
-    this.props.conversations.map((conversation) =>
-      upcomingConversationList.push(
-        <Row key={conversation.id}>
-          <AdvisorConversationCard conversation={conversation} />
-        </Row>
-      )
+    const upcomingConversationList = this.props.conversations.map((conversation) =>
+      <Row key={conversation.id}>
+        <AdvisorConversationCard conversation={conversation} />
+      </Row>
     )
 
     return (
