@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ExperienceCardView from './ExperienceCardView';
-import { getResource } from '../../server/railscope';
+// import { getResource } from '../../server/railscope';
 
 // This component is currently using FakeData fields
 // Needs to be updated with API

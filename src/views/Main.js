@@ -7,7 +7,7 @@ class Main extends Component {
     return (
       <div>
         <Masthead />
-        <main>
+        <main className="main">
           {this.props.children}
         </main>
         <Footer />
