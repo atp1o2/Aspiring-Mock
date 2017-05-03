@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
+import { Link } from 'react-router';
 
 const ProfileCardStyle = styled.div`
   text-align: center;
@@ -30,9 +31,13 @@ class ProfileCard extends Component {
     let avatarImg = this.props.user.img_url ?  this.props.user.img_url : DefaultProfile;
     return (
       <ProfileCardStyle>
-        <img src={avatarImg} alt="Profile Card" />
+        <Link to={`Advisors/${this.props.user.id}/Profile`}>
+          <img src={avatarImg} alt="Profile Card" />
+        </Link>
         <div className="details">
-          <h4>{this.props.user.first_name} {this.props.user.last_name}</h4>
+          <Link to={`Advisors/${this.props.user.id}/Profile`}>
+            <h4>{this.props.user.first_name} {this.props.user.last_name}</h4>
+          </Link>
           <p>{this.props.user.job_title ? this.props.user.job_title : "Advisor"}</p>
           <p>{this.props.company.name}</p>
         </div>
