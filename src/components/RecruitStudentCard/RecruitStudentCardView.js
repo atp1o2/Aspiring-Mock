@@ -4,6 +4,7 @@ import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
+import { Link } from 'react-router';
 
 const RecruitStudentCard = styled.div`
   border: ${Brand.greyBorder};
@@ -58,10 +59,14 @@ class RecruitStudentCardView extends Component {
       <RecruitStudentCard>
         <Row>
           <Col sm={12} md={2}>
-            <img src={avatarImg} alt="Profile" />
+            <Link to={`Students/${this.props.student.id}/Profile`}>
+              <img src={avatarImg} alt="Profile" />
+            </Link>
           </Col>
           <Col sm={12} md={5} className="border-right">
-            <h2>{this.props.student.first_name} {this.props.student.last_name}</h2>
+            <Link to={`Students/${this.props.student.id}/Profile`}>
+              <h2>{this.props.student.first_name} {this.props.student.last_name}</h2>
+            </Link>
             <table>
               <tbody>
                 <tr>
