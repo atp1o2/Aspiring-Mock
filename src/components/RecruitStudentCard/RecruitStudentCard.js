@@ -7,27 +7,20 @@ class RecruitStudentCard extends Component {
     var self = this;
     getFullUser(user, (user) => {
       self.setState({
-        student: user
+        student: user,
+        school: user.schools[0],
+        education: user.educations[0]
       })
       var major = {
         id: user.educations[0].major_id,
         name: 'majors'
       }
-      var school = {
-        id: user.educations[0].school_id,
-        name: 'schools'
-      }
-      callback.apply(this, [school, major]);
+      callback.apply(this, [major]);
     })
   }
 
-  loadEducation (school, major) {
+  loadEducation (major) {
     var self = this;
-    getResource(school, (school) => {
-      self.setState({
-        school: school
-      })
-    })
     getResource(major, (major) => {
       self.setState({
         major: major,
@@ -41,6 +34,7 @@ class RecruitStudentCard extends Component {
     this.state = {
       student: '',
       school: '',
+      education: '',
       major: '',
       loading: true
     }
@@ -62,7 +56,8 @@ class RecruitStudentCard extends Component {
         <RecruitStudentCardView
           student={this.state.student}
           school={this.state.school}
-          major={this.state.major} />
+          major={this.state.major}
+          education={this.state.education} />
       );
     }
   };

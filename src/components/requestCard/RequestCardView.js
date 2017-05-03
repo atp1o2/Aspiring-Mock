@@ -39,10 +39,8 @@ class RequestCardView extends Component {
         </Col>
       )
     } else {
-      convoList = [];
-      this.props.conversations.map((conversation) =>
-        convoList.push(
-          <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered" key={conversation.id}>
+      convoList = this.props.conversations.map((conversation) =>
+        <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered" key={conversation.id}>
             <div key={conversation.id}>
               <p>{conversation.date}</p>
               {
@@ -62,7 +60,6 @@ class RequestCardView extends Component {
               }
             </div>
           </Col>
-        )
       )
     };
     return (

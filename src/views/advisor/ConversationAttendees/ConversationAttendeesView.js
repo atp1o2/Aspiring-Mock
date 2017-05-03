@@ -16,14 +16,11 @@ const DateCard = styled.div`
 
 class ConversationAttendees extends Component {
   render () {
-    let studentsList = [];
     let size = 10;
-    this.props.students.slice(0, size).map((student) =>
-      studentsList.push(
+    const studentsList = this.props.students.slice(0, size).map((student) =>
         <Row key={student.id}>
           <RecruitStudentCard student={student} />
         </Row>
-      )
     )
 
     return (

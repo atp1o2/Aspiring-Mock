@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
@@ -34,10 +35,14 @@ class ConversationCardView extends Component {
       <ConversationCard>
         <Row>
           <Col sm={12} md={4}>
-            <img src={avatarImg} alt="Advisor Profile" />
+            <Link to={`Advisors/${this.props.advisor.id}/Profile`}>
+              <img src={avatarImg} alt="Advisor Profile" />
+            </Link>
           </Col>
           <Col sm={12} md={4}>
-            <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
+            <Link to={`Advisors/${this.props.advisor.id}/Profile`}>
+              <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
+            </Link>
             <p>{title}</p>
             <p>{this.props.advisor.first_name}</p>
             <p>#tags</p>
