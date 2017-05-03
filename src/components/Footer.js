@@ -16,8 +16,11 @@ const FooterStyle = styled.footer`
   text-align: center;
   color: ${Brand.grey};
   ul {
-    padding-top: 1rem;
+    padding-top: 2rem;
     display: -webkit-inline-box
+  }
+  a {
+    margin: 1rem;
   }
   img {
     margin: 1rem;

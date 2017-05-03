@@ -18,10 +18,16 @@ const Masthead = styled.nav`
     max-width: 100%;
   }
   ul {
-    margin-top: 1rem;
+    margin-top: 3rem;
   }
   a {
     margin: 0 1rem;
+  }
+  @media only screen and (max-width: 485px) {
+    .mobile-hide {
+      display: none;
+    }
+    text-align: center;
   }
 `;
 
@@ -32,8 +38,8 @@ class MastheadView extends Component {
     if (this.props.user.type === "student") {
       linkList = (
         <Nav pullRight>
-          <Link to="https://explore.careerscope.com/">Explore</Link>
-          <Link to="How-it-Works">
+          <Link to="https://explore.careerscope.com/" className="mobile-hide">Explore</Link>
+          <Link to="How-it-Works" className="mobile-hide">
             How it Works
           </Link>
           <Link to="Students/5/Advisors">
