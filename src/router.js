@@ -11,6 +11,7 @@ import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
 
 // Advisor
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
+import ConversationAttendees from './views/advisor/ConversationAttendees/ConversationAttendees';
 import AdvisorAccount from './views/advisor/Account/AdvisorAccount';
 import AdvisorProfile from './views/advisor/Profile/AdvisorProfile';
 
@@ -53,6 +54,7 @@ var routes = (
 
     <Route path='Advisors/:id'>
       <Route path='Conversations' component={AdvisorConversations} />
+      <Route path='Conversations/:conversation_id' component={ConversationAttendees} />
       <Route path='Profile' component={AdvisorProfile} />
       <Route path='Account' component={AdvisorAccount} />
     </Route>
