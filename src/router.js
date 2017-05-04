@@ -1,10 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-// Dev
-import Components from './views/Components';
-import Forms from './views/Forms';
-
 // Recruiter
 import RecruiterAccount from './views/recruiter/RecruiterAccount/RecruiterAccount';
 import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
@@ -33,9 +29,6 @@ import TermsStudent from './views/static/TermsStudent';
 
 var routes = (
   <Route>
-    <Route path="Components" component={Components} />
-    <Route path="Forms" component={Forms} />
-
     <IndexRoute component={AvailableAdvisors} />
 
     <Route path='DMCA' component={Dmca} />
