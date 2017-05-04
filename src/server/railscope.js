@@ -2,7 +2,19 @@ import restful, { fetchBackend } from 'restful.js';
 
 const api = restful('http://localhost:3000', fetchBackend(fetch));
 
-var getUser = (id, callback) => {
+const postUserToken = (email, password, callback) => {
+    api.all('user_token').post(
+      {auth:{email, password}}
+    ).then((response)=>{
+      const authEntity = response.body();
+      const auth = authEntity.data();
+      callback(auth);
+    }, (response) => {
+      throw new Error('Invalid Credentials.');
+    });
+}
+
+const getUser = (id, callback) => {
   api.one('users', id).get().then((response) => {
     const userEntity = response.body();
     const user = userEntity.data();
@@ -13,7 +25,7 @@ var getUser = (id, callback) => {
   });
 }
 
-var getStudent = (id, callback) => {
+const getStudent = (id, callback) => {
   api.one('students', id).get().then((response) => {
     const studentEntity = response.body();
     const student = studentEntity.data();
@@ -23,7 +35,7 @@ var getStudent = (id, callback) => {
   });
 }
 
-var getAdvisor = (id, callback) => {
+const getAdvisor = (id, callback) => {
   api.one('advisors', id).get().then((response) => {
     const advisorEntity = response.body();
     const advisor = advisorEntity.data();
@@ -33,7 +45,7 @@ var getAdvisor = (id, callback) => {
   });
 }
 
-var getFullAdvisor = (id, callback) => {
+const getFullAdvisor = (id, callback) => {
   let endpoint = 'advisors/' + id + '/full';
   api.all(endpoint).getAll().then((response) => {
     const advisorEntity = response.body();
@@ -44,7 +56,7 @@ var getFullAdvisor = (id, callback) => {
   });
 }
 
-var getAllStudents = (callback) => {
+const getAllStudents = (callback) => {
   api.all('students').getAll().then((response) => {
     const studentEntities = response.body();
     studentEntities.forEach((studentEntity) => {
@@ -56,7 +68,7 @@ var getAllStudents = (callback) => {
   }));
 }
 
-var getAllAdvisors = (callback) => {
+const getAllAdvisors = (callback) => {
   api.all('advisors').getAll().then((response) => {
     const advisorEntities = response.body();
     let advisorList = []
@@ -71,7 +83,7 @@ var getAllAdvisors = (callback) => {
 }
 
 
-var getCompany = (id, callback) => {
+const getCompany = (id, callback) => {
   api.one('companies', id).get().then((response) => {
     const companyEntity = response.body();
     const company = companyEntity.data();
@@ -81,7 +93,7 @@ var getCompany = (id, callback) => {
   });
 }
 
-var getConversation = (id, callback) => {
+const getConversation = (id, callback) => {
   api.one('conversations', id).get().then((response) => {
     const conversationEntity = response.body();
     const conversation = conversationEntity.data();
@@ -92,7 +104,7 @@ var getConversation = (id, callback) => {
   });
 }
 
-var getAdvisorConversations = (id, callback) => {
+const getAdvisorConversations = (id, callback) => {
   const endpoint = 'advisors/' + id + '/conversations';
   api.all(endpoint, id).getAll().then((response) => {
     const conversationsEntities = response.body();
@@ -107,7 +119,7 @@ var getAdvisorConversations = (id, callback) => {
   });
 }
 
-var getStudentConversationsAttendances = (id, callback) => {
+const getStudentConversationsAttendances = (id, callback) => {
   let endpoint = 'students/' + id + '/conversation_attendances';
   api.all(endpoint).getAll().then((response) => {
     const conversationsEntities = response.body();
