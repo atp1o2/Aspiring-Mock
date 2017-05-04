@@ -11,14 +11,14 @@ import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
 
 // Advisor
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
-import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
-import EditAdvisorProfile from './views/advisor/editProfile/EditAdvisorProfile';
-import AdvisorSettings from './views/advisor/settings/AdvisorSettings';
-import StudentView from './views/advisor/studentView/StudentView';
+import ConversationAttendees from './views/advisor/ConversationAttendees/ConversationAttendees';
+import AdvisorAccount from './views/advisor/Account/AdvisorAccount';
+import AdvisorProfile from './views/advisor/Profile/AdvisorProfile';
 
 // Student
 import AvailableAdvisors from './views/student/availableAdvisors/AvailableAdvisors';
-import StudentProfile from './views/student/profile/StudentProfile';
+import StudentAccount from './views/student/Account/StudentAccount';
+import StudentProfile from './views/student/Profile/StudentProfile';
 import Conversation from './views/student/Conversation/Conversation';
 
 // Static
@@ -54,16 +54,17 @@ var routes = (
 
     <Route path='Advisors/:id'>
       <Route path='Conversations' component={AdvisorConversations} />
+      <Route path='Conversations/:conversation_id' component={ConversationAttendees} />
       <Route path='Profile' component={AdvisorProfile} />
-      <Route path='StudentView' component={StudentView} />
-      <Route path='Conversations' component={EditAdvisorProfile} />
-      <Route path='Account' component={AdvisorSettings} />
+      <Route path='Account' component={AdvisorAccount} />
     </Route>
 
     <Route path='Students/:id'>
       <Route path='Advisors' component={AvailableAdvisors} />
       <Route path='Conversations' component={Conversation} />
       <Route path='Profile' component={StudentProfile} />
+      <Route path='Account' component={StudentAccount} />
+
     </Route>
   </Route>
 );

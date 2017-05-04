@@ -4,13 +4,10 @@ import ConversationCard from '../../../components/ConversationCard/ConversationC
 
 class ConversationView extends Component {
   render () {
-    let upcomingConversationList = [];
-    this.props.data.map((conversation) =>
-      upcomingConversationList.push(
-        <Row key={conversation.id}>
-          <ConversationCard data={conversation} />
-        </Row>
-      )
+    const upcomingConversationList = this.props.conversations.map((conversation) =>
+      <Row key={conversation.id}>
+        <ConversationCard conversation={conversation} />
+      </Row>
     )
 
     return (

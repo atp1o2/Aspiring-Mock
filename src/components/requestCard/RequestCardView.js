@@ -4,14 +4,20 @@ import Brand from '../../styles/variables';
 import Button from '../Button';
 import { Col } from 'react-bootstrap';
 
-
 const Card = styled.div`
+  .col-centered {
+    float: none;
+    display: inline-table;
+  }
   .base {
+    margin: 1rem;
     color: ${Brand.grey};
     text-align: center;
     border: ${Brand.greyBorder};
     border-bottom: 1px solid silver;
     height: 20rem;
+    min-width: 25rem;
+    max-width: 25rem;
     padding: 2rem 1rem;
     margin-top: 3rem;
     h4 {
@@ -25,7 +31,7 @@ class RequestCardView extends Component {
     let convoList;
     if (this.props.conversations.length === 0) {
       convoList = (
-        <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base">
+        <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered">
           <div>
             <h4>Let this advisor know you would like to chat.</h4>
             <Button small>Request</Button>
@@ -33,10 +39,8 @@ class RequestCardView extends Component {
         </Col>
       )
     } else {
-      convoList = [];
-      this.props.conversations.map((conversation) =>
-        convoList.push(
-          <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base" key={conversation.id}>
+      convoList = this.props.conversations.map((conversation) =>
+        <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered" key={conversation.id}>
             <div key={conversation.id}>
               <p>{conversation.date}</p>
               {
@@ -56,7 +60,6 @@ class RequestCardView extends Component {
               }
             </div>
           </Col>
-        )
       )
     };
     return (

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import AdvisorConversationsView from './AdvisorConversationsView';
-import { getAdvisorConversations } from '../../../server/railscope';
+import { getConversations } from '../../../server/railscope';
 
 class AdvisorConversations extends Component {
-  loadConversations (id) {
+  loadConversations (user) {
     var self = this;
-    getAdvisorConversations(id, (conversations) => {
+    getConversations(user, (conversations) => {
       self.setState({
         conversations: conversations,
         loading: false
@@ -22,11 +22,14 @@ class AdvisorConversations extends Component {
   }
 
   componentDidMount () {
-    this.loadConversations(this.props.params.id);
+    var user = {
+      id: this.props.params.id,
+      role: 'advisors'
+    }
+    this.loadConversations(user);
   }
 
   render () {
-
     if (this.state.loading) {
       return (<div>loading...</div>);
     } else {

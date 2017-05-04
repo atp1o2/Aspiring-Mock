@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import ConversationView from './ConversationView';
-import { getStudentConversationsAttendances } from '../../../server/railscope';
+import { getConversations } from '../../../server/railscope';
 
 class Conversation extends Component {
-  loadConversationsAttendance (student_id) {
+  loadConversations (user) {
     var self = this;
-    getStudentConversationsAttendances(student_id, (conversation_attendances) => {
+    getConversations(user, (conversations) => {
       self.setState({
-        conversation_attendances: conversation_attendances,
+        conversations: conversations,
         loading: false
       })
     })
@@ -16,13 +16,17 @@ class Conversation extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      conversation_attendances: [],
+      conversations: [],
       loading: true
     }
   }
 
   componentDidMount () {
-    this.loadConversationsAttendance(this.props.params.id);
+    var user = {
+      id: this.props.params.id,
+      role: 'students'
+    }
+    this.loadConversations(user);
   }
 
   render () {
@@ -32,7 +36,7 @@ class Conversation extends Component {
       )
     } else {
       return (
-        <ConversationView data={this.state.conversation_attendances} />
+        <ConversationView conversations={this.state.conversations} />
       );
     }
   }

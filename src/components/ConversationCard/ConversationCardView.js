@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router';
 import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
-import { getFullAdvisor } from '../../server/railscope';
 
 const ConversationCard = styled.div`
   border: ${Brand.greyBorder};
@@ -28,44 +28,23 @@ const ConversationCard = styled.div`
 `;
 
 class ConversationCardView extends Component {
-  loadAdvisor (id) {
-    var self = this;
-    getFullAdvisor(id, (advisor) => {
-      self.setState({
-        advisor: advisor,
-        loading: false
-      })
-    })
-  }
-
-  // Cheated
-  // This should be in ConversationCard.js container
-  // HELP: setup a promise(?) to return Advisor after Conversation loads
-  constructor (props) {
-    super(props);
-    this.state = {
-      advisor: '',
-      loading: true
-    }
-  }
-
-  componentWillMount () {
-    this.loadAdvisor(this.props.conversation.advisor_id);
-  }
-
   render () {
     let avatarImg = this.props.avatar ? this.props.avatar : DefaultProfile;
-    let title = this.state.advisor.job_title ? this.state.advisor.job_title : "Advisor";
+    let title = this.props.advisor.job_title ? this.props.advisor.job_title : "Advisor";
     return (
       <ConversationCard>
         <Row>
           <Col sm={12} md={4}>
-            <img src={avatarImg} alt="Advisor Profile" />
+            <Link to={`Advisors/${this.props.advisor.id}/Profile`}>
+              <img src={avatarImg} alt="Advisor Profile" />
+            </Link>
           </Col>
           <Col sm={12} md={4}>
-            <h3>{this.state.advisor.first_name} {this.state.advisor.last_name}</h3>
+            <Link to={`Advisors/${this.props.advisor.id}/Profile`}>
+              <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
+            </Link>
             <p>{title}</p>
-            <p>{this.state.advisor.first_name}</p>
+            <p>{this.props.advisor.first_name}</p>
             <p>#tags</p>
           </Col>
           <Col sm={12} md={4}>

@@ -12,12 +12,12 @@ body {
   font-family: Raleway, 'Helvetica';
   font-size: 14px;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
 }
 
-main {
+.main {
   flex: 1;
+  min-height: 70vh;
 }
 
 a {

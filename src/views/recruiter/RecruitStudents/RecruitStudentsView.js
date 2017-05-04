@@ -4,13 +4,11 @@ import RecruitStudentCard from '../../../components/RecruitStudentCard/RecruitSt
 
 class RecruitStudentsView extends Component {
   render () {
-    let studentsList = [];
-    this.props.data.map((student) =>
-      studentsList.push(
-        <Row>
-          <RecruitStudentCard data={student} />
-        </Row>
-      )
+    let size = 10;
+    const studentsList = this.props.students.slice(0, size).map((student) =>
+      <Row key={student.id}>
+        <RecruitStudentCard student={student} />
+      </Row>
     )
 
     return (
@@ -22,6 +20,7 @@ class RecruitStudentsView extends Component {
         <Row>
           <Col sm={12} md={2}>
             <h3>Filter Students</h3>
+            <p>Make this fixed position</p>
           </Col>
           <Col sm={12} md={10}>
             {studentsList}

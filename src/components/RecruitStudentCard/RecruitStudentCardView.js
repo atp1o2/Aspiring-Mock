@@ -4,6 +4,7 @@ import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
+import { Link } from 'react-router';
 
 const RecruitStudentCard = styled.div`
   border: ${Brand.greyBorder};
@@ -15,8 +16,15 @@ const RecruitStudentCard = styled.div`
   p, td {
     color: ${Brand.grey};
   }
+  h2 {
+    margin: 0 0 1rem 0;
+  }
   table {
     margin: 0 auto;
+    text-align: left;
+  }
+  .summary {
+    margin-top: 1rem;
   }
   img {
     height: 16rem;
@@ -36,12 +44,9 @@ const RecruitStudentCard = styled.div`
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
-
     padding: 2rem 4rem;
-    table {
-      margin-bottom: 2rem;
-    }
     .border-right {
+      margin-top: 2rem;
       border: none;
     }
     .summary {
@@ -52,40 +57,48 @@ const RecruitStudentCard = styled.div`
 
 class RecruitStudentCardView extends Component {
   render () {
-    let avatarImg = this.props.data.avatar ? this.props.avatar : DefaultProfile;
+    let avatarImg = this.props.student.avatar ? this.props.student.avatar : DefaultProfile;
+    let shortSummary = this.props.student.summary.slice(0, 125);
     return (
       <RecruitStudentCard>
         <Row>
-          <Col sm={12} md={2}>
-            <img src={avatarImg} alt="Profile" />
+          <Col sm={12} md={3}>
+            <Link to={`Students/${this.props.student.id}/Profile`}>
+              <img src={avatarImg} alt="Profile" />
+            </Link>
           </Col>
           <Col sm={12} md={5} className="border-right">
-            <h1>{this.props.data.name}</h1>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Education</td>
-                  <td className="bold">{this.props.data.education}</td>
-                </tr>
-                <tr>
-                  <td>Major</td>
-                  <td className="bold">{this.props.data.major}</td>
-                </tr>
-                <tr>
-                  <td>Graduation</td>
-                  <td className="bold">{this.props.data.graduation}</td>
-                </tr>
-                <tr>
-                  <td>Status</td>
-                  <td className="bold">{this.props.data.status}</td>
-                </tr>
-              </tbody>
-            </table>
+            <Link to={`Students/${this.props.student.id}/Profile`}>
+              <h2>{this.props.student.first_name} {this.props.student.last_name}</h2>
+            </Link>
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Education</td>
+                    <td className="bold">{this.props.school.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Major</td>
+                    <td className="bold">{this.props.major.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Graduation</td>
+                    <td className="bold">{this.props.education.end_date ? this.props.education.end_date : "TBD"}</td>
+                  </tr>
+                  <tr>
+                    <td>Status</td>
+                    <td className="bold">{this.props.student.status ? this.props.student.status : "Exploring Careers"}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </Col>
-          <Col sm={12} md={5} className="summary">
+          <Col sm={12} md={4} className="summary">
             <p className="bold">Summary</p>
-            <p>{this.props.data.summary}<a href="#">... Read More</a></p>
-            <div className="center">
+            <span>{shortSummary}...</span><br />
+            <Link to={`Students/${this.props.student.id}/Profile`}>Read More</Link>
+            <div className="mt-1">
               <Button small>Hide</Button>
               <Button small>Contact</Button>
             </div>

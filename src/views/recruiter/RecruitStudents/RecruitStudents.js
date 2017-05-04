@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import RecruitStudentsView from './RecruitStudentsView';
-import FakeData from '../../../server/fake_students';
+import { getAllUsers } from '../../../server/railscope';
 
 class RecruitStudents extends Component {
+  loadAllUsers (role) {
+    var self = this;
+    getAllUsers(role, (students) => {
+      self.setState({
+        students: students,
+        loading: false
+      })
+    })
+  }
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      students: [],
+      loading: true
+    }
+  }
+
+  componentWillMount () {
+    this.loadAllUsers("students");
+  }
+
   render () {
-    return (
-      <RecruitStudentsView data={FakeData} />
-    );
+    if (this.state.loading) {
+      return (<div>loading...</div>);
+    } else {
+      return (<RecruitStudentsView students={this.state.students} />);
+    }
   }
 }
 
 export default RecruitStudents;
+
