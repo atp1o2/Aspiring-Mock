@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUser } from '../../../server/railscope';
+import { getFullStudent } from '../../../server/railscope';
 import { Grid, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import StatusForm from '../../../components/Forms/StatusForm';
@@ -8,7 +8,6 @@ import ExperienceForm from '../../../components/Forms/ExperienceForm';
 import EducationForm from '../../../components/Forms/EducationForm';
 import CitizenshipForm from '../../../components/Forms/CitizenshipForm';
 import LanguageForm from '../../../components/Forms/LanguageForm';
-import Button from '../../../components/Button';
 
 const FormStyle = styled.div`
   .section {
@@ -20,9 +19,9 @@ const FormStyle = styled.div`
 `;
 
 class StudentAccount extends Component {
-  loadUser (user) {
+  loadFullUser (id) {
     var self = this;
-    getUser(user, (data) => {
+    getFullStudent(id, (data) => {
       self.setState({
         student: data,
         loading: false
@@ -39,11 +38,7 @@ class StudentAccount extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'students'
-    }
-    this.loadUser(user);
+    this.loadFullUser(this.props.params.id);
   }
 
   render () {

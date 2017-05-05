@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ProfileCardView from './ProfileCardView';
-import { getFullUser } from '../../server/railscope';
+import { getFullAdvisor } from '../../server/railscope';
 
 class ProfileCard extends Component {
-  loadFullUser (user) {
+  loadFullAdvisor (id) {
     var self = this;
-    getFullUser(user, (user) => {
+    getFullAdvisor(id, (data) => {
       self.setState({
-        user: user,
-        company: user.company,
+        user: data,
+        company: data.company,
         loading: false
       })
     })
@@ -24,11 +24,7 @@ class ProfileCard extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.advisor.id,
-      role: "advisors"
-    }
-    this.loadFullUser(user);
+    this.loadFullAdvisor(this.props.advisor.id);
   }
 
   render () {

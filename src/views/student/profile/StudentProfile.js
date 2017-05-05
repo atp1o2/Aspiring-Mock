@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import StudentProfileView from './StudentProfileView';
-import { getFullUser } from '../../../server/railscope';
+import { getFullStudent } from '../../../server/railscope';
 
 class StudentProfile extends Component {
-  loadFullUser (user, callback) {
+  loadFullStudent (id, callback) {
     var self = this;
-    getFullUser(user, (user) => {
+    getFullStudent(id, (data) => {
       self.setState({
-        student: user,
-        educations: user.educations,
-        // experiences: user.work_experiences,
-        // fake data until railscope is seeded/updated
-        experiences: [{name: 'apple', city:'Menlo Park', start:'1/1/2017', end:'12/31/2017', summary: "I worked at apple!"}, {name: 'Fruit Stand', city:'Anywhere', start:'1/1/2017', end:'12/31/2017', summary: "Then I followed my passion and sold fruit."}, {name: 'apple', city:'Menlo Park', start:'1/1/2017', end:'12/31/2017', summary: "I worked at apple!"}, {name: 'Fruit Stand', city:'Anywhere', start:'1/1/2017', end:'12/31/2017', summary: "Then I followed my passion and sold fruit."}, {name: 'apple', city:'Menlo Park', start:'1/1/2017', end:'12/31/2017', summary: "I worked at apple!"}, {name: 'Fruit Stand', city:'Anywhere', start:'1/1/2017', end:'12/31/2017', summary: "Then I followed my passion and sold fruit."}],
+        student: data,
+        educations: data.educations,
+        work_experiences: data.work_experiences,
         loading: false
       })
     })
@@ -22,17 +20,13 @@ class StudentProfile extends Component {
     this.state = {
       student: '',
       educations: [],
-      experiences: [],
+      work_experiences: [],
       loading: true
     }
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'students'
-    }
-    this.loadFullUser(user);
+    this.loadFullStudent(this.props.params.id);
   }
 
   render () {
@@ -44,7 +38,7 @@ class StudentProfile extends Component {
         <StudentProfileView
           student={this.state.student}
           educations={this.state.educations}
-          experiences={this.state.experiences} />
+          work_experiences={this.state.work_experiences} />
       )
     }
   }

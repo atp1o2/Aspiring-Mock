@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import AdvisorConversationsView from './AdvisorConversationsView';
-import { getConversations } from '../../../server/railscope';
+import { getAdvisorConversations } from '../../../server/railscope';
 
 class AdvisorConversations extends Component {
-  loadConversations (user) {
+  loadAdvisorConversations (id) {
     var self = this;
-    getConversations(user, (conversations) => {
+    getAdvisorConversations(id, (data) => {
       self.setState({
-        conversations: conversations,
+        conversations: data,
         loading: false
       })
     })
@@ -22,11 +22,7 @@ class AdvisorConversations extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'advisors'
-    }
-    this.loadConversations(user);
+    this.loadAdvisorConversations(this.props.params.id);
   }
 
   render () {

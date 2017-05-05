@@ -1,28 +1,24 @@
 import React, { Component } from 'react';
 import ConversationCardView from './ConversationCardView';
-import { getResource, getFullUser } from '../../server/railscope';
+import { getConversation, getFullAdvisor } from '../../server/railscope';
 
 class ConversationCard extends Component {
-  loadConversation (resource, callback) {
+  loadConversation (id, callback) {
     var self = this;
-    getResource(resource, (conversation) => {
+    getConversation(id, (data) => {
       self.setState({
-        conversation: conversation,
+        conversation: data,
         loading: false
       })
-      var user = {
-        id: conversation.advisor_id,
-        role: 'advisors'
-      }
-      callback.apply(this, [user])
+      callback.apply(this, [data.advisor_id]);
     })
   }
 
-  loadFullUser (user) {
+  loadFullAdvisor (id) {
     var self = this;
-    getFullUser(user, (user) => {
+    getFullAdvisor(id, (data) => {
       self.setState({
-        advisor: user,
+        advisor: data,
         loading: false
       })
     })
@@ -38,11 +34,7 @@ class ConversationCard extends Component {
   }
 
   componentWillMount () {
-    var resource = {
-      id: this.props.conversation.conversation_id,
-      name: 'conversations'
-    }
-    this.loadConversation(resource, this.loadFullUser)
+    this.loadConversation(this.props.conversation.conversation_id, this.loadFullAdvisor)
   }
 
   render () {

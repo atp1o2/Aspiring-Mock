@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import AdvisorProfileView from './AdvisorProfileView';
-import { getFullUser, getResource } from '../../../server/railscope';
+import { getFullAdvisor, getCompany } from '../../../server/railscope';
 
 class AdvisorProfile extends Component {
-  loadFullUser (user, callback) {
+  loadFullAdvisor (id, callback) {
     var self = this;
-    getFullUser(user, (user) => {
+    getFullAdvisor(id, (data) => {
       self.setState({
-        advisor: user
+        advisor: data
       })
-      var resource = {
-        id: user.company_id,
-        name: 'companies'
-      }
-      callback.apply(this, [resource]);
+      callback.apply(this, [data.company_id]);
     })
   }
 
-  loadResource (resource) {
+  loadCompany (id) {
     var self = this;
-    getResource(resource, (company) => {
+    getCompany(id, (data) => {
       self.setState({
-        company: company,
+        company: data,
         loading: false
       })
     })
@@ -37,11 +33,7 @@ class AdvisorProfile extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'advisors'
-    }
-    this.loadFullUser(user, this.loadResource);
+    this.loadFullAdvisor(this.props.params.id, this.loadCompany);
   }
 
   render () {

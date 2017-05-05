@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { getUser } from '../../../server/railscope';
+import { getFullRecruiter } from '../../../server/railscope';
 import { Grid, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import AccountForm from '../../../components/Forms/AccountForm';
-import Button from '../../../components/Button';
 
 const FormStyle = styled.div`
   .section {
@@ -15,9 +14,9 @@ const FormStyle = styled.div`
 `;
 
 class AdvisorAccount extends Component {
-  loadUser (user) {
+  loadRecruiter (id) {
     var self = this;
-    getUser(user, (data) => {
+    getFullRecruiter(id, (data) => {
       self.setState({
         recruiter: data,
         loading: false
@@ -34,11 +33,7 @@ class AdvisorAccount extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'recruiters'
-    }
-    this.loadUser(user);
+    this.loadRecruiter(this.props.params.id);
   }
 
   render () {

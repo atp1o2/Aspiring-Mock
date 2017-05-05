@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { FormGroup, ControlLabel } from 'react-bootstrap';
 
 const RadioOrCheckbox = (props) => (
   <FormGroup controlId={props.name}>

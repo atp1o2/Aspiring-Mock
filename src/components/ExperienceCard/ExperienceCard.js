@@ -1,40 +1,34 @@
 import React, { Component } from 'react';
 import ExperienceCardView from './ExperienceCardView';
-// import { getResource } from '../../server/railscope';
-
-// This component is currently using FakeData fields
-// Needs to be updated with API
+import { getCompany } from '../../server/railscope';
 
 class ExperienceCard extends Component {
-  // loadResource (resource) {
-  //   var self = this;
-  //   getResource(resource, (user) => {
-  //     self.setState({
-  //       company: company,
-  //       loading: false
-  //     })
-  //   })
-  // }
+  loadCompany (id) {
+    var self = this;
+    getCompany(id, (data) => {
+      self.setState({
+        company: data,
+        loading: false
+      })
+    })
+  }
 
-  // constructor (props) {
-  //   super(props);
-  //   this.state = {
-  //     company: '',
-  //     loading: true
-  //   }
-  // }
+  constructor (props) {
+    super(props);
+    this.state = {
+      company: '',
+      loading: true
+    }
+  }
 
-  // componentDidMount () {
-  //   var resource = {
-  //     id: this.props.exerience.id,
-  //     name: "work_experiences"
-  //   }
-  //   this.loadFullUser(resource);
-  // }
+  componentDidMount () {
+    this.loadCompany(this.props.experience.company_id);
+  }
 
   render () {
     return (
       <ExperienceCardView
+        company={this.state.company}
         experience={this.props.experience} />
     );
   };

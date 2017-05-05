@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { getUser } from '../../../server/railscope';
+import { getFullAdvisor } from '../../../server/railscope';
 import { Grid, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import AccountForm from '../../../components/Forms/AccountForm';
 import ExperienceForm from '../../../components/Forms/ExperienceForm';
 import SummaryForm from '../../../components/Forms/SummaryForm';
 import LinksForm from '../../../components/Forms/LinksForm';
-import Button from '../../../components/Button';
 
 const FormStyle = styled.div`
   .section {
@@ -18,9 +17,9 @@ const FormStyle = styled.div`
 `;
 
 class AdvisorAccount extends Component {
-  loadUser (user) {
+  loadFullUser (id) {
     var self = this;
-    getUser(user, (data) => {
+    getFullAdvisor(id, (data) => {
       self.setState({
         advisor: data,
         loading: false
@@ -37,11 +36,7 @@ class AdvisorAccount extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.params.id,
-      role: 'advisors'
-    }
-    this.loadUser(user);
+    this.loadFullUser(this.props.params.id);
   }
 
   render () {

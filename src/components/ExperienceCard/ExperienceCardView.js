@@ -8,7 +8,7 @@ const Card = styled.div`
   border-bottom: 1px solid silver;
   min-width: 25rem;
   max-width: 25rem;
-  height: 20rem;
+  max-height: 25rem;
   padding: 1rem;
   margin-top: 1.5rem;
   .details {
@@ -25,10 +25,12 @@ class ExperienceCardView extends Component {
     return (
       <Card>
         <div className="details">
-          <h4>{this.props.experience.name}</h4>
+          <h4>{this.props.company.name}</h4>
+          <p className="h5">{this.props.experience.title}</p>
           <hr />
-          <p>From: {this.props.experience.start} To: {this.props.experience.end}</p>
-          <p>Position: {this.props.experience.summary}</p>
+          <p>{this.props.experience.start_date} - {this.props.experience.current ? "Current" : this.props.experience.end_date}</p>
+          <p>Summary:</p>
+          <p>{this.props.experience.summary}</p>
         </div>
       </Card>
     );
