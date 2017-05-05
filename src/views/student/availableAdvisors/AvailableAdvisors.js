@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import AvailableAdvisorsView from './AvailableAdvisorsView';
-import { getAllUsers } from '../../../server/railscope';
+import { getAllAdvisors } from '../../../server/railscope';
 
 class AvailableAdvisors extends Component {
-  loadAllUsers (role) {
+  loadAllAdvisors () {
     var self = this;
-    getAllUsers(role, (users) => {
+    getAllAdvisors((users) => {
       self.setState({
         advisorsList: users
       })
@@ -20,7 +20,7 @@ class AvailableAdvisors extends Component {
   }
 
   componentWillMount () {
-    this.loadAllUsers("advisors");
+    this.loadAllAdvisors();
   }
 
   render () {

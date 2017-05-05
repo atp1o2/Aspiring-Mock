@@ -31,7 +31,6 @@ const Profile = styled.div`
   }
 `;
 
-
 class StudentProfileView extends Component {
   render () {
     let avatarImg = this.props.student.img_url ?  this.props.student.img_url : DefaultProfile;
@@ -40,7 +39,7 @@ class StudentProfileView extends Component {
         <EducationCard education={education} />
       </Col>
     )
-    const experienceList = this.props.experiences.map((experience) =>
+    const experienceList = this.props.work_experiences.map((experience) =>
       <Col xs={3} key={experience.id} className="col-centered">
         <ExperienceCard experience={experience} />
       </Col>

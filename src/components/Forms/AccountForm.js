@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-import { getUser } from '../../server/railscope';
+// import { getUser } from '../../server/railscope';
 import { Form } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
 import Button from '../Button';
 
 class AccountForm extends Component {
-  loadUser (user) {
-    var self = this;
-    getUser(user, (data) => {
-      self.setState({
-        user: data,
-        first_name: data.first_name,
-        last_name: data.last_name,
-        email: data.email,
-        // password: data.password_digest,
-        loading: false
-      })
-    })
-  }
-
   constructor (props) {
     super(props);
     this.state = {
-      user: '',
       first_name: '',
       last_name: '',
       email: '',
@@ -37,11 +22,15 @@ class AccountForm extends Component {
   }
 
   componentDidMount () {
-    var user = {
-      id: this.props.user.user_id,
-      role: 'users'
-    }
-    this.loadUser(user);
+    this.setState({
+      first_name: this.props.user.first_name,
+      last_name: this.props.user.last_name,
+      email: this.props.user.email,
+      // old_password: this.props.user.,
+      // new_password: this.props.user.,
+      // password_confirm: this.props.user.,
+      loading: true
+    })
   }
 
   handlePasswordChange (e) {

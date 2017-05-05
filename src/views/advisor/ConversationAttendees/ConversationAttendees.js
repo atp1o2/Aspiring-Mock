@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ConversationAttendeesView from './ConversationAttendeesView';
-import { getResource } from '../../../server/railscope';
+import { getConversation } from '../../../server/railscope';
 
 class ConversationAttendees extends Component {
-  loadConversations (user) {
+  loadConversation (id) {
     var self = this;
-    getResource(user, (conversation) => {
+    getConversation(id, (data) => {
       self.setState({
-        conversation: conversation,
-        students: conversation.students,
+        conversation: data,
+        students: data.students,
         loading: false
       })
     })
@@ -24,11 +24,7 @@ class ConversationAttendees extends Component {
   }
 
   componentWillMount () {
-    var user = {
-      id: this.props.params.conversation_id,
-      name: 'conversations'
-    }
-    this.loadConversations(user);
+    this.loadConversation(this.props.params.conversation_id);
   }
 
   render () {

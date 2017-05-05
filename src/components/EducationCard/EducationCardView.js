@@ -29,7 +29,7 @@ class EducationCard extends Component {
           <h4>{this.props.school.name}</h4>
           <hr />
           <p>Major: {this.props.major.name}</p>
-          <p>Clubs: this.props.school.clubs</p>
+          <p>Graduated: {this.props.education.end_date ? this.props.education.end_date : "N/A"}</p>
         </div>
       </Card>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getFullUser } from '../../server/railscope';
+// import { getFullUser } from '../../server/railscope';
 import { Form } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
 import Button from '../Button';

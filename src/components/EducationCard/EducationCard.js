@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
 import EducationCardView from './EducationCardView';
-import { getResource } from '../../server/railscope';
+import { getEducation, getSchool, getMajor } from '../../server/railscope';
 
 class EducationCard extends Component {
-  loadResource (resource, callback) {
+  loadEducation (id, callback) {
     var self = this;
-    getResource(resource, (record) => {
+    getEducation(id, (data) => {
       self.setState({
-        education: record
+        education: data
       })
-      var major = {
-        id: record.major_id,
-        name: 'majors'
-      }
-      var school = {
-        id: record.school_id,
-        name: 'schools'
-      }
-      callback.apply(this, [school, major]);
+      callback.apply(this, [data.major_id, data.school_id]);
     })
   }
 
-  loadEducation (school, major) {
+  loadSchoolMajor (school, major) {
     var self = this;
-    getResource(school, (school) => {
+    getSchool(school, (school) => {
       self.setState({
         school: school
       })
     })
-    getResource(major, (major) => {
+    getMajor(major, (major) => {
       self.setState({
         major: major,
         loading: false
@@ -47,11 +39,7 @@ class EducationCard extends Component {
   }
 
   componentDidMount () {
-    var resource = {
-      id: this.props.education.id,
-      name: "educations"
-    }
-    this.loadResource(resource, this.loadEducation);
+    this.loadEducation(this.props.education.id, this.loadSchoolMajor);
   }
 
   render () {
