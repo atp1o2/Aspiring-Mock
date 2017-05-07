@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import Masthead from '../components/masthead/Masthead';
 import Footer from '../components/Footer';
+import IdentityProvider from '../components/Identity/IdentityProvider';
 
 class Main extends Component {
   render () {
     return (
-      <div>
+      <IdentityProvider>
         <Masthead />
         <main className="main">
           {this.props.children}
         </main>
         <Footer />
-      </div>
+      </IdentityProvider>
     );
   }
 }
