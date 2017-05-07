@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router';
 import { Grid, Row, Col } from 'react-bootstrap';
 import ProfileCard from '../../../components/ProfileCard/ProfileCard';
-import RequestCard from '../../../components/requestCard/RequestCard';
+import RequestCard from '../../../components/RequestCard/RequestCard';
 
 const AdvisorsStyle = styled.div`
   .advisor-row {

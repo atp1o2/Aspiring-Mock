@@ -118,6 +118,9 @@ const getAllAdvisors = getAllFactory('advisors');
 const getAllStudents = getAllFactory('students');
 const getAllSchools = getAllFactory('schools');
 const getAllMajors = getAllFactory('majors');
+const getAllCompanies = getAllFactory('companies');
+const getAllCities = getAllFactory('cities');
+const getAllStates = getAllFactory('states');
 
 // GET /:user/:id/full
 const getFullStudent = getFullUserFactory('students');
@@ -128,9 +131,15 @@ const getFullRecruiter = getFullUserFactory('recruiters');
 const getStudentConversations = getConversationsFactory('students', 'conversation_attendances');
 const getAdvisorConversations = getConversationsFactory('advisors', 'conversations');
 
-const searchMajors = searchFactory('majors')
 const updateStudent = putResourceFactory('students');
+const updateUser = putResourceFactory('users');
+
 const postEducation = postResourceFactory('educations');
+const postWorkExperience = postResourceFactory('work_experiences');
+
+const searchMajors = searchFactory('majors');
+
+
 
 export {
   getUser,
@@ -146,6 +155,9 @@ export {
   getAllStudents,
   getAllSchools,
   getAllMajors,
+  getAllCompanies,
+  getAllCities,
+  getAllStates,
   getStudentConversations,
   getAdvisorConversations,
   getFullStudent,
@@ -154,5 +166,7 @@ export {
   postUserToken,
   updateStudent,
   postEducation,
+  postWorkExperience,
   searchMajors,
+  updateUser,
 };

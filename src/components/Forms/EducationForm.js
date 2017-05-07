@@ -56,7 +56,7 @@ class ProfileForm extends Component {
       [name]: value
     });
   }
-
+  // Lift into helper
   checkRecords (list, key, value) {
     let object;
     list.some((element) => {
@@ -69,10 +69,10 @@ class ProfileForm extends Component {
 
   handleFormSubmit (e) {
     e.preventDefault();
-    let major_key, major_val, school_key, school_val
+    let major_key, major_val, school_key, school_val;
     const checkMajor = this.checkRecords(this.state.all_majors, 'name', this.state.major);
     const checkSchool = this.checkRecords(this.state.all_schools, 'name', this.state.school);
-
+    // Lift into helper
     if (checkMajor) {
       major_key = "major_id";
       major_val = checkMajor.id;
@@ -107,10 +107,10 @@ class ProfileForm extends Component {
     postEducation(formPayload);
     this.loadAllSchools();
     this.loadAllMajors();
+    this.handleClearForm();
   }
 
   handleClearForm (e) {
-    e.preventDefault();
     this.setState({
       school: '',
       major: '',
