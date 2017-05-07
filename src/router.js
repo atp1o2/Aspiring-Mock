@@ -9,12 +9,12 @@ import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
 import ConversationAttendees from './views/advisor/ConversationAttendees/ConversationAttendees';
 import AdvisorAccount from './views/advisor/Account/AdvisorAccount';
-import AdvisorProfile from './views/advisor/Profile/AdvisorProfile';
+import AdvisorProfile from './views/advisor/profile/AdvisorProfile';
 
 // Student
 import AvailableAdvisors from './views/student/availableAdvisors/AvailableAdvisors';
 import StudentAccount from './views/student/Account/StudentAccount';
-import StudentProfile from './views/student/Profile/StudentProfile';
+import StudentProfile from './views/student/profile/StudentProfile';
 import Conversation from './views/student/Conversation/Conversation';
 
 // Static
