@@ -4,6 +4,11 @@ import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import BrandLogo from '../../img/CareerScope-Logo.png';
 import withIdentity from '../Identity/withIdentity';
+import AdvisorMastheadView from './AdvisorMastheadView';
+import StudentMastheadView from './StudentMastheadView';
+import RecruiterMastheadView from './RecruiterMastheadView';
+import AllMastheadView from './AllMastheadView';
+import LoggedOutMastheadView from './LoggedOutMastheadView';
 
 const Masthead = styled.nav`
   height: auto;
@@ -32,110 +37,26 @@ const Masthead = styled.nav`
   }
 `;
 
+const mastheadSwitcher = (props) => {
+  const role = props.identity ? props.identity.role : null;
+  switch (role) {
+    case 'student':
+      return <StudentMastheadView {...props} />
+    case 'advisor':
+      return <AdvisorMastheadView {...props} />
+    case 'recruiter':
+      return <RecruiterMastheadView {...props} />
+    default:
+      return <AllMastheadView />
+  }
+}
+
 class MastheadView extends Component {
   constructor(props){
     super(props);
-    console.log(props);
   }
 
   render () {
-    this.props.user.type = "all";
-    let linkList;
-    if (this.props.user.type === "student") {
-      linkList = (
-        <Nav pullRight>
-          <Link to="https://explore.careerscope.com/" className="mobile-hide">Explore</Link>
-          <Link to="How-it-Works" className="mobile-hide">
-            How it Works
-          </Link>
-          <Link to="Students/5/Advisors">
-            Advisors
-          </Link>
-          <Link to="Students/5/Conversations">
-            Conversations
-          </Link>
-          <Link to="Students/5/Account">
-            Profile
-          </Link>
-          <a onClick={()=>this.props.destroyIdentity()}>
-            Logout
-          </a>
-        </Nav>
-      )
-    } else if (this.props.user.type === "advisor") {
-      linkList = (
-        <Nav pullRight>
-          <Link to="Advisors/40/Conversations">
-            Conversations
-          </Link>
-          <Link to="Advisors/40/Profile">
-            Profile
-          </Link>
-          <Link to="Advisors/40/Account">
-            Account
-          </Link>
-          <a onClick={()=>this.props.destroyIdentity()}>
-            Logout
-          </a>
-        </Nav>
-      )
-    } else if (this.props.user.type === "recruiter") {
-      linkList = (
-        <Nav pullRight>
-          <Link to="Recruiters/1/Recruit">
-            Recruit
-          </Link>
-          <Link to="Recruiters/1/Account">
-            Account
-          </Link>
-          <a onClick={()=>this.props.destroyIdentity()}>
-            Logout
-          </a>
-        </Nav>
-      )
-    } else if (this.props.user.type === "all") {
-      linkList = (
-        <Nav pullRight>
-          <Link to="Log-In">
-            Login
-          </Link>
-          <span>|Recruiters|</span>
-          <Link to="Recruiters/1/Recruit">
-            Recruit
-          </Link>
-          <Link to="Recruiters/1/Account">
-            Account
-          </Link>
-          <span>|Advisors|</span>
-          <Link to="Advisors/40/Conversations">
-            Conversations
-          </Link>
-          <Link to="Advisors/40/Profile">
-            Profile
-          </Link>
-          <Link to="Advisors/40/Account">
-            Account
-          </Link>
-          <span>|Students|</span>
-          <Link to="Students/5/Advisors">
-            Advisors
-          </Link>
-          <Link to="Students/5/Conversations">
-            Conversations
-          </Link>
-          <Link to="Students/5/Profile">
-            Profile
-          </Link>
-          <Link to="Students/5/Account">
-            Account
-          </Link>
-          <a onClick={()=>this.props.destroyIdentity()}>
-            Logout
-          </a>
-        </Nav>
-      )
-    }
-
     return (
       <Masthead>
         <Navbar>
@@ -144,7 +65,7 @@ class MastheadView extends Component {
               <a href="/"><img src={BrandLogo} alt="CareerScope-Logo"/></a>
             </Navbar.Brand>
           </Navbar.Header>
-          {linkList}
+          {mastheadSwitcher(this.props)}
         </Navbar>
       </Masthead>
     );
