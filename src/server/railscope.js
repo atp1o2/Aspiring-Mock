@@ -2,7 +2,7 @@ import restful, { fetchBackend } from 'restful.js';
 
 const api = restful('http://localhost:3000', fetchBackend(fetch));
 
-const postUserToken = (email, password, callback) => {
+const postUserToken = (email, password, callback, failure) => {
   api.all('user_token').post(
     {auth:{email, password}}
   ).then((response)=>{
@@ -10,6 +10,7 @@ const postUserToken = (email, password, callback) => {
     const auth = authEntity.data();
     callback(auth);
   }, (response) => {
+    failure(response);
     throw new Error('Invalid Credentials.');
   });
 }
