@@ -6,7 +6,6 @@ import StatusForm from '../../../components/Forms/StatusForm';
 import AccountForm from '../../../components/Forms/AccountForm';
 import ExperienceForm from '../../../components/Forms/ExperienceForm';
 import EducationForm from '../../../components/Forms/EducationForm';
-import CitizenshipForm from '../../../components/Forms/CitizenshipForm';
 import LanguageForm from '../../../components/Forms/LanguageForm';
 
 const FormStyle = styled.div`
@@ -72,14 +71,8 @@ class StudentAccount extends Component {
               </Col>
             </Row>
             <Row className="section">
-              <Col sm={12} md={10} mdOffset={1}>
-                <p className="h2">Miscellaneous</p>
-              </Col>
-              <Col sm={5} smOffset={1}>
-                <CitizenshipForm user={this.state.student} />
-              </Col>
-              <Col sm={5}>
-                <p></p>
+              <Col sm={12} smOffset={0} md={10} mdOffset={1}>
+                <p className="h2">Skills</p>
                 <LanguageForm user={this.state.student} />
               </Col>
             </Row>

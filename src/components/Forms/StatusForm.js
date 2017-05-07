@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { getFullUser } from '../../server/railscope';
+import { updateStudent } from '../../server/railscope';
 import { Form } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
 import TextArea from '../TextArea';
@@ -16,7 +16,6 @@ class ProfileForm extends Component {
       loading: true
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
@@ -25,6 +24,7 @@ class ProfileForm extends Component {
       status: this.props.student.status,
       summary: this.props.student.summary,
       links: '',
+      us_citizen: '',
       loading: false
     })
   }
@@ -39,22 +39,22 @@ class ProfileForm extends Component {
   }
 
   handleFormSubmit (e) {
+    // us_citizen needs helper to set correct bools
     e.preventDefault();
     const formPayload = {
-      status: this.state.status,
-      summary: this.state.summary,
-      links: this.state.links
+      student: {
+        id: this.props.student.id,
+        // no_sponsorship: this.state.student.us_citizen,
+        // us_citizen: this.state.student.us_citizen,
+        no_sponsorship: true,
+        us_citizen: true,
+        status: this.state.status,
+        summary: this.state.summary,
+        links: this.state.links
+      }
     };
     console.log('Send this in a POST request:', formPayload);
-  }
-
-  handleClearForm (e) {
-    e.preventDefault();
-    this.setState({
-      status: '',
-      summary: '',
-      links: '',
-    });
+    updateStudent(this.props.student.id, formPayload);
   }
 
   render () {
@@ -77,6 +77,13 @@ class ProfileForm extends Component {
           name={"links"}
           type={"text"}
           content={this.state.links}
+          onChange={this.handleInputChange} />
+        <Select
+          label="Citizenship"
+          name="citizenship"
+          type="text"
+          selectOption={this.state.citizenship}
+          options={['US Citizen', 'No Sponsorship Needed', 'Other']}
           onChange={this.handleInputChange} />
         <Button type="submit">Save</Button>
       </Form>
