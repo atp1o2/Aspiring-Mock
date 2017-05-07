@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import IdentityProvider from '../../../components/Identity/IdentityProvider';
 import withIdentity from '../../../components/Identity/withIdentity';
 import {postUserToken, getUser} from '../../../server/railscope'
@@ -6,15 +6,17 @@ import {postUserToken, getUser} from '../../../server/railscope'
 class Login extends Component {
   constructor (props) {
     super(props);
+    this.state = {email: ''};
     this.login = this.login.bind(this);
   }
 
   login(email){
-    postUserToken(email, 'password', (identityString)=>{
-      const identityArray = identityString.split('.');
+    postUserToken(email, 'password', (identityObject)=>{
+      const token = identityObject.jwt;
+      const identityArray = token.split('.');
       const {exp: expiration, sub: userId} = JSON.parse(atob(identityArray[1]));
       getUser(userId, (user) => {
-        const identityData = {...user, expiration, token: identiyString};
+        const identityData = {...user, expiration, token};
         this.props.setIdentity(identityData);
       });
     });
@@ -25,11 +27,13 @@ class Login extends Component {
   }
 
   render () {
-    <div>
-      Email: <br/>
-      <input value={this.state.email} onChange={(e)=>{handle(e)}}></input><br/>
-      <button onClick={()=>{login(this.state.email)}}>Login!</button>
-    </div>
+    return(
+      <div>
+        Email: <br/>
+        <input type='text' value={this.state.email} onChange={(e)=>{this.handle(e)}}></input><br/>
+        <button onClick={()=>{this.login(this.state.email)}}>Login!</button>
+      </div>
+    );
   }
 }
 

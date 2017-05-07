@@ -1,21 +1,16 @@
-import React, {PropTypes} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 export default class IdentityProvider extends Component {
   constructor (props) {
     super(props);
+    this.state = {};
     let identity = JSON.parse(localStorage.getItem("identity"));
     if (identity){
-      this.state.identity = identity;
+      this.state = {identity};
     }
     this.setIdentity = this.setIdentity.bind(this);
     this.destroyIdentity = this.destroyIdentity.bind(this);
   }
-
-  static childContextTypes = {
-    identity: PropTypes.object,
-    setIdentity: PropTypes.func,
-    destroyIdentity: PropTypes.func,
-  };
 
   setIdentity(identity){
     this.setState({...this.state, identity: identity});
@@ -23,7 +18,7 @@ export default class IdentityProvider extends Component {
   }
 
   destroyIdentity(){
-    setIdentity(null);
+    this.setIdentity(null);
   }
 
   getChildContext() {
@@ -35,6 +30,12 @@ export default class IdentityProvider extends Component {
   }
 
   render () {
-    <div>{this.props.children}</div>
+    return <div>{this.props.children}</div>
   }
 }
+
+IdentityProvider.childContextTypes = {
+  identity: PropTypes.object,
+  setIdentity: PropTypes.func,
+  destroyIdentity: PropTypes.func,
+};

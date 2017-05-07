@@ -90,6 +90,9 @@ class MastheadView extends Component {
     } else if (this.props.user.type === "all") {
       linkList = (
         <Nav pullRight>
+          <Link to="Log-In">
+            Login
+          </Link>
           <span>|Recruiters|</span>
           <Link to="Recruiters/1/Recruit">
             Recruit

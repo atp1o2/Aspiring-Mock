@@ -26,11 +26,13 @@ import PrivatePolicy from './views/static/PrivatePolicy';
 import PrivatePolicyStudent from './views/static/PrivatePolicyStudent';
 import Terms from './views/static/Terms';
 import TermsStudent from './views/static/TermsStudent';
+import LogIn from './views/authentication/LogIn/LogIn';
 
 var routes = (
   <Route>
     <IndexRoute component={AvailableAdvisors} />
 
+    <Route path='Log-In' component={LogIn} />
     <Route path='DMCA' component={Dmca} />
     <Route path='FAQ' component={Faq} />
     <Route path='How-it-Works' component={HowItWorks} />
