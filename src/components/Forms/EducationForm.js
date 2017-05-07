@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
-// import { getFullUser } from '../../server/railscope';
+import { postEducation, getAllSchools, getAllMajors } from '../../server/railscope';
 import { Form } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
+import Select from '../Select';
 import Button from '../Button';
 
 class ProfileForm extends Component {
+  loadAllSchools () {
+    var self = this;
+    getAllSchools((data) => {
+      self.setState({
+        all_schools: data
+      })
+    })
+  }
+
+  loadAllMajors () {
+    var self = this;
+    getAllMajors((data) => {
+      self.setState({
+        all_majors: data,
+        loading: false
+      })
+    })
+  }
+
   constructor (props) {
     super(props);
     this.state = {
+      all_schools: [],
+      all_majors: [],
       school: '',
       major: '',
-      degree: '',
+      degree_type: '',
+      start_date: '',
       end_date: '',
       gpa: '',
       loading: true
@@ -18,6 +41,11 @@ class ProfileForm extends Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidMount () {
+    this.loadAllSchools();
+    this.loadAllMajors();
   }
 
   handleInputChange (event) {
@@ -29,16 +57,56 @@ class ProfileForm extends Component {
     });
   }
 
+  checkRecords (list, key, value) {
+    let object;
+    list.some((element) => {
+      if (element[key] === value) {
+        return object = element
+      }
+    })
+    return object;
+  }
+
   handleFormSubmit (e) {
     e.preventDefault();
-    const formPayload = {
-      school: this.state.school,
-      major: this.state.major,
-      degree: this.state.degree,
-      end_date: this.state.end_date,
-      gpa: this.state.gpa
+    let major_key, major_val, school_key, school_val
+    const checkMajor = this.checkRecords(this.state.all_majors, 'name', this.state.major);
+    const checkSchool = this.checkRecords(this.state.all_schools, 'name', this.state.school);
+
+    if (checkMajor) {
+      major_key = "major_id";
+      major_val = checkMajor.id;
+    }
+    else {
+      major_key = "major_attributes";
+      major_val = {"name": this.state.major};
+    }
+    if (checkSchool) {
+      school_key = "school_id";
+      school_val = checkSchool.id;
+    }
+    else {
+      school_key = "school_attributes";
+      school_val = {"name": this.state.school};
+    }
+
+    // DEGREE TYPE NOT SAVING PROPERLY
+    let formPayload = {
+      education: {
+        student_id: this.props.user.id,
+        degree_type: this.state.degree_type,
+        end_date: this.state.end_date + "-01 00:00:00",
+        gpa: this.state.gpa
+      }
     };
-    console.log('Send this in a POST request:', formPayload);
+
+    formPayload.education[major_key] = major_val;
+    formPayload.education[school_key] = school_val;
+    const payload = formPayload;
+    console.log('Send this in a POST request:', payload);
+    postEducation(formPayload);
+    this.loadAllSchools();
+    this.loadAllMajors();
   }
 
   handleClearForm (e) {
@@ -46,48 +114,56 @@ class ProfileForm extends Component {
     this.setState({
       school: '',
       major: '',
-      degree: '',
+      degree_type: '',
+      start_date: '',
       end_date: '',
       gpa: ''
     });
   }
 
   render () {
-    return (
-      <Form onSubmit={this.handleFormSubmit}>
-        <SingleInput
-          label={"School"}
-          name={"school"}
-          type={"text"}
-          content={this.state.school}
-          onChange={this.handleInputChange} />
-        <SingleInput
-          label={"Degree"}
-          name={"degree"}
-          type={"text"}
-          content={this.state.degree}
-          onChange={this.handleInputChange} />
-        <SingleInput
-          label={"Major"}
-          name={"major"}
-          type={"text"}
-          content={this.state.major}
-          onChange={this.handleInputChange} />
-        <SingleInput
-          label={"Graduation Date"}
-          name={"end_date"}
-          type={"month"}
-          content={this.state.end_date}
-          onChange={this.handleInputChange} />
-        <SingleInput
-          label={"G.P.A."}
-          name={"gpa"}
-          type={"number"}
-          content={this.state.gpa}
-          onChange={this.handleInputChange} />
-        <Button type="submit">Add</Button>
-      </Form>
-    );
+    if (this.state.loading) {
+      return <div>Loading...</div>
+    }
+    else  {
+      return (
+        <Form onSubmit={this.handleFormSubmit}>
+          {/* Should have a list of all schools text/select input */}
+          <SingleInput
+            label={"School"}
+            name={"school"}
+            type={"text"}
+            content={this.state.school}
+            onChange={this.handleInputChange} />
+          <Select
+            label={"Degree"}
+            name={"degree_type"}
+            content={this.state.degree_type}
+            options={['Associates', 'Bachelors', 'Masters', 'PhD']}
+            onChange={this.handleInputChange} />
+          {/* Should have a list of all majors text/select input */}
+          <SingleInput
+            label={"Major"}
+            name={"major"}
+            type={"text"}
+            content={this.state.major}
+            onChange={this.handleInputChange} />
+          <SingleInput
+            label={"Graduation Date"}
+            name={"end_date"}
+            type={"month"}
+            content={this.state.end_date}
+            onChange={this.handleInputChange} />
+          <SingleInput
+            label={"G.P.A."}
+            name={"gpa"}
+            type={"number"}
+            content={this.state.gpa}
+            onChange={this.handleInputChange} />
+          <Button type="submit">Add</Button>
+        </Form>
+      );
+    }
   }
 }
 

@@ -14,6 +14,44 @@ const postUserToken = (email, password, callback) => {
   });
 }
 
+/********************** UPDATE **********************/
+const putResourceFactory = (resourceName) => (id, payload, callback) => {
+  api.one(resourceName, id).patch(payload).then((response) => {
+      console.log('Resource Updated.')
+  }, (response) => {
+    throw new Error(response)
+  })
+}
+
+/********************** POST **********************/
+
+const postResourceFactory = (resourceName) => (payload, callback) => {
+  api.all(resourceName).post(payload).then((response) => {
+      console.log('Resource Updated.')
+  }, (response) => {
+    throw new Error(response)
+  })
+}
+
+/********************** SEARCH **********************/
+
+const searchFactory = (resourceName) => (param, callback) => {
+  const endpoint = resourceName + "?search=" + param;
+  api.all(endpoint).getAll().then((response) => {
+    const resourceEntities = response.body();
+    let resourceList = [];
+    resourceEntities.forEach((resourceEntity) => {
+      resourceList.push(resourceEntity.data());
+    })
+    console.log(resourceList)
+    callback(resourceList);
+  }, (response => {
+    throw new Error('LOL 404 GL');
+  }));
+}
+
+/********************** GET **********************/
+
 const getOneFactory = (resourceName) => (id, callback) => {
   api.one(resourceName, id).get().then((response) => {
     const resourceEntity = response.body();
@@ -26,12 +64,12 @@ const getOneFactory = (resourceName) => (id, callback) => {
 
 const getAllFactory = (resourceName) => (callback) => {
   api.all(resourceName).getAll().then((response) => {
-    const userEntities = response.body();
-    let userList = [];
-    userEntities.forEach((userEntity) => {
-      userList.push(userEntity.data());
+    const resourceEntities = response.body();
+    let resourceList = [];
+    resourceEntities.forEach((resourceEntity) => {
+      resourceList.push(resourceEntity.data());
     })
-    callback(userList);
+    callback(resourceList);
   }, (response => {
     throw new Error('LOL 404 GL');
   }));
@@ -74,10 +112,11 @@ const getSchool = getOneFactory('schools');
 const getEducation = getOneFactory('educations');
 const getCompany = getOneFactory('companies');
 
-// GET /:resourceName
+// GET ALL /:resourceName
 const getAllAdvisors = getAllFactory('advisors');
 const getAllStudents = getAllFactory('students');
 const getAllSchools = getAllFactory('schools');
+const getAllMajors = getAllFactory('majors');
 
 // GET /:user/:id/full
 const getFullStudent = getFullUserFactory('students');
@@ -87,6 +126,10 @@ const getFullRecruiter = getFullUserFactory('recruiters');
 // GET /:user/:id/conversations
 const getStudentConversations = getConversationsFactory('students', 'conversation_attendances');
 const getAdvisorConversations = getConversationsFactory('advisors', 'conversations');
+
+const searchMajors = searchFactory('majors')
+const updateStudent = putResourceFactory('students');
+const postEducation = postResourceFactory('educations');
 
 export {
   getUser,
@@ -101,10 +144,14 @@ export {
   getAllAdvisors,
   getAllStudents,
   getAllSchools,
+  getAllMajors,
   getStudentConversations,
   getAdvisorConversations,
   getFullStudent,
   getFullAdvisor,
   getFullRecruiter,
-  postUserToken
+  postUserToken,
+  updateStudent,
+  postEducation,
+  searchMajors,
 };
