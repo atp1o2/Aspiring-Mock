@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IdentityProvider from '../../../components/Identity/IdentityProvider';
 import withIdentity from '../../../components/Identity/withIdentity';
-import {postUserToken, getUser} from '../../../server/railscope'
+import { postUserToken, getUser } from '../../../server/railscope';
 
 class Login extends Component {
   constructor (props) {
