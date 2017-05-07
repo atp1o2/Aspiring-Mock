@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
 import BrandLogo from '../../img/CareerScope-Logo.png';
 import withIdentity from '../Identity/withIdentity';
@@ -8,7 +7,7 @@ import AdvisorMastheadView from './AdvisorMastheadView';
 import StudentMastheadView from './StudentMastheadView';
 import RecruiterMastheadView from './RecruiterMastheadView';
 import AllMastheadView from './AllMastheadView';
-import LoggedOutMastheadView from './LoggedOutMastheadView';
+// import LoggedOutMastheadView from './LoggedOutMastheadView';
 
 const Masthead = styled.nav`
   height: auto;
@@ -52,10 +51,6 @@ const mastheadSwitcher = (props) => {
 }
 
 class MastheadView extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render () {
     return (
       <Masthead>

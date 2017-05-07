@@ -63,8 +63,8 @@ class ProfileForm extends Component {
       if (element[key] === value) {
         return object = element
       }
+      return object;
     })
-    return object;
   }
 
   handleFormSubmit (e) {
