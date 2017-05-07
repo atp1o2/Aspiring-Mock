@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Navbar, Nav } from 'react-bootstrap';
 import styled from 'styled-components';
 import BrandLogo from '../../img/CareerScope-Logo.png';
+import withIdentity from '../Identity/withIdentity';
 
 const Masthead = styled.nav`
   height: auto;
@@ -32,6 +33,11 @@ const Masthead = styled.nav`
 `;
 
 class MastheadView extends Component {
+  constructor(props){
+    super(props);
+    console.log(props);
+  }
+
   render () {
     this.props.user.type = "all";
     let linkList;
@@ -51,9 +57,9 @@ class MastheadView extends Component {
           <Link to="Students/5/Account">
             Profile
           </Link>
-          <Link to="Logout">
+          <a onClick={()=>this.props.destroyIdentity()}>
             Logout
-          </Link>
+          </a>
         </Nav>
       )
     } else if (this.props.user.type === "advisor") {
@@ -68,9 +74,9 @@ class MastheadView extends Component {
           <Link to="Advisors/40/Account">
             Account
           </Link>
-          <Link to="Logout">
+          <a onClick={()=>this.props.destroyIdentity()}>
             Logout
-          </Link>
+          </a>
         </Nav>
       )
     } else if (this.props.user.type === "recruiter") {
@@ -82,9 +88,9 @@ class MastheadView extends Component {
           <Link to="Recruiters/1/Account">
             Account
           </Link>
-          <Link to="Logout">
+          <a onClick={()=>this.props.destroyIdentity()}>
             Logout
-          </Link>
+          </a>
         </Nav>
       )
     } else if (this.props.user.type === "all") {
@@ -123,6 +129,9 @@ class MastheadView extends Component {
           <Link to="Students/5/Account">
             Account
           </Link>
+          <a onClick={()=>this.props.destroyIdentity()}>
+            Logout
+          </a>
         </Nav>
       )
     }
@@ -142,4 +151,5 @@ class MastheadView extends Component {
   }
 }
 
-export default MastheadView;
+const MastheadViewWithIdentity = withIdentity(MastheadView);
+export default MastheadViewWithIdentity;
