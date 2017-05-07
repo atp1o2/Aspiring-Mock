@@ -11,6 +11,7 @@ const LogInExample = props => {
         {props.identity.last_name}<br/>
         {props.identity.role}<br/>
         {props.identity.id}<br/>
+        <button onClick={()=>props.destroyIdentity()}>Logout</button>
       </div>
     );
   } else {
