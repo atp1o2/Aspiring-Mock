@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import Registration from './Registration';
-import postStudent from '../../server/railscope';
+import postAdvisor from '../../server/railscope';
 
-class StudentRegistration extends Component {
+class AdvisorRegistration extends Component {
   constructor(props){
     super(props);
     this.state = {successful: false, failed: false}
-    this.submitStudent = this.submitStudent.bind(this);
+    this.submitAdvisor = this.submitAdvisor.bind(this);
   }
 
-  submitStudent({firstName, lastName, email, password, passwordConfirmation}) {
+  submitAdvisor({firstName, lastName, email, password, passwordConfirmation}) {
     const userAttributes = {
       'first_name': firstName,
       'last_name': lastName,
@@ -20,7 +20,7 @@ class StudentRegistration extends Component {
     const student = {
       'user_attributes': userAttributes,
     };
-    postStudent(student, (response)=>{
+    postAdvisor(student, (response)=>{
       this.setState({successful: true});
     }, (response)=>{
       this.setState({failed: true});
@@ -29,11 +29,11 @@ class StudentRegistration extends Component {
 
   render() {
       <Registration
-        submit={(state)=>submitStudent(state)}
+        submit={(state)=>submitAdvisor(state)}
         successful={this.state.successful}
         failed={this.state.failed}
       />
   }
 }
 
-export default StudentRegistration;
+export default AdvisorRegistration;

@@ -133,6 +133,7 @@ const updateStudent = putResourceFactory('students');
 const updateUser = putResourceFactory('users');
 
 const postStudent = postResourceFactory('students');
+const postAdvisor = postResourceFactory('advisors');
 const postEducation = postResourceFactory('educations');
 const postWorkExperience = postResourceFactory('work_experiences');
 
