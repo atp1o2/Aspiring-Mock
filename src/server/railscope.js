@@ -26,10 +26,11 @@ const putResourceFactory = (resourceName) => (id, payload, callback) => {
 
 /********************** POST **********************/
 
-const postResourceFactory = (resourceName) => (payload, callback) => {
+const postResourceFactory = (resourceName) => (payload, callback, failure) => {
   api.all(resourceName).post(payload).then((response) => {
       console.log('Resource Updated.')
   }, (response) => {
+    failure(response);
     throw new Error(response)
   })
 }
@@ -40,10 +41,7 @@ const searchFactory = (resourceName) => (param, callback) => {
   const endpoint = resourceName + "?search=" + param;
   api.all(endpoint).getAll().then((response) => {
     const resourceEntities = response.body();
-    let resourceList = [];
-    resourceEntities.forEach((resourceEntity) => {
-      resourceList.push(resourceEntity.data());
-    })
+    let resourceList = resourceEntities.map((entity) => entity.data());
     console.log(resourceList)
     callback(resourceList);
   }, (response => {
@@ -134,12 +132,11 @@ const getAdvisorConversations = getConversationsFactory('advisors', 'conversatio
 const updateStudent = putResourceFactory('students');
 const updateUser = putResourceFactory('users');
 
+const postStudent = postResourceFactory('students');
 const postEducation = postResourceFactory('educations');
 const postWorkExperience = postResourceFactory('work_experiences');
 
 const searchMajors = searchFactory('majors');
-
-
 
 export {
   getUser,
@@ -165,6 +162,7 @@ export {
   getFullRecruiter,
   postUserToken,
   updateStudent,
+  postStudent,
   postEducation,
   postWorkExperience,
   searchMajors,
