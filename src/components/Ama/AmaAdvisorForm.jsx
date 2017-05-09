@@ -7,6 +7,7 @@ import { getFullStudent, answerAma } from '../../server/railscope';
 import { Form } from 'react-bootstrap';
 import TextArea from '../TextArea';
 import Button from '../Button';
+import { getTime, getDate, getDay } from '../../helpers/ParseTimestamp';
 
 const AmaStyle = styled.div`
   border: ${Brand.greyBorder};
@@ -139,7 +140,7 @@ class AmaAdvisorsForm extends Component {
                   <Link to={`Students/${this.state.student.id}/Profile`}>
                     {this.state.student.first_name} {this.state.student.last_name}
                   </Link>
-                  &nbsp; at {this.state.student.schools[0].name} on {this.state.ama.created_at}
+                  &nbsp; at {this.state.student.schools[0].name} on {getDate(this.state.ama.created_at)}
                 </p>
                 <hr />
               </div>

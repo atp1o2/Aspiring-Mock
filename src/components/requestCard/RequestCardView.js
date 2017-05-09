@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import Button from '../Button';
 import { Col } from 'react-bootstrap';
+import { getTime, getDate, getDay } from '../../helpers/ParseTimestamp';
 
 const Card = styled.div`
   .col-centered {
@@ -42,19 +43,19 @@ class RequestCardView extends Component {
       convoList = this.props.conversations.map((conversation) =>
         <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered" key={conversation.id}>
             <div key={conversation.id}>
-              <p>{conversation.date}</p>
+              <p>{getDay(conversation.date)}, {getDate(conversation.date)}</p>
               {
                 conversation.capacity - conversation.conversation_attendances.length <= 0 ? (
                   <div>
                     <h2 className="ma-3">Full</h2>
                     <p></p>
-                    <Button small disabled>{conversation.date}</Button>
+                    <Button small disabled>{getTime(conversation.date)}</Button>
                   </div>
                 ) : (
                   <div>
                     <h2>{conversation.capacity - conversation.conversation_attendances.length}</h2>
                     <p>Spots Available</p>
-                    <Button small>{conversation.date}</Button>
+                    <Button small>{getTime(conversation.date)}</Button>
                   </div>
                 )
               }
