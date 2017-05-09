@@ -28,7 +28,10 @@ const putResourceFactory = (resourceName) => (id, payload, callback) => {
 
 const postResourceFactory = (resourceName) => (payload, callback, failure) => {
   api.all(resourceName).post(payload).then((response) => {
-      console.log('Resource Updated.')
+    const resourceEntities = response.body();
+    const resource = resourceEntities.data();
+    callback(resource);
+    console.log('Resource Updated.', resource)
   }, (response) => {
     failure(response);
     throw new Error(response)
@@ -42,7 +45,6 @@ const searchFactory = (resourceName) => (param, callback) => {
   api.all(endpoint).getAll().then((response) => {
     const resourceEntities = response.body();
     let resourceList = resourceEntities.map((entity) => entity.data());
-    console.log(resourceList)
     callback(resourceList);
   }, (response => {
     throw new Error('LOL 404 GL');
@@ -136,7 +138,7 @@ const updateUser = putResourceFactory('users');
 const answerAma = putResourceFactory('ama_answers');
 
 const postStudent = postResourceFactory('students');
-const postAdvisor = postResourceFactory('advisors');
+// const postAdvisor = postResourceFactory('advisors');
 const postEducation = postResourceFactory('educations');
 const postWorkExperience = postResourceFactory('work_experiences');
 const postAmaQuestion = postResourceFactory('ama_questions');

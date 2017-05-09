@@ -38,8 +38,9 @@ class AmaStudentForm extends Component {
     // This will create one
     if (!this.props.ama) {
       postAma({advisor_id: this.props.advisor.id}, (data) => {
+        console.log(data)
         this.setState({
-          ama: data.shift()
+          ama: data
         })
       });
     }

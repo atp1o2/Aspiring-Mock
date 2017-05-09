@@ -68,7 +68,6 @@ class ExperienceForm extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    console.log(value)
     this.setState({
       [name]: value
     });
@@ -76,7 +75,6 @@ class ExperienceForm extends Component {
 
   handleSelection (e) {
     const newSelection = e.target.value;
-    console.log(newSelection)
     let newSelectionArray;
     if (this.state.current.indexOf(newSelection) > -1) {
       newSelectionArray = this.state.current.filter(s => s !== newSelection)
@@ -96,12 +94,14 @@ class ExperienceForm extends Component {
       if (element[key] === value) {
         return object = element
       }
-      return object;
     })
+    return object;
   }
 
   handleFormSubmit (e) {
     e.preventDefault();
+    console.log(this.state.state)
+
     let company_key, company_val, city_key, city_val;
     const checkCompany = this.checkRecords(this.state.all_companies, 'name', this.state.company_name);
     const checkCity = this.checkRecords(this.state.all_cities, 'name', this.state.city);
