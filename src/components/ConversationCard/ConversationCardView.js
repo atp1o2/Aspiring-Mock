@@ -5,6 +5,7 @@ import Button from '../Button';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 import DefaultProfile from '../../img/default_profile.png';
+import { getTime, getDate, getDay } from '../../helpers/ParseTimestamp';
 
 const ConversationCard = styled.div`
   border: ${Brand.greyBorder};
@@ -49,8 +50,8 @@ class ConversationCardView extends Component {
           </Col>
           <Col sm={12} md={4}>
             <p className="bold">Appointment:</p>
-            <p>{this.props.conversation.date}</p>
-            <p>{this.props.conversation.date}</p>
+            <p>{getDate(this.props.conversation.date)}</p>
+            <p>{getDay(this.props.conversation.date)}, {getTime(this.props.conversation.date)}</p>
             <Button small>Contact</Button>
             <Button small>Cancel</Button>
           </Col>
