@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Brand from '../../../styles/variables';
 import DefaultProfile from '../../../img/default_profile.png';
 import RequestCard from '../../../components/RequestCard/RequestCard';
+import Ama from '../../../components/Ama/Ama';
 
 const Profile = styled.div`
   min-height: auto;
@@ -45,7 +46,7 @@ class AdvisorProfileView extends Component {
             <h3>Ask Me Anything</h3>
             <hr />
             <Row>
-              AMA TODO
+              <Ama advisor={this.props.advisor} />
             </Row>
           </Row>
         </Grid>

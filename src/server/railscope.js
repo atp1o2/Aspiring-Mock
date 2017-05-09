@@ -77,24 +77,24 @@ const getAllFactory = (resourceName) => (callback) => {
 const getFullUserFactory = (resourceName) => (id, callback) => {
   let endpoint = resourceName + '/' + id + '/full';
   api.all(endpoint).getAll().then((response) => {
-    const advisorEntity = response.body();
-    const advisor = advisorEntity.data();
-    callback(advisor);
+    const userEntity = response.body();
+    const user = userEntity.data();
+    callback(user);
   }, (response) => {
     throw new Error('LOL 404 GL');
   });
 }
 
-const getConversationsFactory = (resourceName, conversation) => (id, callback) => {
-  let endpoint = resourceName + '/' + id + '/' + conversation;
+const getCustomFactory = (resourceName, resource) => (id, callback) => {
+  let endpoint = resourceName + '/' + id + '/' + resource;
   api.all(endpoint).getAll().then((response) => {
-    const conversationsEntities = response.body();
-    let conversationList = [];
-    conversationsEntities.forEach((conversationsEntity) => {
-      const conversation = conversationsEntity.data();
-      conversationList.push(conversation)
+    const resourcesEntities = response.body();
+    let resourceList = [];
+    resourcesEntities.forEach((resourcesEntity) => {
+      const resource = resourcesEntity.data();
+      resourceList.push(resource)
     })
-    callback(conversationList);
+    callback(resourceList);
   }, (response) => {
     throw new Error('LOL 404 GL');
   });
@@ -110,6 +110,7 @@ const getMajor = getOneFactory('majors');
 const getSchool = getOneFactory('schools');
 const getEducation = getOneFactory('educations');
 const getCompany = getOneFactory('companies');
+const getAmaQuestion = getOneFactory('ama_questions');
 
 // GET ALL /:resourceName
 const getAllAdvisors = getAllFactory('advisors');
@@ -126,16 +127,20 @@ const getFullAdvisor = getFullUserFactory('advisors');
 const getFullRecruiter = getFullUserFactory('recruiters');
 
 // GET /:user/:id/conversations
-const getStudentConversations = getConversationsFactory('students', 'conversation_attendances');
-const getAdvisorConversations = getConversationsFactory('advisors', 'conversations');
+const getStudentConversations = getCustomFactory('students', 'conversation_attendances');
+const getAdvisorConversations = getCustomFactory('advisors', 'conversations');
+const getAdvisorAmas = getCustomFactory('advisors', 'amas');
 
 const updateStudent = putResourceFactory('students');
 const updateUser = putResourceFactory('users');
+const answerAma = putResourceFactory('ama_answers');
 
 const postStudent = postResourceFactory('students');
 const postAdvisor = postResourceFactory('advisors');
 const postEducation = postResourceFactory('educations');
 const postWorkExperience = postResourceFactory('work_experiences');
+const postAmaQuestion = postResourceFactory('ama_questions');
+const postAma = postResourceFactory('amas');
 
 const searchMajors = searchFactory('majors');
 
@@ -149,6 +154,7 @@ export {
   getCompany,
   getConversation,
   getEducation,
+  getAmaQuestion,
   getAllAdvisors,
   getAllStudents,
   getAllSchools,
@@ -166,6 +172,10 @@ export {
   postStudent,
   postEducation,
   postWorkExperience,
+  postAma,
+  postAmaQuestion,
   searchMajors,
   updateUser,
+  getAdvisorAmas,
+  answerAma,
 };
