@@ -63,8 +63,8 @@ class ProfileForm extends Component {
       if (element[key] === value) {
         return object = element
       }
+      return object;
     })
-    return object;
   }
 
   handleFormSubmit (e) {
@@ -139,7 +139,7 @@ class ProfileForm extends Component {
             label={"Degree"}
             name={"degree_type"}
             content={this.state.degree_type}
-            options={['Associates', 'Bachelors', 'Masters', 'PhD']}
+            options={['associates', 'bachelors', 'masters', 'phd']}
             onChange={this.handleInputChange} />
           {/* Should have a list of all majors text/select input */}
           <SingleInput

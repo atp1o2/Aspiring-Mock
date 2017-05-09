@@ -3,8 +3,6 @@ import { getAllCompanies, postWorkExperience, getAllCities, getAllStates } from 
 import { Form, Row, Col } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
 import TextArea from '../TextArea';
-import RadioOrCheckbox from '../RadioOrCheckbox';
-
 import Button from '../Button';
 
 class ExperienceForm extends Component {
@@ -16,7 +14,7 @@ class ExperienceForm extends Component {
       title: '',
       start_date: '',
       end_date: '',
-      current: [],
+      current: '',
       url: '',
       summary: '',
       city: '',
@@ -70,6 +68,7 @@ class ExperienceForm extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
+    console.log(value)
     this.setState({
       [name]: value
     });
@@ -77,6 +76,7 @@ class ExperienceForm extends Component {
 
   handleSelection (e) {
     const newSelection = e.target.value;
+    console.log(newSelection)
     let newSelectionArray;
     if (this.state.current.indexOf(newSelection) > -1) {
       newSelectionArray = this.state.current.filter(s => s !== newSelection)
@@ -96,8 +96,8 @@ class ExperienceForm extends Component {
       if (element[key] === value) {
         return object = element
       }
+      return object;
     })
-    return object;
   }
 
   handleFormSubmit (e) {
@@ -141,6 +141,7 @@ class ExperienceForm extends Component {
     // City is not being saved
     formPayload.work_experience[city_key] = city_val;
     const payload = formPayload;
+    console.log('payload', payload)
     postWorkExperience(payload);
     this.handleClearForm(e);
     this.loadAllCompanies();
@@ -213,12 +214,12 @@ class ExperienceForm extends Component {
               onChange={this.handleInputChange} />
           </Col>
           <Col xs={2} className="mt-1">
-            <RadioOrCheckbox
-              name={'current'}
-              type={'checkbox'}
-              onChange={this.handleSelection}
-              options={["Current"]}
-              selectedOptions={this.state.current} />
+            <SingleInput
+              name={"current"}
+              label={"Current"}
+              type={"checkbox"}
+              onChange={this.handleInputChange}
+              content={true} />
           </Col>
         </Row>
         <TextArea
