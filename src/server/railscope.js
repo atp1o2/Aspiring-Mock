@@ -127,6 +127,8 @@ const getAllStates = getAllFactory('states');
 const getFullStudent = getFullUserFactory('students');
 const getFullAdvisor = getFullUserFactory('advisors');
 const getFullRecruiter = getFullUserFactory('recruiters');
+const getFullUser = getFullUserFactory('users');
+
 
 // GET /:user/:id/conversations
 const getStudentConversations = getCustomFactory('students', 'conversation_attendances');
@@ -169,6 +171,7 @@ export {
   getFullStudent,
   getFullAdvisor,
   getFullRecruiter,
+  getFullUser,
   postUserToken,
   updateStudent,
   postStudent,

@@ -4,10 +4,10 @@ import { Nav } from 'react-bootstrap';
 
 const RecruiterMastheadView = ({identity, destroyIdentity}) => (
   <Nav pullRight>
-    <Link to={`Recruiters/${identity.id}/Recruit`}>
+    <Link to={`Recruiters/${identity.profile_id}/Recruit`}>
       Recruit
     </Link>
-    <Link to={`Recruiters/${identity.id}/Account`}>
+    <Link to={`Recruiters/${identity.profile_id}/Account`}>
       Account
     </Link>
     <a onClick={()=>destroyIdentity()}>
