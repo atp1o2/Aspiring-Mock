@@ -52,6 +52,7 @@ const mastheadSwitcher = (props) => {
 
 class MastheadView extends Component {
   render () {
+  console.log(this.props.identity)
     return (
       <Masthead>
         <Navbar>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import IdentityProvider from '../../../components/Identity/IdentityProvider';
 import withIdentity from '../../../components/Identity/withIdentity';
-import { postUserToken, getUser } from '../../../server/railscope';
+import { postUserToken, getFullUser } from '../../../server/railscope';
 
 class Login extends Component {
   constructor (props) {
@@ -16,7 +16,7 @@ class Login extends Component {
       const token = identityObject.jwt;
       const identityArray = token.split('.');
       const {exp: expiration, sub: userId} = JSON.parse(atob(identityArray[1]));
-      getUser(userId, (user) => {
+      getFullUser(userId, (user) => {
         const identityData = {...user, expiration, token};
         this.props.setIdentity(identityData);
       });

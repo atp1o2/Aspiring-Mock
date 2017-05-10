@@ -4,13 +4,13 @@ import { Nav } from 'react-bootstrap';
 
 const AdvisorMastheadView = ({identity, destroyIdentity}) => (
   <Nav pullRight>
-    <Link to="Advisors/40/Conversations">
+    <Link to={`Advisors/${identity.profile_id}/Conversations`}>
       Conversations
     </Link>
-    <Link to="Advisors/40/Profile">
+    <Link to={`Advisors/${identity.profile_id}/Profile`}>
       Profile
     </Link>
-    <Link to="Advisors/40/Account">
+    <Link to={`Advisors/${identity.profile_id}/Account`}>
       Account
     </Link>
     <a onClick={()=>destroyIdentity()}>
