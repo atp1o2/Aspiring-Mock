@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "css-loader": "0.26.0",
-    "sass-loader": "^4.1.1",
-    "style-loader": "0.13.1",
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.1.1",
@@ -36,7 +33,6 @@
     "json-loader": "0.5.4",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
-    "postcss-loader": "1.0.0",
     "promise": "7.1.1",
     "react-dev-utils": "^0.4.2",
     "recursive-readdir": "2.1.0",
@@ -48,6 +44,10 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "sass-loader": "^4.1.1",
+    "postcss-loader": "1.0.0",
+    "css-loader": "0.26.0",
+    "style-loader": "0.13.1",
     "jsonfile": "^2.4.0",
     "node-sass": "^4.3.0",
     "normalize.css": "^6.0.0",
