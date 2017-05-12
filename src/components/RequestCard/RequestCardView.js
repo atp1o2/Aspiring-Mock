@@ -45,7 +45,7 @@ class RequestCardView extends Component {
             <div key={conversation.id}>
               <p>{getDay(conversation.date)}, {getDate(conversation.date)}</p>
               {
-                conversation.capacity - conversation.conversation_attendance.length <= 0 ? (
+                conversation.capacity - conversation.conversation_attendances.length <= 0 ? (
                   <div>
                     <h2 className="ma-3">Full</h2>
                     <p></p>
@@ -53,7 +53,7 @@ class RequestCardView extends Component {
                   </div>
                 ) : (
                   <div>
-                    <h2>{conversation.capacity - conversation.conversation_attendance.length}</h2>
+                    <h2>{conversation.capacity - conversation.conversation_attendances.length}</h2>
                     <p>Spots Available</p>
                     <Button type="submit" onClick={() => {this.props.onClick(conversation)}} small>{getTime(conversation.date)}</Button>
                   </div>
