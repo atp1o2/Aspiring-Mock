@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
 
+
 const Card = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};

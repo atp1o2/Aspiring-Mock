@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Brand from '../../styles/variables';
+import { getMonthYear } from '../../helpers/ParseTimestamp';
 
 const Card = styled.div`
   text-align: center;
@@ -28,7 +29,7 @@ class ExperienceCardView extends Component {
           <h4>{this.props.company.name}</h4>
           <p className="h5">{this.props.experience.title}</p>
           <hr />
-          <p>{this.props.experience.start_date} - {this.props.experience.current ? "Current" : this.props.experience.end_date}</p>
+          <p>{getMonthYear(this.props.experience.start_date)} - {this.props.experience.current ? "Current" : getMonthYear(this.props.experience.end_date)}</p>
           <p>Summary:</p>
           <p>{this.props.experience.summary}</p>
         </div>

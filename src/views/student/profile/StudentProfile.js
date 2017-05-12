@@ -10,6 +10,7 @@ class StudentProfile extends Component {
         student: data,
         educations: data.educations,
         work_experiences: data.work_experiences,
+        schools: data.schools,
         loading: false
       })
     })
@@ -21,7 +22,8 @@ class StudentProfile extends Component {
       student: '',
       educations: [],
       work_experiences: [],
-      loading: true
+      schools: [],
+      loading: true,
     }
   }
 
@@ -38,6 +40,7 @@ class StudentProfile extends Component {
         <StudentProfileView
           student={this.state.student}
           educations={this.state.educations}
+          schools={this.state.schools}
           work_experiences={this.state.work_experiences} />
       )
     }
