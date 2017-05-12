@@ -53,7 +53,7 @@ class ConversationCardView extends Component {
             <p>{getDate(this.props.conversation.date)}</p>
             <p>{getDay(this.props.conversation.date)}, {getTime(this.props.conversation.date)}</p>
             <Button small>Contact</Button>
-            <Button small>Cancel</Button>
+            <Button onClick={() => {this.props.onClick()}} small>Cancel</Button>
           </Col>
         </Row>
       </ConversationCard>

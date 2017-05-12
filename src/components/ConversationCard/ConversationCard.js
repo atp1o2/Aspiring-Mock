@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
 import ConversationCardView from './ConversationCardView';
-import { getConversation, getFullAdvisor } from '../../server/railscope';
+import { getConversation, getFullAdvisor, deleteConversationAttendance } from '../../server/railscope';
 
 class ConversationCard extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      conversation: '',
+      advisor: '',
+      loading: true
+    }
+    this.leaveConversation = this.leaveConversation.bind(this);
+  }
+
+  componentWillMount () {
+    this.loadConversation(this.props.conversation.conversation_id, this.loadFullAdvisor)
+  }
+
   loadConversation (id, callback) {
     var self = this;
     getConversation(id, (data) => {
@@ -24,17 +38,12 @@ class ConversationCard extends Component {
     })
   }
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      conversation: '',
-      advisor: '',
-      loading: true
+  leaveConversation () {
+    const result = confirm("Would you like to leave this conversation with " + this.state.advisor.first_name + " " + this.state.advisor.last_name + "?")
+    if (result) {
+      deleteConversationAttendance(this.props.conversation.id);
     }
-  }
-
-  componentWillMount () {
-    this.loadConversation(this.props.conversation.conversation_id, this.loadFullAdvisor)
+    this.props.removeConversation(this.props.conversation.id);
   }
 
   render () {
@@ -43,6 +52,7 @@ class ConversationCard extends Component {
     } else {
       return (
         <ConversationCardView
+          onClick={this.leaveConversation}
           advisor={this.state.advisor}
           conversation={this.state.conversation} />
       )

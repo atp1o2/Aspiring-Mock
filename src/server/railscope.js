@@ -29,14 +29,13 @@ const putResourceFactory = (resourceName) => (id, payload, callback) => {
 
 /********************** POST **********************/
 
-const postResourceFactory = (resourceName) => (payload, callback, failure) => {
+const postResourceFactory = (resourceName) => (payload, callback) => {
   api.all(resourceName).post(payload).then((response) => {
     const resourceEntities = response.body();
     const resource = resourceEntities.data();
+    console.log('Resource Updated.')
     callback(resource);
-    console.log('Resource Updated.', resource)
   }, (response) => {
-    failure(response);
     throw new Error(response)
   })
 }
@@ -52,6 +51,16 @@ const searchFactory = (resourceName) => (param, callback) => {
   }, (response => {
     throw new Error('LOL 404 GL');
   }));
+}
+
+/********************** DELETE **********************/
+
+const deleteOneFactory = (resourceName) => (id, callback) => {
+  api.one(resourceName, id).delete().then((response) => {
+    console.log("Resource Deleted", response.body().data())
+  }, (response) => {
+    throw new Error('Could not delete resource.')
+  })
 }
 
 /********************** GET **********************/
@@ -140,14 +149,20 @@ const getAdvisorAmas = getCustomFactory('advisors', 'amas');
 
 const updateStudent = putResourceFactory('students');
 const updateUser = putResourceFactory('users');
+
+const joinConversationAttendances = putResourceFactory('conversation_attendances');
 const answerAma = putResourceFactory('ama_answers');
 
+const postNewConversation = postResourceFactory('conversations');
 const postStudent = postResourceFactory('students');
 // const postAdvisor = postResourceFactory('advisors');
 const postEducation = postResourceFactory('educations');
 const postWorkExperience = postResourceFactory('work_experiences');
 const postAmaQuestion = postResourceFactory('ama_questions');
 const postAma = postResourceFactory('amas');
+
+const deleteConversationAttendance = deleteOneFactory('conversation_attendances');
+const deleteConversation = deleteOneFactory('conversations');
 
 const searchMajors = searchFactory('majors');
 
@@ -178,6 +193,7 @@ export {
   postUserToken,
   updateStudent,
   postStudent,
+  postNewConversation,
   postEducation,
   postWorkExperience,
   postAma,
@@ -186,4 +202,7 @@ export {
   updateUser,
   getAdvisorAmas,
   answerAma,
+  joinConversationAttendances,
+  deleteConversationAttendance,
+  deleteConversation,
 };
