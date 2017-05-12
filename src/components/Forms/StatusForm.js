@@ -53,7 +53,6 @@ class ProfileForm extends Component {
         links: this.state.links
       }
     };
-    console.log('Send this in a POST request:', formPayload);
     updateStudent(this.props.student.id, formPayload);
   }
 
@@ -79,9 +78,8 @@ class ProfileForm extends Component {
           content={this.state.links}
           onChange={this.handleInputChange} />
         <Select
-          label="Citizenship"
-          name="citizenship"
-          type="text"
+          label={"Citizenship"}
+          name={"citizenship"}
           selectOption={this.state.citizenship}
           options={['US Citizen', 'No Sponsorship Needed', 'Other']}
           onChange={this.handleInputChange} />

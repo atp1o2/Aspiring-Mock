@@ -3,13 +3,37 @@ import { Grid, Row } from 'react-bootstrap';
 import ConversationCard from '../../../components/ConversationCard/ConversationCard';
 
 class ConversationView extends Component {
+  constructor (props) {
+    super(props);
+    this.state = ({
+      conversation_attendances: []
+    })
+    this.removeConversationFromView = this.removeConversationFromView.bind(this);
+  }
+
+  componentDidMount () {
+    this.setState({
+      conversation_attendances: this.props.conversation_attendances,
+    })
+  }
+
+  removeConversationFromView (id) {
+    this.setState({
+      ...this.state,
+      conversation_attendances: this.state.conversation_attendances.filter((object) => {
+        return object.id !== id
+      })
+    })
+  }
+
   render () {
-    const upcomingConversationList = this.props.conversations.map((conversation) =>
+    const upcomingConversationList = this.state.conversation_attendances.map((conversation) =>
       <Row key={conversation.id}>
-        <ConversationCard conversation={conversation} />
+        <ConversationCard
+          removeConversation={this.removeConversationFromView}
+          conversation={conversation} />
       </Row>
     )
-
     return (
       <Grid>
         <Row className="text-center">

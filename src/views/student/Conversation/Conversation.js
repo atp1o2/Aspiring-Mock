@@ -7,7 +7,7 @@ class Conversation extends Component {
     var self = this;
     getStudentConversations(id, (data) => {
       self.setState({
-        conversations: data,
+        conversation_attendances: data,
         loading: false
       })
     })
@@ -16,7 +16,7 @@ class Conversation extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      conversations: [],
+      conversation_attendances: [],
       loading: true
     }
   }
@@ -32,7 +32,7 @@ class Conversation extends Component {
       )
     } else {
       return (
-        <ConversationView conversations={this.state.conversations} />
+        <ConversationView conversation_attendances={this.state.conversation_attendances} />
       );
     }
   }

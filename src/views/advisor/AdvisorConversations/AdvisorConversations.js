@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
 import AdvisorConversationsView from './AdvisorConversationsView';
-import { getAdvisorConversations } from '../../../server/railscope';
+import { getFullAdvisor, getAdvisorConversations } from '../../../server/railscope';
+import withIdentity from '../../../components/Identity/withIdentity';
+
 
 class AdvisorConversations extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      conversations: [],
+      advisor: '',
+      loading: true
+    }
+  }
+
+  componentDidMount () {
+    this.loadFullAdvisor(this.props.identity.profile_id, this.loadAdvisorConversations);
+  }
+
+  loadFullAdvisor (id, callback) {
+    var self = this;
+    getFullAdvisor(id, (data) => {
+      self.setState({
+        advisor: data,
+      })
+      callback.apply(this, [id]);
+    })
+  }
+
   loadAdvisorConversations (id) {
     var self = this;
     getAdvisorConversations(id, (data) => {
@@ -13,25 +38,17 @@ class AdvisorConversations extends Component {
     })
   }
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      conversations: [],
-      loading: true
-    }
-  }
-
-  componentDidMount () {
-    this.loadAdvisorConversations(this.props.params.id);
-  }
-
   render () {
     if (this.state.loading) {
-      return (<div>loading...</div>);
-    } else {
-      return (<AdvisorConversationsView conversations={this.state.conversations} />);
+      return (<div>Forbidden. You are not this advisor.</div>);
+    } else if (this.props.identity.profile_id === this.state.advisor.id) {
+      return (
+        <AdvisorConversationsView
+          conversations={this.state.conversations}
+          advisor={this.state.advisor} />);
     }
   }
 }
 
-export default AdvisorConversations;
+const AdvisorConversationsWithIdentity = withIdentity(AdvisorConversations);
+export default AdvisorConversationsWithIdentity;

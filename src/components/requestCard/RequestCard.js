@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RequestCardView from './RequestCardView';
-import { getAdvisorConversations } from '../../server/railscope';
+import { getAdvisorConversations, joinConversationAttendances } from '../../server/railscope';
+import withIdentity from '../Identity/withIdentity';
 
 class RequestCard extends Component {
   loadAdvisorConversations (id) {
@@ -15,19 +16,33 @@ class RequestCard extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      conversations: []
+      conversations: [],
     }
+    this.joinConversation = this.joinConversation.bind(this);
   }
 
   componentDidMount () {
     this.loadAdvisorConversations(this.props.advisor.id);
   }
 
+  joinConversation (conversation) {
+    const payload = {
+      conversation_attendance: {
+        student_id: this.props.identity.profile_id,
+        conversation_id: conversation.id,
+      }
+    }
+    joinConversationAttendances(conversation.id, payload);
+  }
+
   render () {
     return (
-      <RequestCardView conversations={this.state.conversations} />
+      <RequestCardView
+        onClick={this.joinConversation}
+        conversations={this.state.conversations} />
     )
   };
 }
 
-export default RequestCard;
+const RequestCardWithIdentity = withIdentity(RequestCard);
+export default RequestCardWithIdentity;

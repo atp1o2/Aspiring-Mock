@@ -3,14 +3,14 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import RecruitStudentCard from '../../../components/RecruitStudentCard/RecruitStudentCard';
 import styled from 'styled-components';
 import Brand from '../../../styles/variables';
-
+import { getTime, getDate, getDay } from '../../../helpers/ParseTimestamp';
 
 const DateCard = styled.div`
   margin: 0 auto;
-  border: 1px solid ${Brand.greyBorder};
+  border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
   width: 40rem;
-  height: 20rem;
+  height: 23rem;
   padding: 2rem;
 `;
 
@@ -33,9 +33,9 @@ class ConversationAttendees extends Component {
           <DateCard>
             <h3>Appointment</h3>
             <hr />
-            <p>Date: {this.props.conversation.date}</p>
-            <p>Time: {this.props.conversation.date}</p>
-            <p>Day: {this.props.conversation.date}</p>
+            <p className="h4">{getDate(this.props.conversation.date)}</p>
+            <p className="h4">{getTime(this.props.conversation.date)}</p>
+            <p className="h4">{getDay(this.props.conversation.date)}</p>
           </DateCard>
         </Row>
         <Row>
