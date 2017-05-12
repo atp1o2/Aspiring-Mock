@@ -12,16 +12,14 @@ class AdvisorConversationCard extends Component {
   }
 
   handleClick (id) {
-    console.log('convo id', id)
-
+    const result = confirm("Delete this conversation?");
+    if (result) {
       deleteConversation(id);
       this.props.removeConversationFromView(id)
-
+    }
   }
 
   render () {
-    console.log('new convo added', this.props.conversation.id)
-
     return (
       <AdvisorConversationCardView
         onClick={this.handleClick}

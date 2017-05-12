@@ -35,18 +35,17 @@ class RequestCard extends Component {
         if (attendance_convoIds.includes(conversation.id)) {
           alert("You've already joined this conversation.")
           return;
-        } else {
-          const payload = {
-            conversation_attendance: {
-              student_id: this.props.identity.profile_id,
-              conversation_id: conversation.id,
-            }
-          }
-          joinConversationAttendances(payload, (data) => {
-            console.log('Successfully joined conversation.')
-          });
         }
       }
+      const payload = {
+        conversation_attendance: {
+          student_id: this.props.identity.profile_id,
+          conversation_id: conversation.id,
+        }
+      }
+      joinConversationAttendances(payload, (data) => {
+        console.log('Successfully joined conversation.')
+      });
     })
   }
 

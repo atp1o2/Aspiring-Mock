@@ -42,8 +42,8 @@ class ConversationCard extends Component {
     const result = confirm("Would you like to leave this conversation with " + this.state.advisor.first_name + " " + this.state.advisor.last_name + "?")
     if (result) {
       deleteConversationAttendance(this.props.conversation.id);
+      this.props.removeConversation(this.props.conversation.id);
     }
-    this.props.removeConversation(this.props.conversation.id);
   }
 
   render () {

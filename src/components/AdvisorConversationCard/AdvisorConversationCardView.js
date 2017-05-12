@@ -32,7 +32,7 @@ class AdvisorConversationCardView extends Component {
           </Col>
           <Col className="center" xs={12} sm={4}>
             <p className="bold">Attendees</p>
-            <h3><Link to={`Advisors/${this.props.conversation.advisor_id}/Conversations/${this.props.conversation.id}`}>{this.props.conversation.conversation_attendance.length} / {this.props.conversation.capacity}</Link></h3>
+            <h3><Link to={`Advisors/${this.props.conversation.advisor_id}/Conversations/${this.props.conversation.id}`}>{this.props.conversation.conversation_attendances.length} / {this.props.conversation.capacity}</Link></h3>
           </Col>
           <Col className="center mt-1" xs={12} sm={4}>
             <Button small>Edit Time</Button>
