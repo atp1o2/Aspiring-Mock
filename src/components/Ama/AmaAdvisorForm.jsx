@@ -140,7 +140,7 @@ class AmaAdvisorsForm extends Component {
                   <Link to={`Students/${this.state.student.id}/Profile`}>
                     {this.state.student.first_name} {this.state.student.last_name}
                   </Link>
-                  &nbsp; at {this.state.student.schools[0].name} on {getDate(this.state.ama.created_at)}
+                  &nbsp; at {this.state.student.schools[0].name} on {getDate(this.state.ama.created_at) ? getDate(new Date().getTime()) : getDate(Date.now()) }
                 </p>
                 <hr />
               </div>

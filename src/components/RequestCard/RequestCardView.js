@@ -11,7 +11,8 @@ const Card = styled.div`
     display: inline-table;
   }
   .base {
-    margin: 1rem;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
     color: ${Brand.grey};
     text-align: center;
     border: ${Brand.greyBorder};
@@ -20,7 +21,6 @@ const Card = styled.div`
     min-width: 25rem;
     max-width: 25rem;
     padding: 2rem 1rem;
-    margin-top: 3rem;
     h4 {
       line-height: 2;
     }

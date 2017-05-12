@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import Brand from '../../../styles/variables';
 import DefaultProfile from '../../../img/default_profile.png';
@@ -11,15 +11,18 @@ const Profile = styled.div`
   margin-top: 10rem;
   text-align: center;
   .row {
-    margin: 3rem 0;
+    margin-bottom: 3rem;
+  }
+  .summary {
+    min-height: 25rem;
   }
   img {
     padding: 1rem;
     border: 1px solid ${Brand.yellow};
-    margin-top: -3rem;
     height: 19rem;
     width: 19rem;
     box-shadow: 0 9px 12px 0 ${Brand.grey};
+    margin: 2rem 0;
   }
 `;
 
@@ -30,24 +33,36 @@ class AdvisorProfileView extends Component {
       <Profile>
         <Grid>
           <Row>
-            <div>
-              <img src={avatarImg} alt="Advisor Profile Avatar" />
-            </div>
+            <Col xs={12} sm={3}>
+              <div>
+                <img src={avatarImg} alt="Advisor Profile Avatar" />
+              </div>
+              <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
+              <p className="bold">{this.props.company.name}</p>
+              <p>{this.props.advisor.job_title ? this.props.advisor.job_title : "Advisor"}</p>
+              <p>{this.props.company.url}</p>
+              <p>Industries:</p>
+              <p>#Tech</p>
+              <p>#Business</p>
+              <p>#Law</p>
+              <p>#Health</p>
+            </Col>
+            <Col xs={12} sm={9}>
+              <div className="summary">
+                <h3>Summary</h3>
+                <hr />
+                <p>{this.props.company.summary}</p>
+              </div>
+              <RequestCard advisor={this.props.advisor} />
+            </Col>
           </Row>
-            <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
-            <h4>{this.props.company.name}</h4>
-            <p>{this.props.advisor.job_title ? this.props.advisor.job_title : "Advisor"}</p>
-            <p>{this.props.company.summary}</p>
-            <p>{this.props.company.url}</p>
-          <Row className="text-center">
-            <RequestCard advisor={this.props.advisor} />
-          </Row>
+
           <Row>
-            <h3>Ask Me Anything</h3>
-            <hr />
-            <Row>
+            <Col xs={12} sm={10} smOffset={2}>
+              <h3>Ask Me Anything</h3>
+              <hr />
               <Ama advisor={this.props.advisor} />
-            </Row>
+            </Col>
           </Row>
         </Grid>
       </Profile>
