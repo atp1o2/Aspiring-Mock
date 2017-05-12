@@ -150,7 +150,7 @@ const getAdvisorAmas = getCustomFactory('advisors', 'amas');
 const updateStudent = putResourceFactory('students');
 const updateUser = putResourceFactory('users');
 
-const joinConversationAttendances = putResourceFactory('conversation_attendances');
+const joinConversationAttendances = postResourceFactory('conversation_attendances');
 const answerAma = putResourceFactory('ama_answers');
 
 const postNewConversation = postResourceFactory('conversations');

@@ -1,9 +1,22 @@
 import React, { Component } from 'react';
 import RequestCardView from './RequestCardView';
-import { getAdvisorConversations, joinConversationAttendances } from '../../server/railscope';
+import { getAdvisorConversations, joinConversationAttendances, getStudentConversations } from '../../server/railscope';
 import withIdentity from '../Identity/withIdentity';
 
 class RequestCard extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      conversations: [],
+      conversation_attendances: [],
+    }
+    this.joinConversation = this.joinConversation.bind(this);
+  }
+
+  componentDidMount () {
+    this.loadAdvisorConversations(this.props.advisor.id);
+  }
+
   loadAdvisorConversations (id) {
     var self = this;
     getAdvisorConversations(id, (data) => {
@@ -13,26 +26,28 @@ class RequestCard extends Component {
     })
   }
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      conversations: [],
-    }
-    this.joinConversation = this.joinConversation.bind(this);
-  }
-
-  componentDidMount () {
-    this.loadAdvisorConversations(this.props.advisor.id);
-  }
-
   joinConversation (conversation) {
-    const payload = {
-      conversation_attendance: {
-        student_id: this.props.identity.profile_id,
-        conversation_id: conversation.id,
+    getStudentConversations(this.props.identity.id, (data) => {
+      if (data.length > 0) {
+        let attendance_convoIds = data.map((convo) => {
+          return convo.conversation_id;
+        })
+        if (attendance_convoIds.includes(conversation.id)) {
+          alert("You've already joined this conversation.")
+          return;
+        } else {
+          const payload = {
+            conversation_attendance: {
+              student_id: this.props.identity.profile_id,
+              conversation_id: conversation.id,
+            }
+          }
+          joinConversationAttendances(payload, (data) => {
+            console.log('Successfully joined conversation.')
+          });
+        }
       }
-    }
-    joinConversationAttendances(conversation.id, payload);
+    })
   }
 
   render () {
