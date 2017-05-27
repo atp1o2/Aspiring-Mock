@@ -5,6 +5,7 @@ const SingleInput = (props) => (
   <FormGroup controlId={props.name}>
     <ControlLabel>{props.label}</ControlLabel>
     <FormControl
+      className={props.className}
       name={props.name}
       type={props.type}
       value={props.content}

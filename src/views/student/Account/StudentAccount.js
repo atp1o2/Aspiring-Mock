@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { getFullStudent } from '../../../server/railscope';
+import withIdentity from '../../../components/Identity/withIdentity';
+import { getFullStudent, getAllCompanies, getAllCities, getAllStates } from '../../../server/railscope';
 import { Grid, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import StatusForm from '../../../components/Forms/StatusForm';
 import AccountForm from '../../../components/Forms/AccountForm';
 import ExperienceForm from '../../../components/Forms/ExperienceForm';
+import EditExperienceForm from '../../../components/Forms/EditExperienceForm';
 import EducationForm from '../../../components/Forms/EducationForm';
-// import LanguageForm from '../../../components/Forms/LanguageForm';
 
 const FormStyle = styled.div`
   .section {
@@ -18,26 +19,76 @@ const FormStyle = styled.div`
 `;
 
 class StudentAccount extends Component {
-  loadFullStudent (id) {
-    var self = this;
-    getFullStudent(id, (data) => {
-      self.setState({
-        student: data,
-        loading: false
-      })
-    })
-  }
-
   constructor (props) {
     super(props);
     this.state = {
       student: '',
+      work_experiences: [],
+      all_cities: [],
+      all_states: [],
+      all_companies: [],
       loading: true
     }
+    this.addNewExperienceToView = this.addNewExperienceToView.bind(this);
+    this.removeExperienceFromView = this.removeExperienceFromView.bind(this);
   }
 
   componentDidMount () {
-    this.loadFullStudent(this.props.params.id);
+    this.loadAllStates();
+    this.loadAllCities();
+    this.loadAllCompanies();
+    this.loadFullStudent(this.props.identity.profile_id);
+  }
+
+  loadFullStudent (id, callback) {
+    var self = this;
+    getFullStudent(id, (data) => {
+      self.setState({
+        student: data,
+        work_experiences: data.work_experiences,
+        loading: false,
+      })
+    })
+  }
+  loadAllCities () {
+    var self = this;
+    getAllCities((data) => {
+      self.setState({
+        all_cities: data,
+      })
+    })
+  }
+  loadAllStates () {
+    var self = this;
+    getAllStates((data) => {
+      self.setState({
+        all_states: data
+      })
+    })
+  }
+  loadAllCompanies () {
+    var self = this;
+    getAllCompanies((data) => {
+      self.setState({
+        all_companies: data,
+      })
+    })
+  }
+
+  removeExperienceFromView (id) {
+    this.setState({
+      ...this.state,
+      work_experiences: this.state.work_experiences.filter((object) => {
+        return object.id !== id
+      })
+    })
+  }
+
+  addNewExperienceToView (experience) {
+    this.setState({
+      ...this.state,
+        work_experiences: this.state.work_experiences.concat(experience)
+    })
   }
 
   render () {
@@ -45,6 +96,19 @@ class StudentAccount extends Component {
       return (<div>loading...</div>);
     }
     else {
+      let experienceList;
+      experienceList = this.state.work_experiences.map((experience) =>
+        <Col key={experience.id} sm={12} smOffset={0} md={10} mdOffset={1}>
+          <EditExperienceForm
+            user={this.state.student}
+            experience={experience}
+            removeExperienceFromView={this.removeExperienceFromView}
+            all_companies={this.state.all_companies}
+            all_states={this.state.all_states}
+            all_cities={this.state.all_cities}
+            />
+        </Col>
+      )
       return (
         <FormStyle>
           <Grid>
@@ -67,8 +131,16 @@ class StudentAccount extends Component {
             <Row className="section">
               <Col sm={12} smOffset={0} md={10} mdOffset={1}>
                 <p className="h2">Experience</p>
-                <ExperienceForm user={this.state.student} />
+                <ExperienceForm
+                  user={this.state.student}
+                  addNewExperienceToView={this.addNewExperienceToView}
+                  all_companies={this.state.all_companies}
+                  all_states={this.state.all_states}
+                  all_cities={this.state.all_cities} />
               </Col>
+            </Row>
+            <Row>
+              {experienceList}
             </Row>
             <Row className="section">
               <Col sm={12} smOffset={0} md={10} mdOffset={1}>
@@ -83,4 +155,5 @@ class StudentAccount extends Component {
   }
 }
 
-export default StudentAccount;
+const StudentAccountwithIdentity = withIdentity(StudentAccount);
+export default StudentAccountwithIdentity;
