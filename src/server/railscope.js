@@ -1,11 +1,11 @@
 import restful, { fetchBackend } from 'restful.js';
 
-// const api = restful('http://localhost:3000', fetchBackend(fetch));
-const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
+const api = restful('http://localhost:3000', fetchBackend(fetch));
+// const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
 
 
 
-const postUserToken = (email, password, callback, failure) => {
+export const postUserToken = (email, password, callback, failure) => {
   api.all('user_token').post(
     {auth:{email, password}}
   ).then((response)=>{
@@ -18,10 +18,13 @@ const postUserToken = (email, password, callback, failure) => {
   });
 }
 
-/********************** UPDATE **********************/
+/********************** PUTS **********************/
 const putResourceFactory = (resourceName) => (id, payload, callback) => {
-  api.one(resourceName, id).patch(payload).then((response) => {
-      console.log('Resource Updated.')
+  api.one(resourceName, id).put(payload).then((response) => {
+    const resourceEntities = response.body();
+    const resource = resourceEntities.data();
+    console.log('Post New Resource.')
+    callback(resource);
   }, (response) => {
     throw new Error(response)
   })
@@ -33,7 +36,7 @@ const postResourceFactory = (resourceName) => (payload, callback) => {
   api.all(resourceName).post(payload).then((response) => {
     const resourceEntities = response.body();
     const resource = resourceEntities.data();
-    console.log('Resource Updated.')
+    console.log('Post New Resource.')
     callback(resource);
   }, (response) => {
     throw new Error(response)
@@ -115,94 +118,58 @@ const getCustomFactory = (resourceName, resource) => (id, callback) => {
 }
 
 // GET /:resourcenName/:id
-const getUser = getOneFactory('users');
-const getStudent = getOneFactory('students');
-const getAdvisor = getOneFactory('advisors');
-const getRecruiter= getOneFactory('recruiters');
-const getConversation = getOneFactory('conversations');
-const getMajor = getOneFactory('majors');
-const getSchool = getOneFactory('schools');
-const getEducation = getOneFactory('educations');
-const getCompany = getOneFactory('companies');
-const getAmaQuestion = getOneFactory('ama_questions');
+export const getUser = getOneFactory('users');
+export const getStudent = getOneFactory('students');
+export const getAdvisor = getOneFactory('advisors');
+export const getRecruiter= getOneFactory('recruiters');
+export const getConversation = getOneFactory('conversations');
+export const getMajor = getOneFactory('majors');
+export const getSchool = getOneFactory('schools');
+export const getEducation = getOneFactory('educations');
+export const getCompany = getOneFactory('companies');
+export const getAmaQuestion = getOneFactory('ama_questions');
+export const getCity = getOneFactory('cities');
+export const getState = getOneFactory('states');
+
 
 // GET ALL /:resourceName
-const getAllAdvisors = getAllFactory('advisors');
-const getAllStudents = getAllFactory('students');
-const getAllSchools = getAllFactory('schools');
-const getAllMajors = getAllFactory('majors');
-const getAllCompanies = getAllFactory('companies');
-const getAllCities = getAllFactory('cities');
-const getAllStates = getAllFactory('states');
+export const getAllAdvisors = getAllFactory('advisors');
+export const getAllStudents = getAllFactory('students');
+export const getAllSchools = getAllFactory('schools');
+export const getAllMajors = getAllFactory('majors');
+export const getAllCompanies = getAllFactory('companies');
+export const getAllCities = getAllFactory('cities');
+export const getAllStates = getAllFactory('states');
 
 // GET /:user/:id/full
-const getFullStudent = getFullUserFactory('students');
-const getFullAdvisor = getFullUserFactory('advisors');
-const getFullRecruiter = getFullUserFactory('recruiters');
-const getFullUser = getFullUserFactory('users');
+export const getFullStudent = getFullUserFactory('students');
+export const getFullAdvisor = getFullUserFactory('advisors');
+export const getFullRecruiter = getFullUserFactory('recruiters');
+export const getFullUser = getFullUserFactory('users');
 
 
 // GET /:user/:id/conversations
-const getStudentConversations = getCustomFactory('students', 'conversation_attendances');
-const getAdvisorConversations = getCustomFactory('advisors', 'conversations');
-const getAdvisorAmas = getCustomFactory('advisors', 'amas');
+export const getStudentConversations = getCustomFactory('students', 'conversation_attendances');
+export const getAdvisorConversations = getCustomFactory('advisors', 'conversations');
+export const getAdvisorAmas = getCustomFactory('advisors', 'amas');
 
-const updateStudent = putResourceFactory('students');
-const updateUser = putResourceFactory('users');
+export const updateStudent = putResourceFactory('students');
+export const updateUser = putResourceFactory('users');
+export const updateWorkExperience = putResourceFactory('work_experiences');
 
-const joinConversationAttendances = postResourceFactory('conversation_attendances');
-const answerAma = putResourceFactory('ama_answers');
+export const joinConversationAttendances = postResourceFactory('conversation_attendances');
+export const answerAma = putResourceFactory('ama_answers');
 
-const postNewConversation = postResourceFactory('conversations');
-const postStudent = postResourceFactory('students');
-// const postAdvisor = postResourceFactory('advisors');
-const postEducation = postResourceFactory('educations');
-const postWorkExperience = postResourceFactory('work_experiences');
-const postAmaQuestion = postResourceFactory('ama_questions');
-const postAma = postResourceFactory('amas');
+export const postNewConversation = postResourceFactory('conversations');
+export const postStudent = postResourceFactory('students');
+// export const postAdvisor = postResourceFactory('advisors');
+export const postEducation = postResourceFactory('educations');
+export const postWorkExperience = postResourceFactory('work_experiences');
+export const postAmaQuestion = postResourceFactory('ama_questions');
+export const postAma = postResourceFactory('amas');
 
-const deleteConversationAttendance = deleteOneFactory('conversation_attendances');
-const deleteConversation = deleteOneFactory('conversations');
+export const deleteConversationAttendance = deleteOneFactory('conversation_attendances');
+export const deleteConversation = deleteOneFactory('conversations');
+export const deleteExperience = deleteOneFactory('work_experiences');
 
-const searchMajors = searchFactory('majors');
-
-export {
-  getUser,
-  getStudent,
-  getAdvisor,
-  getRecruiter,
-  getMajor,
-  getSchool,
-  getCompany,
-  getConversation,
-  getEducation,
-  getAmaQuestion,
-  getAllAdvisors,
-  getAllStudents,
-  getAllSchools,
-  getAllMajors,
-  getAllCompanies,
-  getAllCities,
-  getAllStates,
-  getStudentConversations,
-  getAdvisorConversations,
-  getFullStudent,
-  getFullAdvisor,
-  getFullRecruiter,
-  getFullUser,
-  postUserToken,
-  updateStudent,
-  postStudent,
-  postNewConversation,
-  postEducation,
-  postWorkExperience,
-  postAma,
-  postAmaQuestion,
-  searchMajors,
-  updateUser,
-  getAdvisorAmas,
-  answerAma,
-  joinConversationAttendances,
-  deleteConversationAttendance,
-  deleteConversation,
-};
+export const searchMajors = searchFactory('majors');

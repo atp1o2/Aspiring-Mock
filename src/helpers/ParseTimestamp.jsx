@@ -32,8 +32,17 @@ const getMonthYear = (timestamp) => {
   var date = new Date(timestamp);
   var month = date.getMonth();
   var year = date.getFullYear();
-  var dateStr = month + '/' + year;
+  var dateStr =  month + "/" + year;
   return dateStr;
+}
+
+const getYearMonth = (timestamp) => {
+  var date = new Date(timestamp);
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var dateStr =  year + "-" + ('0' + (1 + month)).slice(-2);
+  return dateStr;
+  // OUTPUT: 1990-01
 }
 
 const getTime = (timestamp) => {
@@ -51,4 +60,4 @@ const getTime = (timestamp) => {
 
 // Need time setter for create a new Date when user books an appointment
 
-export { getDate, getTime, getDay, getMonthYear };
+export { getDate, getTime, getDay, getMonthYear, getYearMonth };

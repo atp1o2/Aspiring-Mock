@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { getAllCompanies, postWorkExperience, getAllCities, getAllStates } from '../../server/railscope';
+import { getAllCompanies, postWorkExperience, updateWorkExperience, getAllCities, getAllStates, getCompany, getCity, getState } from '../../server/railscope';
 import { Form, Row, Col } from 'react-bootstrap';
 import SingleInput from '../SingleInput';
+import Select from '../Select';
 import TextArea from '../TextArea';
 import Button from '../Button';
+import { getYearMonth } from '../../helpers/ParseTimestamp';
+import { allStates } from '../../helpers/allStates';
+import { Months, Years } from '../../helpers/monthsYears';
+
+// import { getCityState } from '../../helpers/getCityState';
+
+
 
 class ExperienceForm extends Component {
   constructor (props) {
@@ -12,8 +20,10 @@ class ExperienceForm extends Component {
       user: '',
       company_name: '',
       title: '',
-      start_date: '',
-      end_date: '',
+      start_month: '',
+      start_year: '',
+      end_month: '',
+      end_year: '',
       current: '',
       url: '',
       summary: '',
@@ -22,12 +32,49 @@ class ExperienceForm extends Component {
       all_companies: '',
       all_states: '',
       all_cities: '',
-      loading: true
+      loading: false
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelection = this.handleSelection.bind(this);
+  }
+
+  componentDidMount () {
+    this.setState({
+      user: this.props.user,
+      all_cities: this.props.all_cities,
+      all_states: this.props.all_states,
+      all_companies: this.props.all_companies,
+    })
+  }
+
+  loadCity (id, callback) {
+    var self = this;
+    getCity(id, (data) => {
+      self.setState({
+        city: data.name
+      })
+      callback.apply(this, [data.state_id]);
+    })
+  }
+
+  loadState (id) {
+    var self = this;
+    getState(id, (data) => {
+      self.setState({
+        state: data.name
+      })
+    })
+  }
+
+  loadCompany (id) {
+    var self = this;
+    getCompany(id, (data) => {
+      self.setState({
+        company_name: data.name,
+      })
+    })
   }
 
   loadAllCompanies () {
@@ -42,7 +89,8 @@ class ExperienceForm extends Component {
     var self = this;
     getAllCities((data) => {
       self.setState({
-        all_cities: data
+        all_cities: data,
+        loading: false,
       })
     })
   }
@@ -52,15 +100,6 @@ class ExperienceForm extends Component {
       self.setState({
         all_states: data
       })
-    })
-  }
-
-  componentDidMount () {
-    this.loadAllCompanies();
-    this.loadAllStates();
-    this.loadAllCities();
-    this.setState({
-      user: this.props.user
     })
   }
 
@@ -100,8 +139,6 @@ class ExperienceForm extends Component {
 
   handleFormSubmit (e) {
     e.preventDefault();
-    console.log(this.state.state)
-
     let company_key, company_val, city_key, city_val;
     const checkCompany = this.checkRecords(this.state.all_companies, 'name', this.state.company_name);
     const checkCity = this.checkRecords(this.state.all_cities, 'name', this.state.city);
@@ -126,23 +163,25 @@ class ExperienceForm extends Component {
       city_val = {"name": this.state.city, "state_id": checkState.id};
     }
 
-    // needs to check for city_id and state_id
+    const start_date = new Date(this.state.start_year, Months.indexOf(this.state.start_month));
+    const end_date = new Date(this.state.end_year, Months.indexOf(this.state.end_month));
+
     const formPayload = {
       work_experience: {
         user_id: this.state.user.user_id,
         title: this.state.title,
         summary: this.state.summary,
-        start_date: this.state.start_date + "-01 00:00:00",
-        end_date: this.state.end_date + "-01 00:00:00",
+        start_date: start_date,
+        end_date: end_date,
         current: this.state.current,
       }
     };
     formPayload.work_experience[company_key] = company_val;
-    // City is not being saved
     formPayload.work_experience[city_key] = city_val;
     const payload = formPayload;
-    console.log('payload', payload)
-    postWorkExperience(payload);
+    postWorkExperience(payload, (data) => {
+      this.props.addNewExperienceToView(data);
+    });
     this.handleClearForm(e);
     this.loadAllCompanies();
   }
@@ -152,8 +191,10 @@ class ExperienceForm extends Component {
     this.setState({
       company_name: '',
       title: '',
-      start_date: '',
-      end_date: '',
+      start_month: '',
+      start_year: '',
+      end_month: '',
+      end_year: '',
       city: '',
       state: '',
       current: '',
@@ -163,74 +204,100 @@ class ExperienceForm extends Component {
   }
 
   render () {
-    return (
-      <Form onSubmit={this.handleFormSubmit}>
-        <SingleInput
-          label={"Company Name"}
-          name={"company_name"}
-          type={"text"}
-          content={this.state.company_name}
-          onChange={this.handleInputChange} />
-        <SingleInput
-          label={"Job Title"}
-          name={"title"}
-          type={"text"}
-          content={this.state.title}
-          onChange={this.handleInputChange} />
-        <Row>
-          <Col xs={8} sm={10}>
-            <SingleInput
-              label={"City"}
-              name={"city"}
-              type={"text"}
-              content={this.state.city}
-              onChange={this.handleInputChange} />
-          </Col>
-          <Col xs={4} sm={2}>
-            <SingleInput
-              label={"State"}
-              name={"state"}
-              type={"text"}
-              placeholder={"CA"}
-              content={this.state.state}
-              onChange={this.handleInputChange} />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={5}>
-            <SingleInput
-              label={"Start Date"}
-              name={"start_date"}
-              type={"month"}
-              content={this.state.start_date}
-              onChange={this.handleInputChange} />
-          </Col>
-          <Col xs={5}>
-            <SingleInput
-              label={"End Date"}
-              name={"end_date"}
-              type={"month"}
-              content={this.state.end_date}
-              onChange={this.handleInputChange} />
-          </Col>
-          <Col xs={2} className="mt-1">
-            <SingleInput
-              name={"current"}
-              label={"Current"}
-              type={"checkbox"}
-              onChange={this.handleInputChange}
-              content={true} />
-          </Col>
-        </Row>
-        <TextArea
-          label={"Summary"}
-          rows={6}
-          name={"summary"}
-          content={this.state.summary}
-          onChange={this.handleInputChange} />
-        <Button type="submit">Add</Button>
-      </Form>
-    );
+    if (this.state.loading) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <Form onSubmit={this.handleFormSubmit}>
+          <SingleInput
+            label={"Company Name"}
+            name={"company_name"}
+            type={"text"}
+            content={this.state.company_name}
+            onChange={this.handleInputChange} />
+          <SingleInput
+            label={"Job Title"}
+            name={"title"}
+            type={"text"}
+            content={this.state.title}
+            onChange={this.handleInputChange} />
+          <Row>
+            <Col xs={8}>
+              <SingleInput
+                label={"City"}
+                name={"city"}
+                type={"text"}
+                content={this.state.city}
+                onChange={this.handleInputChange} />
+            </Col>
+            <Col xs={4}>
+              <Select
+                label={"State"}
+                name={"state"}
+                selectOption={this.state.state}
+                onChange={this.handleInputChange}
+                options={allStates} />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6} sm={3}>
+              <Select
+                label={"Start Date"}
+                name={"start_month"}
+                selectOption={"Month"}
+                content={this.state.start_month}
+                options={Months}
+                onChange={this.handleInputChange} />
+            </Col>
+            <Col xs={6} sm={2}>
+                <Select
+                label="&nbsp;"
+                name={"start_year"}
+                content={this.state.start_year}
+                selectOption={"Year"}
+                options={Years.reverse()}
+                onChange={this.handleInputChange} />
+            </Col>
+            <Col xs={6} sm={3}>
+              <Select
+                label={"End Date"}
+                name={"end_month"}
+                selectOption={"Month"}
+                options={Months}
+                content={this.state.end_month}
+                onChange={this.handleInputChange} />
+            </Col>
+            <Col xs={6} sm={2}>
+              <Select
+                label="&nbsp;"
+                name={"end_year"}
+                options={Years.reverse()}
+                selectOption={"Year"}
+                content={this.state.end_year}
+                onChange={this.handleInputChange} />
+            </Col>
+            {/*}
+            <Col xs={2}>
+              <SingleInput
+                name={"current"}
+                label={"Current"}
+                type={"checkbox"}
+                onChange={this.handleInputChange}
+                checked={true}
+                content={"checked"} />
+            </Col>
+          {*/}
+          </Row>
+          <TextArea
+            label={"Summary"}
+            rows={4}
+            name={"summary"}
+            content={this.state.summary}
+            onChange={this.handleInputChange} />
+          <Button type="submit">Save</Button>
+        </Form>
+      );
+    }
   }
 }
 

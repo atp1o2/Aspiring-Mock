@@ -29,8 +29,8 @@ class ExperienceCardView extends Component {
           <h4>{this.props.company.name}</h4>
           <p className="h5">{this.props.experience.title}</p>
           <hr />
+          <p>{this.props.city}, {this.props.state}</p>
           <p>{getMonthYear(this.props.experience.start_date)} - {this.props.experience.current ? "Current" : getMonthYear(this.props.experience.end_date)}</p>
-          <p>Summary:</p>
           <p>{this.props.experience.summary}</p>
         </div>
       </Card>

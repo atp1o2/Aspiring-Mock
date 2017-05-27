@@ -4,7 +4,6 @@ import AmaAdvisorForm from './AmaAdvisorForm';
 import AmaStudentForm from './AmaStudentForm';
 
 class AmaView extends Component {
-
   constructor (props) {
     super(props);
     this.state = {
