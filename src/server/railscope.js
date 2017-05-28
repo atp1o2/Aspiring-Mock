@@ -1,121 +1,130 @@
 import restful, { fetchBackend } from 'restful.js';
 
-const api = restful('http://localhost:3000', fetchBackend(fetch));
-// const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
+// const api = restful('http://localhost:3000', fetchBackend(fetch));
+const api = restful(process.env.REACT_APP_BACKEND_SERVER, fetchBackend(fetch));
 
 
 
-export const postUserToken = (email, password, callback, failure) => {
-  api.all('user_token').post(
-    {auth:{email, password}}
-  ).then((response)=>{
-    const authEntity = response.body();
-    const auth = authEntity.data();
-    callback(auth);
+/********************** UPDATE **********************/
+const putResourceFactory = (resourceName) => (id, payload, callback, failure) => {
+  api.one(resourceName, id).patch(payload).then((response) => {
+      const resourceEntity = response.body();
+      const resource = resourceEntity.data();
+      console.log('Resource Updated.');
+      callback(resource);
   }, (response) => {
     failure(response);
-    throw new Error('Invalid Credentials.');
-  });
-}
-
-/********************** PUTS **********************/
-const putResourceFactory = (resourceName) => (id, payload, callback) => {
-  api.one(resourceName, id).put(payload).then((response) => {
-    const resourceEntities = response.body();
-    const resource = resourceEntities.data();
-    console.log('Post New Resource.')
-    callback(resource);
-  }, (response) => {
-    throw new Error(response)
+    throw new Error(response);
   })
 }
 
 /********************** POST **********************/
 
-const postResourceFactory = (resourceName) => (payload, callback) => {
+const postResourceFactory = (resourceName) => (payload, callback, failure) => {
   api.all(resourceName).post(payload).then((response) => {
     const resourceEntities = response.body();
     const resource = resourceEntities.data();
     console.log('Post New Resource.')
     callback(resource);
   }, (response) => {
-    throw new Error(response)
+    failure(response);
+    throw new Error(response);
   })
 }
 
 /********************** SEARCH **********************/
 
-const searchFactory = (resourceName) => (param, callback) => {
+const searchFactory = (resourceName) => (param, callback, failure) => {
   const endpoint = resourceName + "?search=" + param;
   api.all(endpoint).getAll().then((response) => {
     const resourceEntities = response.body();
     let resourceList = resourceEntities.map((entity) => entity.data());
     callback(resourceList);
   }, (response => {
+    failure(response);
+    throw new Error('LOL 404 GL');
+  }));
+}
+
+/********************** VALIDATE **********************/
+
+const validationFactory = (resourceName, query) => (param, callback, failure) => {
+  const endpoint = `${resourceName}?${query}=${param}`;
+  api.custom(endpoint).get().then((response) => {
+    const resourceEntity = response.body();
+    const resourceData = resourceEntity.data();
+    callback(resourceData);
+  }, (response => {
+    failure(response);
     throw new Error('LOL 404 GL');
   }));
 }
 
 /********************** DELETE **********************/
 
-const deleteOneFactory = (resourceName) => (id, callback) => {
+const deleteOneFactory = (resourceName) => (id, callback, failure) => {
   api.one(resourceName, id).delete().then((response) => {
     console.log("Resource Deleted", response.body().data())
   }, (response) => {
+    failure(response);
     throw new Error('Could not delete resource.')
   })
 }
 
 /********************** GET **********************/
 
-const getOneFactory = (resourceName) => (id, callback) => {
+const getOneFactory = (resourceName) => (id, callback, failure) => {
   api.one(resourceName, id).get().then((response) => {
     const resourceEntity = response.body();
     const resourceData = resourceEntity.data();
     callback(resourceData);
   }, (response) => {
+    failure(response);
     throw new Error('LOL 404. Retry?')
   })
 }
 
-const getAllFactory = (resourceName) => (callback) => {
+const getAllFactory = (resourceName) => (callback, failure) => {
   api.all(resourceName).getAll().then((response) => {
     const resourceEntities = response.body();
-    let resourceList = [];
-    resourceEntities.forEach((resourceEntity) => {
-      resourceList.push(resourceEntity.data());
-    })
+    let resourceList = resourceEntities.map((entity) => entity.data());
     callback(resourceList);
   }, (response => {
+    failure(response);
     throw new Error('LOL 404 GL');
   }));
 }
 
-const getFullUserFactory = (resourceName) => (id, callback) => {
+const getFullUserFactory = (resourceName) => (id, callback, failure) => {
   let endpoint = resourceName + '/' + id + '/full';
   api.all(endpoint).getAll().then((response) => {
     const userEntity = response.body();
     const user = userEntity.data();
     callback(user);
   }, (response) => {
+    failure(response);
     throw new Error('LOL 404 GL');
   });
 }
 
-const getCustomFactory = (resourceName, resource) => (id, callback) => {
+const getCustomFactory = (resourceName, resource) => (id, callback, failure) => {
   let endpoint = resourceName + '/' + id + '/' + resource;
   api.all(endpoint).getAll().then((response) => {
-    const resourcesEntities = response.body();
-    let resourceList = [];
-    resourcesEntities.forEach((resourcesEntity) => {
-      const resource = resourcesEntity.data();
-      resourceList.push(resource)
-    })
+    const resourceEntities = response.body();
+    let resourceList = resourceEntities.map((entity) => entity.data());
     callback(resourceList);
   }, (response) => {
+    failure(response);
     throw new Error('LOL 404 GL');
   });
 }
+
+//AUTH
+const postUserToken = postResourceFactory('user_token');
+const putEmailVerification = putResourceFactory('email_verification');
+
+//GET VALIDATE EMAIL
+const validateSchoolEmail = validationFactory('school_emails/validate', 'email');
 
 // GET /:resourcenName/:id
 export const getUser = getOneFactory('users');

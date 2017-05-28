@@ -1,6 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+//Registration
+import StudentRegistration from './views/authentication/Registration/StudentRegistration';
+
+//Authentication
+import EmailVerification from './views/authentication/Registration/EmailVerification';
+
 // Recruiter
 import RecruiterAccount from './views/recruiter/RecruiterAccount/RecruiterAccount';
 import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
@@ -41,6 +47,9 @@ var routes = (
     <Route path='Terms-of-Use-Student' component={TermsStudent} />
     <Route path='Private-Policy' component={PrivatePolicy} />
     <Route path='Private-Policy-Student' component={PrivatePolicyStudent} />
+
+    <Route path='email_verification/:id' component={EmailVerification} />
+    <Route path='student_registration' component={StudentRegistration} />
 
     <Route path='Recruiters/:id'>
       <Route path='Recruit' component={RecruitStudents} />
