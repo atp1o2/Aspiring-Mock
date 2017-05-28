@@ -11,7 +11,7 @@ class Login extends Component {
   }
 
   login(email){
-    postUserToken(email, 'password', (identityObject)=>{
+    postUserToken({auth: {email, password: 'password'}}, (identityObject)=>{
       this.setState({...this.state, invalidLogin: false});
       const token = identityObject.jwt;
       const identityArray = token.split('.');
