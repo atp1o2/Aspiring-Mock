@@ -71,12 +71,14 @@ class ProfileForm extends Component {
           name={"summary"}
           content={this.state.summary}
           onChange={this.handleInputChange} />
+          {/*}
         <SingleInput
           label={"Links"}
           name={"links"}
           type={"text"}
           content={this.state.links}
           onChange={this.handleInputChange} />
+        {*/}
         <Select
           label={"Citizenship"}
           name={"citizenship"}

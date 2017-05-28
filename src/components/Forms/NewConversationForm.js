@@ -42,7 +42,8 @@ class NewConversationForm extends Component {
       conversation: {
         advisor_id: this.state.advisor.id,
         url: 'https://appear.in/' + date,
-        capacity: this.state.capacity,
+        // capacity: this.state.capacity,
+        capacity: 4,
         date: date,
         conversation_attendance: [],
         id: date,
@@ -67,7 +68,7 @@ class NewConversationForm extends Component {
     return (
       <Form onSubmit={this.handleFormSubmit}>
         <Row>
-          <Col xs={12} sm={4}>
+          <Col xs={12} sm={5}>
             <SingleInput
               label={"Appointment Date"}
               name={"date"}
@@ -75,20 +76,12 @@ class NewConversationForm extends Component {
               content={this.state.date}
               onChange={this.handleInputChange} />
           </Col>
-          <Col xs={12} sm={4}>
+          <Col xs={12} sm={5}>
             <SingleInput
               label={"Start Time"}
               name={"time"}
               type={"time"}
               content={this.state.time}
-              onChange={this.handleInputChange} />
-          </Col>
-          <Col xs={12} sm={2}>
-            <Select
-              label={"Capacity"}
-              name={"capacity"}
-              selectOption={this.state.capacity}
-              options={[1, 2, 3, 4, 5, 6, 7]}
               onChange={this.handleInputChange} />
           </Col>
           <Col xs={12} sm={2}>

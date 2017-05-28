@@ -117,6 +117,7 @@ class AdvisorAccount extends Component {
               <h1 className="text-center">Profile Settings</h1>
               <hr />
             </Row>
+            {/*}
             <Row className="section">
               <Col sm={12} smOffset={0} md={10} mdOffset={1}>
                 <p className="h2">General</p>
@@ -130,6 +131,7 @@ class AdvisorAccount extends Component {
                 <LinksForm user={this.state.advisor} />
               </Col>
             </Row>
+          {*/}
             <Row className="section">
               <Col sm={12} smOffset={0} md={10} mdOffset={1}>
                 <p className="h2">Experience</p>
