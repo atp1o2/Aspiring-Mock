@@ -43,19 +43,19 @@ class RequestCardView extends Component {
       convoList = this.props.conversations.map((conversation) =>
         <Col sm={12} md={6} mdOffset={3} lg={3} lgOffset={0} className="base col-centered" key={conversation.id}>
             <div key={conversation.id}>
-              <p>{getDay(conversation.date)}, {getDate(conversation.date)}</p>
+              <p>{getDay(conversation.datetime)}, {getDate(conversation.datetime)}</p>
               {
                 conversation.capacity - conversation.conversation_attendances.length <= 0 ? (
                   <div>
                     <h2 className="ma-3">Full</h2>
                     <p></p>
-                    <Button small disabled>{getTime(conversation.date)}</Button>
+                    <Button small disabled>{getTime(conversation.datetime)}</Button>
                   </div>
                 ) : (
                   <div>
                     <h2>{conversation.capacity - conversation.conversation_attendances.length}</h2>
                     <p>Spots Available</p>
-                    <Button type="submit" onClick={() => {this.props.onClick(conversation)}} small>{getTime(conversation.date)}</Button>
+                    <Button type="submit" onClick={() => {this.props.onClick(conversation)}} small>{getTime(conversation.datetime)}</Button>
                   </div>
                 )
               }

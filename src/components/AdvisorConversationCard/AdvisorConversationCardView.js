@@ -26,9 +26,9 @@ class AdvisorConversationCardView extends Component {
         <Row>
           <Col xs={12} sm={4}>
             <p className="bold">Appointment:</p>
-            <p>{getDate(this.props.conversation.date)}</p>
-            <p>{getTime(this.props.conversation.date)}</p>
-            <p>{getDay(this.props.conversation.date)}</p>
+            <p>{getDate(this.props.conversation.datetime)}</p>
+            <p>{getTime(this.props.conversation.datetime)}</p>
+            <p>{getDay(this.props.conversation.datetime)}</p>
           </Col>
           <Col className="center" xs={12} sm={4}>
             <p className="bold">Attendees</p>

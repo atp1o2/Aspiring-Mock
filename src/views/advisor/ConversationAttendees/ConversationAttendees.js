@@ -8,7 +8,7 @@ class ConversationAttendees extends Component {
     getConversation(id, (data) => {
       self.setState({
         conversation: data,
-        students: data.students,
+        students: data.conversation_attendances,
         loading: false
       })
     })

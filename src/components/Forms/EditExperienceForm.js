@@ -285,7 +285,7 @@ class EditExperienceForm extends Component {
                 <ControlLabel className={this.state.labeless}>Title</ControlLabel><br />
                 <InlineEdit
                   className={"h4 " + this.state.edit_mode}
-                  activeClassName="form-control"
+                  activeClassName="form-control mt-1"
                   validate={this.customValidateText}
                   text={this.state.title}
                   paramName="title"

@@ -33,9 +33,9 @@ class ConversationAttendees extends Component {
           <DateCard>
             <h3>Appointment</h3>
             <hr />
-            <p className="h4">{getDate(this.props.conversation.date)}</p>
-            <p className="h4">{getTime(this.props.conversation.date)}</p>
-            <p className="h4">{getDay(this.props.conversation.date)}</p>
+            <p className="h4">{getDate(this.props.conversation.datetime)}</p>
+            <p className="h4">{getTime(this.props.conversation.datetime)}</p>
+            <p className="h4">{getDay(this.props.conversation.datetime)}</p>
           </DateCard>
         </Row>
         <Row>

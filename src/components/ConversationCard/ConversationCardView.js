@@ -50,8 +50,8 @@ class ConversationCardView extends Component {
           </Col>
           <Col sm={12} md={4}>
             <p className="bold">Appointment:</p>
-            <p>{getDate(this.props.conversation.date)}</p>
-            <p>{getDay(this.props.conversation.date)}, {getTime(this.props.conversation.date)}</p>
+            <p>{getDate(this.props.conversation.datetime)}</p>
+            <p>{getDay(this.props.conversation.datetime)}, {getTime(this.props.conversation.datetime)}</p>
             <Button small>Contact</Button>
             <Button onClick={() => {this.props.onClick()}} small>Cancel</Button>
           </Col>
