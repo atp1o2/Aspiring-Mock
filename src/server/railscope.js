@@ -1,7 +1,7 @@
 import restful, { fetchBackend } from 'restful.js';
 
-// const api = restful('http://localhost:3000', fetchBackend(fetch));
-const api = restful(process.env.REACT_APP_BACKEND_SERVER, fetchBackend(fetch));
+const api = restful('http://localhost:3000', fetchBackend(fetch));
+// const api = restful(process.env.REACT_APP_BACKEND_SERVER, fetchBackend(fetch));
 
 
 
@@ -120,11 +120,11 @@ const getCustomFactory = (resourceName, resource) => (id, callback, failure) => 
 }
 
 //AUTH
-const postUserToken = postResourceFactory('user_token');
-const putEmailVerification = putResourceFactory('email_verification');
+export const postUserToken = postResourceFactory('user_token');
+export const putEmailVerification = putResourceFactory('email_verification');
 
 //GET VALIDATE EMAIL
-const validateSchoolEmail = validationFactory('school_emails/validate', 'email');
+export const validateSchoolEmail = validationFactory('school_emails/validate', 'email');
 
 // GET /:resourcenName/:id
 export const getUser = getOneFactory('users');

@@ -61,7 +61,7 @@ class NewConversationForm extends Component {
     this.setState({
       capacity: '',
       date: ''
-    });
+    })
   }
 
   render () {
