@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 
 //Registration
 import StudentRegistration from './views/authentication/Registration/StudentRegistration';
+import AdvisorRegistration from './views/authentication/Registration/AdvisorRegistration';
 
 //Authentication
 import EmailVerification from './views/authentication/Registration/EmailVerification';
@@ -50,6 +51,8 @@ var routes = (
 
     <Route path='email_verification/:id' component={EmailVerification} />
     <Route path='student_registration' component={StudentRegistration} />
+    <Route path='advisor_registration' component={AdvisorRegistration} />
+
 
     <Route path='Recruiters/:id'>
       <Route path='Recruit' component={RecruitStudents} />

@@ -171,7 +171,7 @@ export const answerAma = putResourceFactory('ama_answers');
 
 export const postNewConversation = postResourceFactory('conversations');
 export const postStudent = postResourceFactory('students');
-// export const postAdvisor = postResourceFactory('advisors');
+export const postAdvisor = postResourceFactory('advisors');
 export const postEducation = postResourceFactory('educations');
 export const postWorkExperience = postResourceFactory('work_experiences');
 export const postAmaQuestion = postResourceFactory('ama_questions');
