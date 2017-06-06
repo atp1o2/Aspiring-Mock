@@ -33,7 +33,7 @@ const getMonthYear = (timestamp) => {
   var date = new Date(timestamp);
   var month = date.getMonth();
   var year = date.getFullYear();
-  var dateStr =  month + "/" + year;
+  var dateStr =  (1 + month) + "/" + year;
   return dateStr;
 }
 

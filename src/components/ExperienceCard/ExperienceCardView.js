@@ -7,7 +7,6 @@ const Card = styled.div`
   text-align: center;
   border: ${Brand.greyBorder};
   border-bottom: 1px solid silver;
-  min-width: 25rem;
   max-width: 25rem;
   max-height: 25rem;
   padding: 1rem;
@@ -24,7 +23,7 @@ const Card = styled.div`
 class ExperienceCardView extends Component {
   render () {
     return (
-      <Card>
+      <Card className="sidebar-small">
         <div className="details">
           <h4>{this.props.company.name}</h4>
           <p className="h5">{this.props.experience.title}</p>

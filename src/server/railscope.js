@@ -139,6 +139,7 @@ export const getCompany = getOneFactory('companies');
 export const getAmaQuestion = getOneFactory('ama_questions');
 export const getCity = getOneFactory('cities');
 export const getState = getOneFactory('states');
+export const getIndustry = getOneFactory('industries');
 
 
 // GET ALL /:resourceName

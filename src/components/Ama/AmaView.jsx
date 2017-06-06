@@ -40,7 +40,7 @@ class AmaView extends Component {
       )
     }
     else {
-      amaList = <p>No AMAs yet!</p>
+      amaList = <p>No Questions Yet!</p>
     }
     if (this.props.logged_user.role === "student") {
       questionForm = (

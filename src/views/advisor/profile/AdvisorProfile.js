@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdvisorProfileView from './AdvisorProfileView';
-import { getFullAdvisor, getCompany } from '../../../server/railscope';
+import { getFullAdvisor, getCompany, getIndustry } from '../../../server/railscope';
 
 class AdvisorProfile extends Component {
   loadFullAdvisor (id, callback) {
@@ -9,15 +9,20 @@ class AdvisorProfile extends Component {
       self.setState({
         advisor: data
       })
-      callback.apply(this, [data.company_id]);
+      callback.apply(this, [data.company_id, data.industry_id]);
     })
   }
 
-  loadCompany (id) {
+  loadDetails (company_id, industry_id) {
     var self = this;
-    getCompany(id, (data) => {
+    getCompany(company_id, (data) => {
       self.setState({
         company: data,
+      })
+    })
+    getIndustry(industry_id, (data) => {
+      self.setState({
+        industry: data.name,
         loading: false
       })
     })
@@ -28,12 +33,13 @@ class AdvisorProfile extends Component {
     this.state = {
       advisor: '',
       company: '',
+      industry: '',
       loading: true
     }
   }
 
   componentDidMount () {
-    this.loadFullAdvisor(this.props.params.id, this.loadCompany);
+    this.loadFullAdvisor(this.props.params.id, this.loadDetails);
   }
 
   render () {
@@ -44,6 +50,7 @@ class AdvisorProfile extends Component {
       return (
         <AdvisorProfileView
           advisor={this.state.advisor}
+          industry={this.state.industry}
           company={this.state.company} />
       );
     }
