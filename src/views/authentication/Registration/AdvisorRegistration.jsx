@@ -13,7 +13,6 @@ class AdvisorRegistration extends Component {
     const userAttributes = {
       'first_name': firstName,
       'last_name': lastName,
-      'role': "advisor",
       email,
       password,
       'password_confirmation': passwordConfirmation,

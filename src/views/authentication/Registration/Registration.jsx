@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {validateSchoolEmail} from '../../../server/railscope';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import Button from '../../../components/Button';
 
 class Registration extends Component {
   constructor (props) {
@@ -74,17 +76,52 @@ class Registration extends Component {
     } else {
       return(
         <div>
-          First Name:
-          <input type='text' value={this.state.firstName} onChange={(e)=>{handle('firstName', e)}}></input><br/>
-          Last Name:
-          <input type='text' value={this.state.lastName} onChange={(e)=>{handle('lastName', e)}}></input><br/>
-          Email:
-          <input type='text' value={this.state.email} onChange={(e)=>{handle('email', e);}}></input>{emailValid() ? '✓' : 'x'}<br/>
-          Password:
-          <input type='password' value={this.state.password} onChange={(e)=>{handle('password',e)}}></input><br/>
-          Confirm Password:
-          <input type='password' value={this.state.passwordConfirmation} onChange={(e)=>{handle('passwordConfirmation',e)}}></input><br/>
-          <button onClick={()=>{submit()}} disabled={!formValid()}>Submit</button>
+          <h2 className="text-center">Advisor Registration</h2>
+          <FormGroup>
+            <ControlLabel>First Name:</ControlLabel>
+            <FormControl
+              type='text'
+              value={this.state.firstName}
+              onChange={(e)=>{handle('firstName', e)}}>
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <ControlLabel>Last Name:</ControlLabel>
+            <FormControl
+              type='text'
+              value={this.state.lastName}
+              onChange={(e)=>{handle('lastName', e)}}>
+            </FormControl>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Email:</ControlLabel>
+            <FormControl
+              type='text'
+              value={this.state.email}
+              onChange={(e)=>{handle('email', e);}}>
+            </FormControl>
+            {emailValid() ? '✓' : 'x'}
+          </FormGroup>
+
+          <FormGroup>
+            <ControlLabel>Password:</ControlLabel>
+            <FormControl
+              type='password'
+              value={this.state.password}
+              onChange={(e)=>{handle('password',e)}}>
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup>
+            <ControlLabel>Confirm Password:</ControlLabel>
+            <FormControl
+              type='password'
+              value={this.state.passwordConfirmation}
+              onChange={(e)=>{handle('passwordConfirmation',e)}}>
+            </FormControl>
+          </FormGroup>
+          <Button className="mt-2" onClick={()=>{submit()}} disabled={!formValid()}>Submit</Button>
         </div>
       );
     }

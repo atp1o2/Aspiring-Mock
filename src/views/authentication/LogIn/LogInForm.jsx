@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import IdentityProvider from '../../../components/Identity/IdentityProvider';
 import withIdentity from '../../../components/Identity/withIdentity';
+import { Link, withRouter } from 'react-router';
 import { postUserToken, getFullUser } from '../../../server/railscope';
+import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import Button from '../../../components/Button';
+import { RoleSwitcher } from '../../../helpers/RoleSwitcher';
+
 
 class Login extends Component {
   constructor (props) {
@@ -19,12 +24,15 @@ class Login extends Component {
       getFullUser(userId, (user) => {
         const identityData = {...user, expiration, token};
         this.props.setIdentity(identityData);
+        let role = RoleSwitcher(identityData.role)
+        this.props.router.push(`${role}/${identityData.profile_id}/Profile`);
       });
     }, (response)=>{
       console.log(response);
       console.log('failed');
       this.setState({...this.state, invalidLogin: true});
     });
+
   }
 
   handleEmail(e){
@@ -38,12 +46,27 @@ class Login extends Component {
   render () {
     return(
       <div>
+        <h2 className="text-center">Login</h2>
+        <FormGroup>
+          <ControlLabel>Email:</ControlLabel>
+          <FormControl
+            type='text'
+            value={this.state.email}
+            onChange={(e)=>{this.handleEmail(e)}}>
+          </FormControl>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Password:</ControlLabel>
+            <FormControl
+              type='password'
+              value={this.state.password}
+              onChange={(e)=>{this.handlePassword(e)}}>
+            </FormControl>
+        </FormGroup>
+        <Button className="mt-2" onClick={()=>{this.login(this.state.email)}}>Login!</Button>
+        <p><Link>Forgot Password?</Link></p>
+
         {this.state.invalidLogin ? <div>The Email or Password doesn't match our records, please try a different set of credentials.</div> : null}
-        Email:
-        <input type='text' value={this.state.email} onChange={(e)=>{this.handleEmail(e)}}></input><br/>
-        Password:
-        <input type='password' value={this.state.password} onChange={(e)=>{this.handlePassword(e)}}></input><br/>
-        <button onClick={()=>{this.login(this.state.email)}}>Login!</button>
       </div>
     );
   }
@@ -56,4 +79,4 @@ const WrappedByProvider = props => (
   </IdentityProvider>
 );
 
-export default LoginWithIdentity;
+export default withRouter(LoginWithIdentity);
