@@ -13,9 +13,9 @@ const AdvisorMastheadView = ({identity, destroyIdentity}) => (
     <Link to={`Advisors/${identity.profile_id}/Account`}>
       Account
     </Link>
-    <a onClick={()=>destroyIdentity()}>
+    <Link to="/" onClick={()=>destroyIdentity()}>
       Logout
-    </a>
+    </Link>
   </Nav>
 );
 

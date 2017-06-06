@@ -22,9 +22,9 @@ const StudentMastheadView = ({identity, destroyIdentity}) => (
     <Link to={`Students/${identity.profile_id}/Account`}>
       Account
     </Link>
-    <a onClick={()=>destroyIdentity()}>
+    <Link to="/" onClick={()=>destroyIdentity()}>
       Logout
-    </a>
+    </Link>
   </Nav>
 );
 

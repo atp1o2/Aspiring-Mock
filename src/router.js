@@ -13,6 +13,7 @@ import RecruiterAccount from './views/recruiter/RecruiterAccount/RecruiterAccoun
 import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
 
 // Advisor
+import AdvisorLanding from './views/advisor/AdvisorLanding/AdvisorLanding';
 import AdvisorConversations from './views/advisor/AdvisorConversations/AdvisorConversations';
 import ConversationAttendees from './views/advisor/ConversationAttendees/ConversationAttendees';
 import AdvisorAccount from './views/advisor/Account/AdvisorAccount';
@@ -37,7 +38,7 @@ import LogIn from './views/authentication/LogIn/LogIn';
 
 var routes = (
   <Route>
-    <IndexRoute component={AvailableAdvisors} />
+    <IndexRoute component={AdvisorLanding} />
 
     <Route path='Log-In' component={LogIn} />
     <Route path='DMCA' component={Dmca} />
@@ -51,8 +52,8 @@ var routes = (
 
     <Route path='email_verification/:id' component={EmailVerification} />
     <Route path='student_registration' component={StudentRegistration} />
-    <Route path='advisor_registration' component={AdvisorRegistration} />
 
+    <Route path='Company' component={AdvisorLanding} />
 
     <Route path='Recruiters/:id'>
       <Route path='Recruit' component={RecruitStudents} />
