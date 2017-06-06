@@ -7,7 +7,6 @@ import RequestCard from '../../../components/RequestCard/RequestCard';
 import Ama from '../../../components/Ama/Ama';
 import ExperienceCard from '../../../components/ExperienceCard/ExperienceCard';
 
-
 const Profile = styled.div`
   min-height: auto;
   margin-top: 10rem;
@@ -31,6 +30,20 @@ const Profile = styled.div`
       text-align: left;
     }
   }
+  @media only screen and (max-width: 991px) {
+    text-align: center;
+    h3 {
+      margin-top: 10rem;
+    }
+    .sidebar {
+      .sidebar-small {
+        max-width: 25rem;
+        text-align: center;
+        margin: auto;
+        margin-top: 2rem;
+      }
+    }
+  }
 `;
 
 class AdvisorProfileView extends Component {
@@ -50,25 +63,23 @@ class AdvisorProfileView extends Component {
                 <img src={avatarImg} alt="Advisor Profile Avatar" />
               </div>
               <div clasName="sidebar-text">
-                <h3>{this.props.advisor.first_name} {this.props.advisor.last_name}</h3>
+                <h4>{this.props.advisor.first_name} {this.props.advisor.last_name}</h4>
                 <p className="bold">{this.props.company.name}</p>
                 <p>{this.props.advisor.job_title ? this.props.advisor.job_title : "Advisor"}</p>
-                <p>{this.props.company.url}</p>
+                <p><a href={this.props.company.url}>{this.props.company.url}</a></p>
                 <p>Industry: {this.props.industry}</p>
               </div>
-              <div className="mt-2">
+              <div className="mt-3">
                 <h4>Experience</h4>
                 {experienceList}
               </div>
             </Col>
-            <Col xs={12} sm={9} className="text-center">
-              <h3>Conversations</h3>
-              <hr />
+            <Col xs={12} sm={9} className="mt-2">
               <RequestCard advisor={this.props.advisor} />
             </Col>
-            <Col xs={12} sm={9} className="mt-2 text-center">
+            <Col xs={12} sm={9} className="mt-3">
               <h3>Ask Me Anything</h3>
-              <hr />
+              <hr className="yellow"/>
               <Ama advisor={this.props.advisor} />
             </Col>
           </Row>

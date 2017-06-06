@@ -129,12 +129,11 @@ class AmaAdvisorsForm extends Component {
       return (
         <AmaStyle>
           <Row>
-            <Col xs={2}>
-              Upvotes
+            <Col xs={1}>
             </Col>
             <Col xs={10}>
               <div className="question">
-                <p className="h4">{this.state.ama.text}</p>
+                <p className="h4 mt-2">{this.state.ama.text}</p>
                 <p>
                   Post by &nbsp;
                   <Link to={`Students/${this.state.student.id}/Profile`}>
