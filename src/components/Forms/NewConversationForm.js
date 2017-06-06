@@ -37,16 +37,15 @@ class NewConversationForm extends Component {
 
   handleFormSubmit (e) {
     e.preventDefault();
-    const date = new Date(this.state.date + "T" + this.state.time);
+    const datetime = new Date(this.state.date + "T" + this.state.time);
     const formPayload = {
       conversation: {
         advisor_id: this.state.advisor.id,
-        url: 'https://appear.in/' + date,
+        url: 'https://appear.in/' + this.state.advisor.last_name + "-" + this.state.date,
         // capacity: this.state.capacity,
         capacity: 4,
-        date: date,
+        datetime: datetime,
         conversation_attendance: [],
-        id: date,
       }
     };
     const payload = formPayload;

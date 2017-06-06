@@ -24,9 +24,10 @@ const getDate = (timestamp) => {
   var day = date.getDate();
   var month = date.getMonth();
   var year = date.getFullYear();
-  var dateStr = month + '/' + day + '/' + year;
+  var dateStr = (1 + month) + '/' + day + '/' + year;
   return dateStr;
 }
+// OUTPUT: 1/1/2020
 
 const getMonthYear = (timestamp) => {
   var date = new Date(timestamp);
@@ -42,8 +43,8 @@ const getYearMonth = (timestamp) => {
   var year = date.getFullYear();
   var dateStr =  year + "-" + ('0' + (1 + month)).slice(-2);
   return dateStr;
-  // OUTPUT: 1990-01
 }
+// OUTPUT: 1990-01
 
 const getTime = (timestamp) => {
   var date = new Date(timestamp);
