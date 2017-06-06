@@ -1,8 +1,8 @@
 import restful, { fetchBackend } from 'restful.js';
 
-const api = restful('http://localhost:3000', fetchBackend(fetch));
+// const api = restful('http://localhost:3000', fetchBackend(fetch));
+const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
 // const api = restful(process.env.REACT_APP_BACKEND_SERVER, fetchBackend(fetch));
-
 
 
 /********************** UPDATE **********************/
