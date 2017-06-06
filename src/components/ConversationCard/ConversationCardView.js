@@ -46,7 +46,7 @@ class ConversationCardView extends Component {
             </Link>
             <p>{title}</p>
             <p>{this.props.advisor.first_name}</p>
-            <p>#tags</p>
+            <a href={this.props.conversation.url} target="_blank">Join Conversation Room</a>
           </Col>
           <Col sm={12} md={4}>
             <p className="bold">Appointment:</p>

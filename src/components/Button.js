@@ -6,7 +6,7 @@ const Button = styled.button`
   background-color: ${Brand.yellow};
   border: none;
   border-radius: 2px;
-  min-width: 15rem;
+  min-width: 16rem;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   width: ${props => props.full ? '100%' : 'auto'};

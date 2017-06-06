@@ -36,7 +36,9 @@ class AdvisorConversationCardView extends Component {
           </Col>
           <Col className="center mt-1" xs={12} sm={4}>
             <Button small>Edit Time</Button>
-            <Button onClick={() => {this.props.onClick(this.props.conversation.id)}} small className="mt-1">Cancel</Button>
+            <Button onClick={() => {this.props.onClick(this.props.conversation.id)}} small className="mt-1">Delete</Button>
+            <br />
+            <Button className="join-convo-button" small><a href={this.props.conversation.url} target="_blank">Join Conversation</a></Button>
           </Col>
         </Row>
       </AdvisorConversationCard>
