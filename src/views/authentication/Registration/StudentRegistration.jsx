@@ -29,12 +29,15 @@ class StudentRegistration extends Component {
 
   render() {
       return (
-        <Registration
-          submit={(state)=>this.submitStudent(state)}
-          successful={this.state.successful}
-          failed={this.state.failed}
-          validateEmail
-        />
+        <div>
+          <h2 className="text-center">Student Registration</h2>
+          <Registration
+            submit={(state)=>this.submitStudent(state)}
+            successful={this.state.successful}
+            failed={this.state.failed}
+            validateEmail
+          />
+        </div>
       );
   }
 }

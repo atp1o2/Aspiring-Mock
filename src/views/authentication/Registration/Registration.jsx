@@ -76,7 +76,6 @@ class Registration extends Component {
     } else {
       return(
         <div>
-          <h2 className="text-center">Advisor Registration</h2>
           <FormGroup>
             <ControlLabel>First Name:</ControlLabel>
             <FormControl

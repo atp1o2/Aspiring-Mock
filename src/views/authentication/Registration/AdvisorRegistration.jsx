@@ -29,11 +29,14 @@ class AdvisorRegistration extends Component {
 
   render() {
     return (
-      <Registration
-        submit={(state)=>this.submitAdvisor(state)}
-        successful={this.state.successful}
-        failed={this.state.failed}
-      />
+      <div>
+        <h2 className="text-center">Advisor Registration</h2>
+        <Registration
+          submit={(state)=>this.submitAdvisor(state)}
+          successful={this.state.successful}
+          failed={this.state.failed}
+        />
+      </div>
     );
   }
 }
