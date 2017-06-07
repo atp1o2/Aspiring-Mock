@@ -60,7 +60,7 @@ class AdvisorProfileView extends Component {
           <Row>
             <Col xs={12} sm={3} className="sidebar">
               <div>
-                <img src={avatarImg} alt="Advisor Profile Avatar" />
+                <img src={avatarImg} alt="Advisor Avatar" />
               </div>
               <div clasName="sidebar-text">
                 <h4>{this.props.advisor.first_name} {this.props.advisor.last_name}</h4>
