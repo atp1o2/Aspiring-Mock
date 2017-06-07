@@ -1,6 +1,5 @@
-# React Seed
-
-Checkout [Create React App](https://github.com/facebookincubator/create-react-app) for more information.
+# Aspire FrontEnd React
+Communicates with Jane (Rails API)
 
 ## Setup
 ```
@@ -19,3 +18,6 @@ git pull
 npm run build
 git push heroku master -f
 ```
+
+## React Seed
+Checkout [Create React App](https://github.com/facebookincubator/create-react-app) for more information.
