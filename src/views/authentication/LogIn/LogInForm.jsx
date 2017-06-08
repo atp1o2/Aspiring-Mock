@@ -22,6 +22,7 @@ class Login extends Component {
       const identityArray = token.split('.');
       const {exp: expiration, sub: userId} = JSON.parse(atob(identityArray[1]));
       getFullUser(userId, (user) => {
+        console.log(user);
         const identityData = {...user, expiration, token};
         this.props.setIdentity(identityData);
         let role = RoleSwitcher(identityData.role)

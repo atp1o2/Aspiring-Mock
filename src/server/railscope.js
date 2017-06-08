@@ -1,7 +1,7 @@
 import restful, { fetchBackend } from 'restful.js';
 
-// const api = restful('http://localhost:3000', fetchBackend(fetch));
-const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
+const api = restful('http://localhost:3000', fetchBackend(fetch));
+// const api = restful('https://young-hollows-35839.herokuapp.com', fetchBackend(fetch));
 // const api = restful(process.env.REACT_APP_BACKEND_SERVER, fetchBackend(fetch));
 
 
@@ -177,6 +177,7 @@ export const postEducation = postResourceFactory('educations');
 export const postWorkExperience = postResourceFactory('work_experiences');
 export const postAmaQuestion = postResourceFactory('ama_questions');
 export const postAma = postResourceFactory('amas');
+export const postAdvisorInvite = postResourceFactory('advisor_invites');
 
 export const deleteConversationAttendance = deleteOneFactory('conversation_attendances');
 export const deleteConversation = deleteOneFactory('conversations');

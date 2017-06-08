@@ -11,6 +11,7 @@ import EmailVerification from './views/authentication/Registration/EmailVerifica
 // Recruiter
 import RecruiterAccount from './views/recruiter/RecruiterAccount/RecruiterAccount';
 import RecruitStudents from './views/recruiter/RecruitStudents/RecruitStudents';
+import RecruiterInvite from './views/recruiter/RecruiterInvite/RecruiterInvite';
 
 // Advisor
 import AdvisorLanding from './views/advisor/AdvisorLanding/AdvisorLanding';
@@ -57,7 +58,9 @@ var routes = (
 
     <Route path='Recruiters/:id'>
       <Route path='Recruit' component={RecruitStudents} />
+      <Route path='Profile' component={RecruiterAccount} />
       <Route path='Account' component={RecruiterAccount} />
+      <Route path='Invite' component={RecruiterInvite} />
     </Route>
 
     <Route path='Advisors/:id'>

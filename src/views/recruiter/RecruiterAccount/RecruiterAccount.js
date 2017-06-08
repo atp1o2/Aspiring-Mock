@@ -13,7 +13,7 @@ const FormStyle = styled.div`
   }
 `;
 
-class AdvisorAccount extends Component {
+class RecruiterAccount extends Component {
   loadRecruiter (id) {
     var self = this;
     getFullRecruiter(id, (data) => {
@@ -60,4 +60,4 @@ class AdvisorAccount extends Component {
   }
 }
 
-export default AdvisorAccount;
+export default RecruiterAccount;

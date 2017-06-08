@@ -4,7 +4,7 @@ export const RoleSwitcher = (role) => {
       return "Students"
     case "advisor":
       return "Advisors"
-    case "Recruiter":
+    case "recruiter":
       return "Recruiters"
   }
 }

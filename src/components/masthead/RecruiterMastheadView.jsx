@@ -7,6 +7,9 @@ const RecruiterMastheadView = ({identity, destroyIdentity}) => (
     <Link to={`Recruiters/${identity.profile_id}/Recruit`}>
       Recruit
     </Link>
+    <Link to={`Recruiters/${identity.profile_id}/Invite`}>
+      Invite
+    </Link>
     <Link to={`Recruiters/${identity.profile_id}/Account`}>
       Account
     </Link>
