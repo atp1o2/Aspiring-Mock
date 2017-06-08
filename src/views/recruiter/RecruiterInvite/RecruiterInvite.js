@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { postAdvisorInvite, getFullRecruiter } from '../../../server/railscope';
 
 class RecruiterInvite extends Component {
@@ -10,7 +11,8 @@ class RecruiterInvite extends Component {
       recruiter: {email: ''},
       success: false,
       failure: false,
-      company: {id: null}
+      company: {id: null},
+      code: ''
     }
     this.emailChange = this.emailChange.bind(this);
     this.companyChange = this.companyChange.bind(this);
@@ -40,8 +42,8 @@ class RecruiterInvite extends Component {
   submit(){
     this.setState({...this.state, loading: true, success: false, failure: false})
     postAdvisorInvite({recruiter_id: this.state.recruiter.id, company_id: this.state.company.id, email: this.state.email},
-      ()=>this.setState({...this.state, loading: false, success: true, failure: false}),
-      ()=>this.setState({...this.state, loading: false, success: false, failure: true})
+      (data)=>this.setState({...this.state, loading: false, success: true, failure: false, invite: data}),
+      (data)=>this.setState({...this.state, loading: false, success: false, failure: true})
     )
   }
 
@@ -55,6 +57,7 @@ class RecruiterInvite extends Component {
           <button onClick={this.submit} disabled={this.state.email === ''}>Invite</button><br/>
           {this.state.loading ? 'Creating and sending invite. Please wait.' : null}
           {this.state.success ? 'Success!' : null}
+          {this.state.success ? <div><Link to={`advisor_invite/${this.state.invite.code}`}>Click here to see what the advisor will see</Link></div> : null}
           {this.state.failure ? 'There was a problem sending this Advisor invite. Please try again.' : null}
         </div>
       );

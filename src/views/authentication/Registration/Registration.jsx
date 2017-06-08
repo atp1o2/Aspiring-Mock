@@ -30,6 +30,9 @@ class Registration extends Component {
   }
 
   componentDidUpdate(prevProps, prevState){
+    if (prevProps.email !== this.props.email){
+      this.setState({...this.state, email: this.props.email});
+    }
     if (prevState.email !== this.state.email){
       this.checkEmailValid();
     }
@@ -74,6 +77,20 @@ class Registration extends Component {
     } else if (this.props.successful) {
       return(<div>Account successfully created.</div>);
     } else {
+      const emailInput = (
+        <FormGroup>
+          <ControlLabel>Email:</ControlLabel>
+          <FormControl
+            type='text'
+            value={this.state.email}
+            onChange={(e)=>{handle('email', e);}}>
+          </FormControl>
+          {emailValid() ? '✓' : 'x'}
+        </FormGroup>
+      );
+
+      const emailField = this.props.email ? <div>Email: {this.props.email}</div> : emailInput;
+
       return(
         <div>
           <FormGroup>
@@ -93,15 +110,8 @@ class Registration extends Component {
               onChange={(e)=>{handle('lastName', e)}}>
             </FormControl>
           </FormGroup>
-          <FormGroup>
-            <ControlLabel>Email:</ControlLabel>
-            <FormControl
-              type='text'
-              value={this.state.email}
-              onChange={(e)=>{handle('email', e);}}>
-            </FormControl>
-            {emailValid() ? '✓' : 'x'}
-          </FormGroup>
+
+          {emailField}
 
           <FormGroup>
             <ControlLabel>Password:</ControlLabel>

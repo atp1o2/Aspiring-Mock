@@ -52,6 +52,7 @@ var routes = (
     <Route path='Private-Policy-Student' component={PrivatePolicyStudent} />
 
     <Route path='email_verification/:id' component={EmailVerification} />
+    <Route path='advisor_invite/:id' component={AdvisorRegistration} />
     <Route path='student_registration' component={StudentRegistration} />
 
     <Route path='Company' component={AdvisorLanding} />
