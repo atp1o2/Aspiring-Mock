@@ -47,8 +47,8 @@ class Login extends Component {
   render () {
     return(
       <div>
-        <h2 className="text-center">Login</h2>
-        <FormGroup>
+        <h3 className="text-center">Login</h3>
+        <FormGroup className="mt-3">
           <ControlLabel>Email:</ControlLabel>
           <FormControl
             type='text'

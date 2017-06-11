@@ -4,7 +4,10 @@ import { Nav } from 'react-bootstrap';
 
 const AllMastheadView = props => (
   <Nav pullRight>
-    <Link to="https://explore.careerscope.com/" className="mobile-hide">
+    <Link to="Login" className="mobile-hide">
+      Login
+    </Link>
+    <Link to="https://medium.com/aspireinc" className="mobile-hide">
       Explore
     </Link>
     <Link to="How-it-Works" className="mobile-hide">

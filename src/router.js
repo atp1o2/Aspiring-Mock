@@ -41,7 +41,8 @@ var routes = (
   <Route>
     <IndexRoute component={AdvisorLanding} />
 
-    <Route path='Log-In' component={LogIn} />
+    <Route path='Login' component={LogIn} />
+
     <Route path='DMCA' component={Dmca} />
     <Route path='FAQ' component={Faq} />
     <Route path='How-it-Works' component={HowItWorks} />
