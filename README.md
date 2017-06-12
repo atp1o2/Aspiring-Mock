@@ -1,4 +1,4 @@
-# Aspire FrontEnd React
+# React Project - Careerscope Mock
 Communicates with Jane (Rails API)
 
 ## Setup
@@ -6,18 +6,11 @@ Communicates with Jane (Rails API)
 npm install
 npm start
 ```
+Visit http://localhost:3000
 
-## Add Heroku Remote Git
-```
-git remote add heroku https://git.heroku.com/mysterious-crag-56243.git
-```
+Login with test user
+student@me
 
-## Deploy to Heroku
-```
-git pull
-npm run build
-git push heroku master -f
-```
+## Created from Habitual (React Create App + Bootstrap-Sass)
+https://github.com/atp1o2/habitual
 
-## React Seed
-Checkout [Create React App](https://github.com/facebookincubator/create-react-app) for more information.
